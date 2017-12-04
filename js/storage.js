@@ -15,45 +15,82 @@ past_searches <list of strings>
 	search <string>
 */
 
-a = read_links_from_file('../insult_tweets.txt')
-console.log(a)
+store.clearAll()
+var tweets
 
-function get_tweets(order='recent_ordered') {
-	// TODO: NO LOGIC TO CHECK FOR NEW UPDATES ON TWEETS YET
-	
-	// fetch new from twitter and initialize tweets
-	if (store.get('tweets') == undefined) {
-		var links = read_links_from_file('asdf')
-		// call back needed
-		var tweets = {}
-		for (var i in links) {
-			var tweet = temp_get_tweet(links[i])
-			// call back needed
-			tweets[links[i]] = tweet
+get_tweets().then(function(tweets) {
+
+
+	console.log(tweets)
+})
+
+
+function get_tweets(order) {
+
+	return new Promise(function (resolve, reject) {
+
+		if (!order){
+			order = 'recent_ordered'
 		}
-		// Create tweets dictionary
-		store.set('tweets', tweets)
 
-		// Create Recent ordered
-		var recent_ordered_keys = Object.keys(tweets).map(function(key) {
-	    	return key;
-		});
-		recent_ordered_keys.sort(function(first, second) {
-	    	return tweets[first].date - tweets[second].date;
-		});
-		store.set('recent_ordered_keys', recent_ordered_keys)
-	} 
+		if (store.get('tweets') == undefined) {
 
-	// Generate ordered tweets and return
-	tweets = store.get('tweets')
-	ordered_keys = store.get(order + '_keys')
+			init_tweets().then(function() {
+				// Generate ordered tweets and return
+				tweets = store.get('tweets')
+				ordered_keys = store.get(order + '_keys')
 
-	ordered_tweets = []
-	for (i in ordered_keys) {
-		ordered_tweets.push(tweets[ordered_keys[i]])
-	}
-	
-	return ordered_tweets
+				ordered_tweets = []
+				for (i in ordered_keys) {
+					ordered_tweets.push(tweets[ordered_keys[i]])
+				}
+
+				resolve(ordered_tweets)
+			});
+		}
+		else {
+
+			tweets = store.get('tweets')
+			ordered_keys = store.get(order + '_keys')
+
+			ordered_tweets = []
+			for (i in ordered_keys) {
+				ordered_tweets.push(tweets[ordered_keys[i]])
+			}
+		
+			resolve(ordered_tweets)
+		}
+	})
+}
+
+function init_tweets() {
+
+	return new Promise(function (resolve, reject) {
+
+		// fetch new from twitter and initialize tweets
+		var links = read_links_from_file('../insult_tweets.txt').then(function(links) {
+
+			var tweets = {}
+			for (var i in links) {
+				var tweet = temp_get_tweet(links[i])
+				// call back needed
+				tweets[links[i]] = tweet
+			}
+			// Create tweets dictionary
+			store.set('tweets', tweets)
+
+			// Create Recent ordered
+			var recent_ordered_keys = Object.keys(tweets).map(function(key) {
+		    	return key;
+			});
+			recent_ordered_keys.sort(function(first, second) {
+		    	return tweets[first].date - tweets[second].date;
+			});
+			store.set('recent_ordered_keys', recent_ordered_keys)
+
+			resolve()
+		})
+	})
 }
 
 function get_related_tweets(tweet) {
@@ -74,11 +111,34 @@ function get_related_tweets(tweet) {
 }
 
 function read_links_from_file(filename) {
-
-	json = $.getJSON(filename, function(json) {
-    	
-    	return json
+	return new Promise(function (resolve, reject) {
+		readFile(filename).then(function(result) {
+			resolve(result)
+		}).catch(function (err) {
+			reject(err)
+		});
 	});
+}
+
+function readFile(file) {
+	return new Promise(function (resolve, reject) {
+	    var rawFile = new XMLHttpRequest();
+	    rawFile.open("GET", file, false);
+	    rawFile.onreadystatechange = function ()
+	    {
+	        if(rawFile.readyState === 4) {
+	            if(rawFile.status === 200 || rawFile.status == 0) {
+	                var allText = rawFile.responseText;
+	                var value = JSON.parse(allText);
+	                resolve(value); 
+	                // now display on browser :)
+	            }
+	            else reject('error')
+	        }
+	    }
+	    rawFile.send(null)
+	});
+
 }
 
 /* TEMP FUNCTIONS THAT WILL BE IN OTHER MODULES IN THE FUTURE */
