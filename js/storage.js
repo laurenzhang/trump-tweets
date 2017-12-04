@@ -86,3 +86,19 @@ function read_links_from_file(filename) {
 function temp_get_tweet(link) {
 	return {'date' : link, 'aa' : 10000}
 }
+
+/* STARRED TWEETS
+    - These functions assume that a list of starred tweets was initialized at
+        the beginning of the session like so:
+        
+        store.set('starred_tweets', [])
+*/
+
+function starTweet(url) {
+    store.push('starred_tweets', url);
+}
+
+function getStarredTweets(url) {
+    var starred_tweets = store.get('starred_tweets');
+    // TODO: do something w/ the starred tweets' URLs
+}
