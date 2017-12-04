@@ -16,13 +16,19 @@ function getWikiSummary(title){
     },
     success: function(response){
       console.log(response);
-      pages = response.query.pages;
-      for (var page_id in pages) {
-        console.log(title);
-        console.log(pages[page_id].extract);
-        console.log(pages[page_id].thumbnail.source);
+      
+      try {
+        pages = response.query.pages;
+        for (var page_id in pages) {
+          console.log(title);
+          console.log(pages[page_id].thumbnail.source);
+          console.log(pages[page_id].extract);
+        }
+        // TODO: render results on page
       }
-     // TODO: render results on page
+      catch(err) {
+        console.log('Wiki summary unavailable');
+      }      
     }
  });
 }
