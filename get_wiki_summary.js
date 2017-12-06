@@ -21,7 +21,9 @@ function getWikiSummary(title){
         pages = response.query.pages;
         for (var page_id in pages) {
           console.log(title);
+          // Article image
           console.log(pages[page_id].thumbnail.source);
+          // Article summary (text before the "Contents" section)
           console.log(pages[page_id].extract);
         }
         // TODO: render results on page
