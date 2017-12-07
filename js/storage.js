@@ -71,6 +71,15 @@ function init_tweets() {
 	return new Promise(function (resolve, reject) {
 
 		// fetch new from twitter and initialize tweets
+
+		// Read insult tweets as JSON from the file's GitHub URL
+		// Requires JQuery
+		/*
+	    $.getJSON("https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/insult_tweets.json", function(json) {
+		    console.log(json);
+		});
+		*/
+
         readFile('../insult_tweets.txt').then(function(tweet_file) {
 
 			var tweet_promises = []
