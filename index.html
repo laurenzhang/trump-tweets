@@ -1,9 +1,5 @@
 <html>
 <link type="text/css" rel="stylesheet" href="styles.css" />
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <script src="script.js"></script>
 
 <head>
@@ -15,44 +11,39 @@
 <body>
     <p><img src="https://dl.dropboxusercontent.com/s/z5x5c8tyonj86p2/trumplogo.png?dl=0" height: "100" width="100" /></p>
 
-    <div class="center-div">
+    <div class="center-div8">
         <div id="first" style="padding-top: 40px; display: block">
-            <form id="search-form" class="form-group">
+            <form id="search-form" class="form-group" style="width:60%">
                 <input type="text" class="form-control" id="SearchBar" placeholder="Search">
             </form>
+            <div style="display: inline-block; padding-left:10px"><input type="button" class="button" value="Search"></div>
         </div>
 
-        <div style="padding-top: 25px; padding-bottom: 30px; display: block" id="second">
-            <nav id="primary_nav_wrap">
-                <ul>
-                    <li><a href="#">Most Recent</a>
-                        <ul>
-                            <li><a href="#">Most Recent</a></li>
-                            <li><a href="#">Most Favorites</a></li>
-                            <li><a href="#">Most Retweets</a></li>
-                            <li><a href="#">Most Replies</a></li>
-
-                    </li>
-                    </ul>
-                    </li>
-                </ul>
-            </nav>
+        <div style="padding-top: 45px; padding-bottom: 50px">
+            <div style="display: block" id="second" class="styled-select orange semi-square">
+                <select id="Filter" onchange="_change(this);">
+                        <option value=" 1 " id="MostRecent " selected="selected ">Most Recent</option>
+                        <option value="2 " id="MostFav"> Most Favorites</option>
+                        <option value="3 " id="MostRT">Most Retweets</option>
+                 </select>
+            </div>
         </div>
     </div>
-
+    </div>
 
     <div class="center-div">
-        <div style="clear: both; margin-left: 0px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
+        <div style="clear: both; margin-left: 10px; margin-top:20px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
         <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
         <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
         <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
         <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
     </div>
-    <div style="margin-top:30px;clear: both" id="tweet"></div>
-    <div style="margin-top:40px; clear: both" id="tweet"></div>
-    <div style="margin-top:40px; clear: both" id="tweet"></div>
-    <div style="margin-top:40px; clear: both" id="tweet"></div>
-    <div style="margin-top:40px; clear: both" id="tweet"></div>
+
+    <div style="margin-top:30px;clear: both " class="tweet "></div>
+    <div style="margin-top:40px; clear: both " class="tweet "></div>
+    <div style="margin-top:40px; clear: both " class="tweet "></div>
+    <div style="margin-top:40px; clear: both " class="tweet "></div>
+    <div style="margin-top:40px; clear: both " class="tweet "></div>
 
 </body>
 
