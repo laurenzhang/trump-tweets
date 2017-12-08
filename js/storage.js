@@ -18,25 +18,54 @@ past_searches <list of strings>
 	search <string>
 */
 
+// TO CLEAR STORAGE
+//store.clearAll()
 
+//EXAMPLE USAGE
 
 /*
-EXAMPLE USAGE
+
+FIRST ADD
+<script src="store.legacy.min.js"></script>
+<script src="storage.js"></script>
+
+1) retrieve array of tweets in certain order
 
 get_tweets().then(function(tweets) {
 
 	// tweets: returned list of tweets in recent order
 	console.log(tweets)
-})*/
+})
+
+2) get related tweets of 'tweet' in array
+
+ related_tweets = get_related_tweets(tweet)
+
+TODO: This must be called after tweets initialized, so fix this with promise in init_tweets()
+
+*/
+
+/*
+ * Gets a array of tweets in the 'order' parameter
+ *
+ * @param[in] order (default: "recent_ordered") : Value specifying the order of tweets
+ * possible values: ["recent_ordered"] TODO add more orders
+ *
+ * @returns a Promise object which passes the tweets array when done
+ *
+ * @see DATA SCHEMA at top to see what 'tweets' are
+ */
 
 function get_tweets(order) {
 
 	return new Promise(function (resolve, reject) {
 
+		// set default value for order
 		if (!order){
 			order = 'recent_ordered'
 		}
 
+		// if tweets not initialized, init and store in local storage
 		if (store.get('tweets') == undefined) {
 
 			init_tweets().then(function() {
@@ -52,6 +81,7 @@ function get_tweets(order) {
 				resolve(ordered_tweets)
 			});
 		}
+		// fetch from local storage and create array in order and return
 		else {
 
 			tweets = store.get('tweets')
@@ -67,6 +97,32 @@ function get_tweets(order) {
 	})
 }
 
+function get_related_tweets(tweet) {
+
+    if (store.get('tweets') == undefined) {
+        get_tweets()
+    }
+    tweets = store.get('tweets')
+
+    related_tweetsIds = tweet.related_tweets
+    related_tweets = []
+    // fetch related tweets from twitter
+    for (i in related_tweetsIds) {
+        related_tweets.push(tweets[related_tweetsIds[i]])
+    }
+
+    return related_tweets
+}
+
+/* FUNCTIONS UNDER HERE SHOULD NOT BE TOUCHED FROM THE FRONT-END
+* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+* */
+
+/*
+ * Initializes tweets from json_url and stores in local storages
+ *
+ * This function should not be touched from the front-end.
+ */
 function init_tweets() {
 
 	return new Promise(function (resolve, reject) {
@@ -75,7 +131,8 @@ function init_tweets() {
 
 		// Read insult tweets as JSON from the file's GitHub URL
 		var JSON_URL = 'https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json'
-		
+
+		// read from file
 		readFile(JSON_URL).then(function(tweet_file) {
 
 			var tweet_promises = []
@@ -85,6 +142,7 @@ function init_tweets() {
                 tweet_promises.push(promiseObject)
 			}
 
+			// Get tweets from twitter and organize file into DATA SCHEMA
             Promise.all(tweet_promises).then(function(listOf_tweet_list) {
 
                 var tweets = {}
@@ -97,6 +155,7 @@ function init_tweets() {
                         tweet = insultee_tweets[j]
                         tweets[tweet.tweet_id] = tweet
                     }
+                    // LIMIT TWEETS due to local storage limit for now
                     count += 1
                     if (count == 10) break
                 }
@@ -105,7 +164,9 @@ function init_tweets() {
 
                 store.set('tweets', tweets)
 
-                // Create Recent ordered
+                // Sort the data into the order we want and cache in local storage
+
+				// 1) sort for recent ordered
                 var recent_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
                 });
@@ -121,14 +182,24 @@ function init_tweets() {
 	})
 }
 
-// Util calls get_tweet for insultee and organizes data then
-// promise sets list of tweetDicts
+/*
+ * Utility function for init_tweet to organize tweets into insultees
+ * and add related tweets
+ *
+ * @param[in] insultee : String specifying the insultee
+ * @param[in] tweetIds : Array of tweeet ids to query under insultee
+ *
+ * @returns a Promise object which passes the tweets array when done.
+ *
+ * This function should NOT be touched from the front-end.
+ */
 function init_tweet_util(insultee, tweetIds) {
 
     return new Promise(function (resolve, reject) {
 
         promise_list = []
         for (i in tweetIds) {
+        	//TODO: replace temp_get_tweet with real get_tweet function
             promiseObject = temp_get_tweet(insultee, tweetIds[i])
             promise_list.push(promiseObject)
         }
@@ -152,33 +223,18 @@ function init_tweet_util(insultee, tweetIds) {
 
 }
 
-function get_related_tweets(tweet) {
-
-	if (store.get('tweets') == undefined) {
-		get_tweets()
-	}
-	tweets = store.get('tweets')
-
-	related_tweetsIds = tweet.related_tweets
-	related_tweets = []
-	// fetch related tweets from twitter
-	for (i in related_tweetsIds) {
-		related_tweets.push(tweets[related_tweetsIds[i]])
-	}
-	
-	return related_tweets
-}
-
 /*
-function read_tweetIds_from_file(filename) {
-	return new Promise(function (resolve, reject) {
-		readFile(filename).then(function(result) {
-			resolve(result)
-		}).catch(function (err) {
-			reject(err)
-		});
-	});
-}*/
+ * Reads the initial tweet_json data from a file or url
+ *
+ * @param[in] file : Name of the file or url string to read from
+ *
+ * @returns a Promise object which passes the data in a dictionary when done
+ *
+ * TODO: FIX
+ * storage.js:225 [Deprecation] Synchronous XMLHttpRequest on the main thread is deprecated because of its
+ * detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
+ *
+ */
 
 function readFile(file) {
 	return new Promise(function (resolve, reject) {
@@ -190,7 +246,7 @@ function readFile(file) {
 	            if(rawFile.status === 200 || rawFile.status == 0) {
 	                var allText = rawFile.responseText;
 	                var value = JSON.parse(allText);
-	                console.log(value);
+	                //console.log(value);
 	                resolve(value); 
 	                // now display on browser :)
 	            }
@@ -202,7 +258,9 @@ function readFile(file) {
 
 }
 
-/* TEMP FUNCTIONS THAT WILL BE IN OTHER MODULES IN THE FUTURE */
+/* TEMP FUNCTIONS THAT WILL BE IN OTHER MODULES IN THE FUTURE
+*  ALL UNDER HERE WILL BE REMOVED IN THE FUTURE
+* */
 
 function temp_get_tweet(person, id) {
     return new Promise(function (resolve, reject) {
@@ -228,7 +286,7 @@ function getStarredTweets(url) {
     // TODO: do something w/ the starred tweets' URLs
 }
 
-
+/*
 function roughSizeOfObject( object ) {
 
     var objectList = [];
@@ -261,4 +319,4 @@ function roughSizeOfObject( object ) {
         }
     }
     return bytes;
-}
+}*/
