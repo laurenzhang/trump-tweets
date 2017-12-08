@@ -74,14 +74,9 @@ function init_tweets() {
 		// fetch new from twitter and initialize tweets
 
 		// Read insult tweets as JSON from the file's GitHub URL
-		// Requires JQuery
-		/*
-	    $.getJSON("https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/insult_tweets.json", function(json) {
-		    console.log(json);
-		});
-		*/
-
-        readFile('../json/insult_tweets.json').then(function(tweet_file) {
+		var JSON_URL = 'https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json'
+		
+		readFile(JSON_URL).then(function(tweet_file) {
 
 			var tweet_promises = []
 			for (var insultee in tweet_file) {
@@ -195,6 +190,7 @@ function readFile(file) {
 	            if(rawFile.status === 200 || rawFile.status == 0) {
 	                var allText = rawFile.responseText;
 	                var value = JSON.parse(allText);
+	                console.log(value);
 	                resolve(value); 
 	                // now display on browser :)
 	            }
