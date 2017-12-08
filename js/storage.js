@@ -21,11 +21,12 @@ past_searches <list of strings>
 
 
 /*
-store.clearAll()
+EXAMPLE USAGE
+
 get_tweets().then(function(tweets) {
 
-    console.log('callbck!')
-	console.log(store.get('tweets'))
+	// tweets: returned list of tweets in recent order
+	console.log(tweets)
 })*/
 
 function get_tweets(order) {
@@ -80,7 +81,7 @@ function init_tweets() {
 		});
 		*/
 
-        readFile('../insult_tweets.txt').then(function(tweet_file) {
+        readFile('../json/insult_tweets.json').then(function(tweet_file) {
 
 			var tweet_promises = []
 			for (var insultee in tweet_file) {
