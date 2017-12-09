@@ -44,10 +44,15 @@ function getTweetBatch(insultee, statusID_list){
      an array.
      */
     var returnArray = [];
+    var arrsize;
+    if (statusID_list > 100)
+      arrsize = 99;
+    else
+      arrsize = statusID_list.length;
     //var statusID_list = ["674382044097449985", "668827139232423936", "668827020718161920"];
     // build the string of comma separated IDs for lookup request
     var statuses_string = statusID_list[0];
-    for (var i = 1; i < 99; i++)
+    for (var i = 1; i < arrsize; i++)
         statuses_string = statuses_string + ',' + statusID_list[i];
 
     return new Promise(function (resolve, reject){
