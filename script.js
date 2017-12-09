@@ -18,7 +18,14 @@ $(document).ready(function() {
     directory_items = document.getElementsByClassName("directoryitem");
     for (i in directory_items) {
         directory_items[i].onclick = function() {
-            console.log("hey");
+            $(this).queue(function() {
+                location.href = "./index.html";
+            });
+            $(this).queue(function() {
+                console.log("hey");
+            });
+            $(this).dequeue();
+            $(this).dequeue();
         };
     }
 });
@@ -80,13 +87,13 @@ function searchInsultees(insultee) {
 }
 
 // For testing purposes
-store.clearAll()
+// store.clearAll()
 
-// For testing populateFeed()
-get_insultee_tweets('The Associated Press').then(function(tweets) {
-    console.log(tweets);
-    populateFeed(tweets);
-})
+// // For testing populateFeed()
+// get_insultee_tweets('The Associated Press').then(function(tweets) {
+//     console.log(tweets);
+//     populateFeed(tweets);
+// })
 
 // HOW TO GET TWEETS
 // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]

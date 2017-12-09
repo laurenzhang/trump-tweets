@@ -149,7 +149,7 @@ function get_related_tweets(tweet) {
         // fetch from local storage and create related tweet array and return
         else {
             tweets = store.get('tweets')
-            related_tweetsIds = store.get('related_tweets')[tweets.insultee]
+            related_tweetsIds = store.get('related_tweets')[tweet.insultee]
 
             related_tweets = []
 
@@ -340,7 +340,7 @@ function init_tweets() {
 
 			for (var insultee in tweet_file) {
 			    // promise get fetches all tweets for insultee
-                if (insultee != 'Hillary Clinton') continue
+                // if (insultee != 'Hillary Clinton') continue
                 promiseObject = getTweetBatch(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
                 related_tweets[insultee] = tweet_file[insultee]
