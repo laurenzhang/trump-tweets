@@ -14,6 +14,15 @@ $(".dropdown-menu li").click(function() {
     closeMenu(this);
 });
 
+$(document).ready(function() {
+    directory_items = document.getElementsByClassName("directoryitem");
+    for (i in directory_items) {
+        directory_items[i].onclick = function() {
+            console.log("hey");
+        };
+    }
+});
+
 function closeMenu(el) {
     $(el).closest('.dropdown').toggleClass("closed").find(".title").text($(el).text());
     $container.css("height", 0);
@@ -67,7 +76,7 @@ function populateFeed(tweets) {
 }
 
 function searchInsultees(insultee) {
-    
+    // TODO
 }
 
 // For testing purposes
