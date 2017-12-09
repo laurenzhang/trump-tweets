@@ -212,6 +212,7 @@ function get_insultee_tweets(insultee) {
 /*
  * Gets an array of insultee names
  */
+ // TODO
 function get_insultees() {
     return new Promise(function (resolve, reject) {
         if (store.get('tweets') == undefined) {
