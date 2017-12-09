@@ -255,8 +255,6 @@ function init_tweet_util(insultee, tweetIds) {
         }
 
         Promise.all(promise_list).then(function(tweet_list) {
-        	console.log(insultee)
-			console.log(tweet_list)
             for (var i in tweet_list) {
                 tweet = tweet_list[i]
 
