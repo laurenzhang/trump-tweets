@@ -25,10 +25,11 @@ past_searches <list of strings>
 //store.clearAll()
 
 //EXAMPLE USAGE
+/*
 store.clearAll()
 get_tweets('recent_ordered').then(function(tweets) {
     console.log(store.get('tweets'))
-})
+})*/
 /*
 readFile('https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json').then(function(tweet_file) {
     var maxLength = 0
@@ -256,6 +257,7 @@ function init_tweets() {
 
 
                 //STORE IN LOCAL STORAGE only the top 100
+                // REMOVE from tweets and related tweets, the keys not in tweet_set
                 for (var key in tweets) {
                     if (!tweet_set.has(key)) {
                         delete tweets[key]
