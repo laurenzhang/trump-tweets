@@ -69,14 +69,15 @@ function populateFeed(tweets) {
 // For testing purposes
 store.clearAll()
 
+// For testing populateFeed()
+get_insultee_tweets('The Associated Press').then(function(tweets) {
+    console.log(tweets);
+    populateFeed(tweets);
+})
+
 // HOW TO GET TWEETS
 // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
 get_tweets('recent_ordered').then(function(tweets) {
-    // For testing populateFeed()
-    ///
-    populateFeed(tweets);
-    ///
-
     // tweets: returned list of tweets in recent order
     console.log('RECENT ORDERED: ')
     console.log(tweets)

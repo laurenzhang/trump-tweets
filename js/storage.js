@@ -209,6 +209,66 @@ function get_insultee_tweets(insultee) {
     })
 }
 
+/* STARRED TWEETS
+    - These functions assume that a list of starred tweets was initialized at
+        the beginning of the session like so:
+
+        store.set('starred_tweets', [])
+*/
+
+function starTweet(tweet_id) {
+    store.push('starred_tweets', tweet_id)
+}
+
+function unstarTweet(tweet_id) {
+    starred_tweet_ids = store.get('starred_tweets')
+    new_starred = []
+
+    for (i in starred_tweet_ids) {
+        if (starred_tweet_ids[i] != tweet_id) {
+            new_starred.push(starred_tweet_ids[i])
+        }
+    }
+
+    store.set('starred_tweets') = new_starred
+}
+
+/*
+ * Gets an array of starred tweet objects
+ */
+function getStarredTweets() {
+    return new Promise(function (resolve, reject) {
+        if (store.get('tweets') == undefined) {
+            // First init local storage
+            init_tweets().then(function() {
+                tweets = store.get('tweets')
+                starred_tweet_ids = store.get('starred_tweets')
+
+                starred_tweets = []
+
+                for (var i in starred_tweet_ids) {
+                    starred_tweets.push(tweets[starred_tweet_ids[i]])
+                }
+
+                resolve(starred_tweets)
+            })
+        }
+        else {
+            // Fetch tweets from local storage
+            tweets = store.get('tweets')
+            starred_tweet_ids = store.get('starred_tweets')
+
+            starred_tweets = []
+
+            for (var i in starred_tweet_ids) {
+                starred_tweets.push(tweets[starred_tweet_ids[i]])
+            }
+
+            resolve(starred_tweets)
+        }
+    })
+}
+
 /* FUNCTIONS UNDER HERE SHOULD NOT BE TOUCHED FROM THE FRONT-END
 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 * */
@@ -402,66 +462,3 @@ function readFile(file) {
 	});
 
 }
-
-/* TEMP FUNCTIONS THAT WILL BE IN OTHER MODULES IN THE FUTURE
-*  ALL UNDER HERE WILL BE REMOVED IN THE FUTURE
-* */
-
-function temp_get_tweet(person, id) {
-    return new Promise(function (resolve, reject) {
-
-    	resolve({'date' : id, 'person' : person, 'tweet_id' :id, 'aa' : 10000})
-    });
-
-}
-
-/* STARRED TWEETS
-    - These functions assume that a list of starred tweets was initialized at
-        the beginning of the session like so:
-
-        store.set('starred_tweets', [])
-*/
-
-function starTweet(url) {
-    store.push('starred_tweets', url);
-}
-
-function getStarredTweets(url) {
-    var starred_tweets = store.get('starred_tweets');
-    // TODO: do something w/ the starred tweets' URLs
-}
-
-/*
-function roughSizeOfObject( object ) {
-
-    var objectList = [];
-    var stack = [ object ];
-    var bytes = 0;
-
-    while ( stack.length ) {
-        var value = stack.pop();
-
-        if ( typeof value === 'boolean' ) {
-            bytes += 4;
-        }
-        else if ( typeof value === 'string' ) {
-            bytes += value.length * 2;
-        }
-        else if ( typeof value === 'number' ) {
-            bytes += 8;
-        }
-        else if
-        (
-            typeof value === 'object'
-            && objectList.indexOf( value ) === -1
-        )
-        {
-            objectList.push( value );
-
-            for( var i in value ) {
-                stack.push( value[ i ] );
-            }
-        }
-    }
-    return bytes;
-}*/
