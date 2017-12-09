@@ -57,28 +57,36 @@ function getTweetBatch(insultee, statusID_list){
             'id=' + statuses_string,
             // The callback function
             function (reply, rate, err) {
-              if (err) {
-                console.log("error response or timeout exceeded: " + err.error);
-              }
-              if (reply) {
-                //console.log(reply);
-                //for each tweet JSON returned from Twitter API
-                for (var j = 0; j < reply.length; j++){
-                    // fill in the tweet_dict object with details to return
-                    //console.log(reply[j]);
-                    var tweet_dict = {};
-                    tweet_dict.tweet_id = reply[j].id_str;
-                    tweet_dict.insultee = insultee;
-                    tweet_dict.date = new Date(reply[j].created_at)
-                    tweet_dict.tweet_text = reply[j].text;
-                    tweet_dict.retweets = reply[j].retweet_count;
-                    tweet_dict.retweets = reply[j].favorite_count;
 
-                    returnArray.push(tweet_dict);
-                }
-                resolve(returnArray);
-              }
-              console.log("rate info: " + rate);
+                  if (rate.remaining == 0) {
+                      console.log("All queries used! rate.remaning is 0!")
+                      resolve([])
+                  }
+
+
+                  if (reply.httpstatus == 200) {
+                    //for each tweet JSON returned from Twitter API
+                    for (var j = 0; j < reply.length; j++){
+                        // fill in the tweet_dict object with details to return
+                        //console.log(reply[j]);
+                        var tweet_dict = {};
+                        tweet_dict.tweet_id = reply[j].id_str;
+                        tweet_dict.insultee = insultee;
+                        tweet_dict.date = new Date(reply[j].created_at)
+                        tweet_dict.tweet_text = reply[j].text;
+                        tweet_dict.retweets = reply[j].retweet_count;
+                        tweet_dict.retweets = reply[j].favorite_count;
+
+                        returnArray.push(tweet_dict);
+                    }
+                    resolve(returnArray);
+                  }
+                  else {
+                      console.log("error response or timeout exceeded: " + reply.errors)
+                      resolve([])
+                  }
+
+
             });
     });
 }

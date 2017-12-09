@@ -25,10 +25,9 @@ past_searches <list of strings>
 //store.clearAll()
 
 //EXAMPLE USAGE
-
-//store.clearAll()
-
 /*
+store.clearAll()
+
 get_tweets('recent_ordered').then(function(tweets) {
     console.log(Object.keys(store.get('tweets')).length)
 })*/
@@ -243,7 +242,7 @@ function init_tweets() {
 
 				// LIMIT TWEET CALLS FOR TESTING
 				count += 1
-				if (count == 3) break
+				//if (count == 3) break
 			}
 
 			// Get tweets from twitter and organize file into DATA SCHEMA
@@ -316,9 +315,9 @@ function init_tweets() {
                 }
                 store.set('tweets', tweets)
                 store.set('related_tweets', related_tweets)
+                store.set('recent_ordered_keys', recent_ordered_keys)
                 store.set('retweet_ordered_keys', retweet_ordered_keys)
                 store.set('fav_ordered_keys', fav_ordered_keys)
-                store.set('recent_ordered_keys', recent_ordered_keys)
 
                 resolve()
             })
