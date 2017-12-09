@@ -38,10 +38,13 @@ function openMenu(el) {
 }
 
 // HOW TO GET TWEETS
-/*
-get_tweets().then(function(tweets) {
+store.clearAll()
+// ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
+get_tweets('recent_ordered').then(function(tweets) {
 
     // tweets: returned list of tweets in recent order
+    console.log('RECENT ORDERED: ')
     console.log(tweets)
 })
-*/
+
+

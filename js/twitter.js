@@ -28,11 +28,11 @@ return new Promise(function (resolve, reject){
         tweet_dict.insultee = insultee;
         var dateElms = (reply.created_at).split(" ");
         //console.log("The date: " + dateElms[0] + dateElms[1] + dateElms[2] + dateElms[3] + dateElms[5]);
-        tweet_dict.date = reply.created_at;
+        tweet_dict.date = new Date(reply.created_at);
         tweet_dict.tweet_text = reply.text;
         tweet_dict.related_tweets = "get from related function";
         tweet_dict.retweets = reply.retweet_count;
-        tweet_dict.retweets = reply.favorite_count;
+        tweet_dict.favorites = reply.favorite_count;
 
         resolve(tweet_dict);
     }

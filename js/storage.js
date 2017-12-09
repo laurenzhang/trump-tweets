@@ -2,17 +2,18 @@
 
 tweets <Dictionary of tweet objects, the tweetId as its key>
 	tweet <Dictionary with data as keys> 
-		tweet_link <string>
 		tweet_id <string>
 		date	<date object>
 		tweet_text <string>
 		wiki_card_link <string>
 		insultee <string>
 		related_tweets <list of tweet Ids>
+ 		favorites <number>
+ 		retweets <number>
 
 recent_ordered_keys <Array of keys for tweets ordered by recent>
-most_retweet_ordered_keys <Array of keys for tweets ordered by retweet>
-most_fav_ordered_keys <Array of keys for tweets ordered by favs>
+retweet_ordered_keys <Array of keys for tweets ordered by retweet>
+fav_ordered_keys <Array of keys for tweets ordered by favs>
 
 past_searches <list of strings>
 	search <string>
@@ -52,7 +53,7 @@ TODO: This must be called after tweets initialized, so fix this with promise in 
  * Gets a array of tweets in the 'order' parameter
  *
  * @param[in] order (default: "recent_ordered") : Value specifying the order of tweets
- * possible values: ["recent_ordered"] TODO add more orders
+ * possible values: ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
  *
  * @returns a Promise object which passes the tweets array when done
  *
@@ -127,7 +128,7 @@ function get_related_tweets(tweet) {
  * This function should not be touched from the front-end.
  */
 function init_tweets() {
-
+	console.log('no local storage found, initializing tweets!')
 	return new Promise(function (resolve, reject) {
 
 		// fetch new from twitter and initialize tweets
@@ -164,18 +165,38 @@ function init_tweets() {
 
                 //console.log(roughSizeOfObject(tweets))
 
+				// Save to local storage
                 store.set('tweets', tweets)
 
                 // Sort the data into the order we want and cache in local storage
 
-				// 1) sort for recent ordered
+				// 1) Most recent sort
                 var recent_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
                 });
                 recent_ordered_keys.sort(function(first, second) {
-                    return tweets[first].date - tweets[second].date;
+                    return tweets[second].date - tweets[first].date;
                 });
                 store.set('recent_ordered_keys', recent_ordered_keys)
+
+				// 2) Most Favorites sort
+                var fav_ordered_keys = Object.keys(tweets).map(function(key) {
+                    return key;
+                });
+                fav_ordered_keys.sort(function(first, second) {
+                    return tweets[second].favorites - tweets[first].favorites;
+                });
+                store.set('fav_ordered_keys', fav_ordered_keys)
+
+
+				// 3) Most Retweets sort
+                var retweet_ordered_keys = Object.keys(tweets).map(function(key) {
+                    return key;
+                });
+                retweet_ordered_keys.sort(function(first, second) {
+                    return tweets[second].retweets - tweets[first].retweets;
+                });
+                store.set('retweet_ordered_keys', retweet_ordered_keys)
 
                 resolve()
             })
