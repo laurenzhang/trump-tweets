@@ -209,18 +209,25 @@ function get_insultee_tweets(insultee) {
     })
 }
 
-/* STARRED TWEETS
-    - These functions assume that a list of starred tweets was initialized at
-        the beginning of the session like so:
-
-        store.set('starred_tweets', [])
+/*
+    STARRED TWEETS
 */
 
 function starTweet(tweet_id) {
+    // Initialize starred tweets if necessary
+    if (store.get('starred_tweets') == undefined) {
+        store.set('starred_tweets', [])
+    }
+
     store.push('starred_tweets', tweet_id)
 }
 
 function unstarTweet(tweet_id) {
+    // Check if starred tweets initialized
+    if (store.get('starred_tweets') == undefined) {
+        return
+    }
+
     starred_tweet_ids = store.get('starred_tweets')
     new_starred = []
 
