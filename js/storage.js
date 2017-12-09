@@ -27,31 +27,12 @@ past_searches <list of strings>
 //EXAMPLE USAGE
 
 //store.clearAll()
+
 /*
 get_tweets('recent_ordered').then(function(tweets) {
     console.log(Object.keys(store.get('tweets')).length)
 })*/
-/*
-get_insultee_tweets('The Associated Press').then(function(tweets) {
 
-
-    console.log(tweets)
-})*/
-/*
-readFile('https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json').then(function(tweet_file) {
-    var maxLength = 0
-    var maxKey
-    for (var key in tweet_file) {
-        if (tweet_file[key].length > maxLength) {
-            maxLength = tweet_file[key].length
-            maxKey = key
-        }
-    }
-    console.log('length!')
-    console.log(maxLength)
-    console.log(maxKey)
-
-})*/
 /*
 
 FIRST ADD
@@ -72,6 +53,14 @@ get_tweets().then(function(tweets) {
 2) get related tweets of 'tweet' in array
 
  related_tweets = get_related_tweets(tweet)
+
+3) get associated tweets of 'insultee' in aray
+
+get_insultee_tweets('The Associated Press').then(function(tweets) {
+
+
+ console.log(tweets)
+})
 
 */
 
@@ -269,7 +258,6 @@ function init_tweets() {
                         tweets[tweet.tweet_id] = tweet
                     }
                 }
-                console.log(tweets)
                 //console.log(roughSizeOfObject(tweets))
 
                 // Sort the data into the order we want and cache in local storage
