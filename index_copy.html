@@ -1,0 +1,182 @@
+<html>
+<link type="text/css" rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="script.js"></script>
+
+<head>
+    <title>Small Area Health Insurance Estimates (SAHIE)
+    </title>
+    <h1>Small Area Health Insurance Estimates</h1>
+</head>
+
+<body>
+    <p style="padding-top: 0px; font-weight: normal">Please enter in a valid US address to receive information about the population of insured and uninsured people in the county.</p>
+    <div>
+        <form id="search-form" class="form-group">
+            <label for="inputStreet"></label>
+            <input type="text" class="form-control" id="inputStreet" placeholder="Street">
+
+            <label for="inputCity"></label>
+            <input type="text" class="form-control" id="inputCity" placeholder="City">
+
+            <label for="inputState"></label>
+            <input type="text" class="form-control" id="inputState" placeholder="State">
+
+            <label for="inputZip"></label>
+            <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
+        </form>
+    </div>
+
+    <button style="margin-top: 10px" type="button" id="submit">Submit</button>
+
+    <p id="stateinfo"></p>
+
+    <input type="hidden" id="myYear" onkeyup="sortYear()" placeholder="Sort by Year">
+    <input type="hidden" id="myAge" onkeyup="sortAge()" placeholder="Sort by Age">
+    <input type="hidden" id="mySex" onkeyup="sortSex()" placeholder="Sort by Sex">
+    <input type="hidden" id="myIncome" onkeyup="sortIncome()" placeholder="Sort by Income">
+
+    <table style="visibility:hidden" id="Table" class="table table-bordered table-striped" data-toggle="table" data-toggle="table" style="width:90% padding-left=20px">
+        <th align="center" id="yearHeader"></th>
+        <th id="ageHeader"></th>
+        <th id="sexHeader"></th>
+        <th id="incomeHeader"></th>
+        <th id="NIC_PT"></th>
+        <th id="NIC_MOE"></th>
+        <th id="NUI_PT"></th>
+        <th id="NUI_MOE"></th>
+        <th id="POP"></th>
+        <th id="POP_MOE"></th>
+    </table>
+
+
+    <div style="margin-top: 10px; margin-bottom: 30px">
+        <h2> Filter Your Search! </h2>
+        <p style="padding-top: 0px; font-weight: normal">Check off the desired years, age groups, income groups and sexes to see filtered results for these demographics.</p>
+    </div>
+
+    <div>
+        <table style="width:80%">
+            <tr>
+                <td style="width:25%">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Year
+                      <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2015" value="2015" />&nbsp;2015</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2014" value="2014" />&nbsp;2014</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2013" value="2013" />&nbsp;2013</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2012" value="2012" />&nbsp;2012</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2011" value="2011" />&nbsp;2011</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2010" value="2010" />&nbsp;2010</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2009" value="2009" />&nbsp;2009</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2008" value="2008" />&nbsp;2008</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2007" value="2007" />&nbsp;2007</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="2006" value="2006" />&nbsp;2006</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+
+                <td style="width:25%">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Age
+                      <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="under19" value="4" />&nbsp;Under 19 years</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="18to64" value="1" />&nbsp;18 to 64 years</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="21to64" value="5" />&nbsp;21 to 64 years</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="40to64" value="2" />&nbsp;40 to 64 years</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="50to64" value="3" />&nbsp;50 to 64 years</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="under65" value="0" />&nbsp;Under 65 years</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td style="width:25%">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sex
+                          <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="allSex" value="0" />&nbsp;All</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="male" value="1" />&nbsp;Male</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="female" value="2" />&nbsp;Female</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td style="width:25%">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Income
+                      <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="allIncomes" value="0" />&nbsp;All</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="200pov" value="1" />&nbsp;At or Below 200% of Poverty</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="250pov" value="2" />&nbsp;At or Below 250% of Poverty</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="138pov" value="3" />&nbsp;At or Below 138% of Poverty</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="400pov" value="4" />&nbsp;At or Below 400% of Poverty</a>
+                            </li>
+                            <li>
+                                <a href="#" tabIndex="-1"><input type="checkbox" id="138to400" value="5" />&nbsp;Between 138% and 400% of Poverty</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+
+        </table>
+    </div>
+
+    <button type="button" id="filter">Filter</button>
+
+
+</body>
+
+
+</html>
