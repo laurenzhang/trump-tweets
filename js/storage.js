@@ -45,8 +45,6 @@ get_tweets().then(function(tweets) {
 
  related_tweets = get_related_tweets(tweet)
 
-TODO: This must be called after tweets initialized, so fix this with promise in init_tweets()
-
 */
 
 /*
@@ -101,21 +99,51 @@ function get_tweets(order) {
 	})
 }
 
+/*
+ * Gets an array of related tweets
+ *
+ * @param[in] tweet : the tweet object to get related tweets
+ *
+ * @returns a Promise object which passes the related tweets array when done
+ *
+ * @see DATA SCHEMA at top to see what 'tweet' is
+ */
 function get_related_tweets(tweet) {
 
-    if (store.get('tweets') == undefined) {
-        get_tweets()
-    }
-    tweets = store.get('tweets')
+	return new Promise(function (resolve, reject) {
 
-    related_tweetsIds = tweet.related_tweets
-    related_tweets = []
-    // fetch related tweets from twitter
-    for (i in related_tweetsIds) {
-        related_tweets.push(tweets[related_tweetsIds[i]])
-    }
+        // if tweets not initialized, init and store in local storage, then return related tweets
+        if (store.get('tweets') == undefined) {
 
-    return related_tweets
+            init_tweets().then(function() {
+
+                tweets = store.get('tweets')
+
+                related_tweetsIds = tweet.related_tweets
+                related_tweets = []
+                // fetch related tweets from twitter
+                for (i in related_tweetsIds) {
+                    related_tweets.push(tweets[related_tweetsIds[i]])
+                }
+
+                resolve(related_tweets)
+            })
+        }
+        // fetch from local storage and create related tweet array and return
+        else {
+
+            tweets = store.get('tweets')
+
+            related_tweetsIds = tweet.related_tweets
+            related_tweets = []
+            // fetch related tweets from twitter
+            for (i in related_tweetsIds) {
+                related_tweets.push(tweets[related_tweetsIds[i]])
+            }
+
+            resolve(related_tweets)
+        }
+    })
 }
 
 /* FUNCTIONS UNDER HERE SHOULD NOT BE TOUCHED FROM THE FRONT-END
@@ -221,22 +249,20 @@ function init_tweet_util(insultee, tweetIds) {
     return new Promise(function (resolve, reject) {
 
         promise_list = []
-        for (i in tweetIds) {
+        for (var i in tweetIds) {
             promiseObject = getTweetJSON(insultee, tweetIds[i])
             promise_list.push(promiseObject)
         }
 
         Promise.all(promise_list).then(function(tweet_list) {
-
-            for (i in tweet_list) {
+        	console.log(insu)
+			console.log(tweet_list)
+            for (var i in tweet_list) {
                 tweet = tweet_list[i]
 
                 // set related tweet list
                 tweet.related_tweets = tweetIds.slice(0)
-                var index = tweet.related_tweets.indexOf(tweet.tweet_id)
-                if (index > -1) {
-                    tweet.related_tweets.splice(index, 1)
-                }
+				tweet.related_tweets.splice(i, 1)
             }
 
             resolve(tweet_list)
