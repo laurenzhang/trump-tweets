@@ -192,7 +192,7 @@ function init_tweets() {
 
 			for (var insultee in tweet_file) {
 			    // promise get fetches all tweets for insultee
-                promiseObject = get_tweet_batch(insultee, tweet_file[insultee])
+                promiseObject = getTweetBatch(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
 				// LIMIT TWEET CALLS FOR TESTING
 				count += 1

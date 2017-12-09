@@ -6,13 +6,9 @@ cb.setToken('937429814214000644-13yt1QjejElNyEVgRPRYmDSxbTwc70N','KChXLbdENEfbMm
   status: "Just tweeted using codebird."
 }; */
 
+/* GET ONE TWEET
 function getTweetJSON(insultee, statusID){
-/* TO DO:
-instead of looking up one tweet at a time with statuses_show_ID, use
-lookup to get max 100 tweets at a time corresponding PER USER. Then iterate
-over all of the results, create a dict per each, and return those all in
-an array.
-*/
+
 return new Promise(function (resolve, reject){
   // The API call
   cb.__call(
@@ -38,6 +34,47 @@ return new Promise(function (resolve, reject){
     }
   );
 });
+}*/
+
+function getTweetBatch(insultee, statusID_list){
+    /* TO DO:
+     instead of looking up one tweet at a time with statuses_show_ID, use
+     lookup to get max 100 tweets at a time corresponding PER USER. Then iterate
+     over all of the results, create a dict per each, and return those all in
+     an array.
+     */
+    var returnArray = [];
+    //var statusID_list = ["674382044097449985", "668827139232423936", "668827020718161920"];
+    // build the string of comma separated IDs for lookup request
+    var statuses_string = statusID_list[0];
+    for (var i = 1; i <statusID_list.length; i++)
+        statuses_string = statuses_string + ',' + statusID_list[i];
+
+    return new Promise(function (resolve, reject){
+        // The API call
+        cb.__call(
+            "statuses_lookup",
+            'id=' + statuses_string,
+            // The callback function
+            function (reply, rate, err) {
+                //console.log(reply);
+                //for each tweet JSON returned from Twitter API
+                for (var j = 0; j < reply.length; j++){
+                    // fill in the tweet_dict object with details to return
+                    //console.log(reply[j]);
+                    var tweet_dict = {};
+                    tweet_dict.tweet_id = reply[j].id_str;
+                    tweet_dict.insultee = insultee;
+                    tweet_dict.date = new Date(reply[j].created_at)
+                    tweet_dict.tweet_text = reply[j].text;
+                    tweet_dict.retweets = reply[j].retweet_count;
+                    tweet_dict.retweets = reply[j].favorite_count;
+
+                    returnArray.push(tweet_dict);
+                }
+                resolve(returnArray);
+            });
+    });
 }
 /*
 getTweetJSON('The Associated Press', '674382044097449985').then(function(tweet) {
