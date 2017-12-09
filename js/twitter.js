@@ -60,7 +60,7 @@ function getTweetBatch(insultee, statusID_list){
               if (err) {
                 console.log("error response or timeout exceeded: " + err.error);
               }
-              if (reply && reply.) {
+              if (reply) {
                 //console.log(reply);
                 //for each tweet JSON returned from Twitter API
                 for (var j = 0; j < reply.length; j++){
