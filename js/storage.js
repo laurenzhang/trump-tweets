@@ -25,6 +25,10 @@ past_searches <list of strings>
 //store.clearAll()
 
 //EXAMPLE USAGE
+store.clearAll()
+get_tweets('recent_ordered').then(function(tweets) {
+    console.log(store.get('tweets'))
+})
 /*
 readFile('https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json').then(function(tweet_file) {
     var maxLength = 0
@@ -184,16 +188,16 @@ function init_tweets() {
 		// read from file
 		readFile(JSON_URL).then(function(tweet_file) {
 
-		    // set related tweets
-            store.set('related_tweets', tweet_file)
-
 			var tweet_promises = []
+            var related_tweets = {}
 			var count = 0
 
 			for (var insultee in tweet_file) {
 			    // promise get fetches all tweets for insultee
                 promiseObject = getTweetBatch(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
+                related_tweets[insultee] = tweet_file[insultee]
+
 				// LIMIT TWEET CALLS FOR TESTING
 				count += 1
 				if (count == 3) break
@@ -214,44 +218,75 @@ function init_tweets() {
 
                 //console.log(roughSizeOfObject(tweets))
 
-				// Save to local storage
-                store.set('tweets', tweets)
-
                 // Sort the data into the order we want and cache in local storage
+                tweet_set = new Set()
+                // store up to max_size per sort order
+                var MAX_SIZE = 100
 
 				// 1) Most recent sort
                 var recent_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
-                });
+                })
                 recent_ordered_keys.sort(function(first, second) {
                     return tweets[second].date - tweets[first].date;
-                });
-                store.set('recent_ordered_keys', recent_ordered_keys)
+                })
+                recent_ordered_keys.splice(MAX_SIZE)
+                add_arr_toSet(tweet_set, recent_ordered_keys)
 
 				// 2) Most Favorites sort
                 var fav_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
-                });
+                })
                 fav_ordered_keys.sort(function(first, second) {
                     return tweets[second].favorites - tweets[first].favorites;
-                });
-                store.set('fav_ordered_keys', fav_ordered_keys)
-
+                })
+                fav_ordered_keys.splice(MAX_SIZE)
+                add_arr_toSet(tweet_set, fav_ordered_keys)
 
 				// 3) Most Retweets sort
                 var retweet_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
-                });
+                })
                 retweet_ordered_keys.sort(function(first, second) {
                     return tweets[second].retweets - tweets[first].retweets;
-                });
+                })
+                retweet_ordered_keys.splice(MAX_SIZE)
+                add_arr_toSet(tweet_set, retweet_ordered_keys)
+
+
+
+                //STORE IN LOCAL STORAGE only the top 100
+                for (var key in tweets) {
+                    if (!tweet_set.has(key)) {
+                        delete tweets[key]
+                    }
+                }
+                for (var key in related_tweets) {
+                    var i = related_tweets.length
+                    while (i--) {
+                        var cur_tweet_id = related_tweets[key][i]
+                        if (!tweet_set.has(cur_tweet_id)) {
+                            related_tweets[key].splice(i,1)
+                        }
+                    }
+                }
+                store.set('tweets', tweets)
+                store.set('related_tweets', related_tweets)
                 store.set('retweet_ordered_keys', retweet_ordered_keys)
+                store.set('fav_ordered_keys', fav_ordered_keys)
+                store.set('recent_ordered_keys', recent_ordered_keys)
 
                 resolve()
             })
 
 		})
 	})
+}
+
+function add_arr_toSet(set, arr) {
+    for (var i in arr) {
+        set.add(arr[i])
+    }
 }
 
 /*
