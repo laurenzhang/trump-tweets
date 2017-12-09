@@ -7,13 +7,15 @@ tweets <Dictionary of tweet objects, the tweetId as its key>
 		tweet_text <string>
 		wiki_card_link <string>
 		insultee <string>
-		related_tweets <list of tweet Ids>
  		favorites <number>
  		retweets <number>
 
 recent_ordered_keys <Array of keys for tweets ordered by recent>
 retweet_ordered_keys <Array of keys for tweets ordered by retweet>
 fav_ordered_keys <Array of keys for tweets ordered by favs>
+
+related_tweets <dictionary of list tweet ids, the insultee name as its key>
+    'insultee' --> tweet_ids <list of tweet_id strings>
 
 past_searches <list of strings>
 	search <string>
@@ -23,7 +25,21 @@ past_searches <list of strings>
 //store.clearAll()
 
 //EXAMPLE USAGE
+/*
+readFile('https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json').then(function(tweet_file) {
+    var maxLength = 0
+    var maxKey
+    for (var key in tweet_file) {
+        if (tweet_file[key].length > maxLength) {
+            maxLength = tweet_file[key].length
+            maxKey = key
+        }
+    }
+    console.log('length!')
+    console.log(maxLength)
+    console.log(maxKey)
 
+})*/
 /*
 
 FIRST ADD
@@ -118,11 +134,12 @@ function get_related_tweets(tweet) {
             init_tweets().then(function() {
 
                 tweets = store.get('tweets')
+                related_tweetsIds = store.get('related_tweets')[tweet.insultee]
 
-                related_tweetsIds = tweet.related_tweets
                 related_tweets = []
-                // fetch related tweets from twitter
-                for (i in related_tweetsIds) {
+
+                for (var i in related_tweetsIds) {
+                    if (related_tweetsIds[i] == tweet.tweet_id) continue
                     related_tweets.push(tweets[related_tweetsIds[i]])
                 }
 
@@ -131,13 +148,13 @@ function get_related_tweets(tweet) {
         }
         // fetch from local storage and create related tweet array and return
         else {
-
             tweets = store.get('tweets')
+            related_tweetsIds = store.get('related_tweets')[tweet.insultee]
 
-            related_tweetsIds = tweet.related_tweets
             related_tweets = []
-            // fetch related tweets from twitter
-            for (i in related_tweetsIds) {
+
+            for (var i in related_tweetsIds) {
+                if (related_tweetsIds[i] == tweet.tweet_id) continue
                 related_tweets.push(tweets[related_tweetsIds[i]])
             }
 
@@ -167,11 +184,15 @@ function init_tweets() {
 		// read from file
 		readFile(JSON_URL).then(function(tweet_file) {
 
+		    // set related tweets
+            store.set('related_tweets', tweet_file)
+
 			var tweet_promises = []
 			var count = 0
+
 			for (var insultee in tweet_file) {
 			    // promise get fetches all tweets for insultee
-                promiseObject = init_tweet_util(insultee, tweet_file[insultee])
+                promiseObject = get_tweet_batch(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
 				// LIMIT TWEET CALLS FOR TESTING
 				count += 1
@@ -235,7 +256,7 @@ function init_tweets() {
 
 /*
  * Utility function for init_tweet to organize tweets into insultees
- * and add related tweets
+ * and add related tweets --> NOT USED BECAUSE WE'RE FETCHING TWEETS IN BATCHES (by INSULTEE)
  *
  * @param[in] insultee : String specifying the insultee
  * @param[in] tweetIds : Array of tweeet ids to query under insultee
@@ -244,6 +265,7 @@ function init_tweets() {
  *
  * This function should NOT be touched from the front-end.
  */
+/*
 function init_tweet_util(insultee, tweetIds) {
 
     return new Promise(function (resolve, reject) {
@@ -268,6 +290,7 @@ function init_tweet_util(insultee, tweetIds) {
     });
 
 }
+*/
 
 /*
  * Reads the initial tweet_json data from a file or url
