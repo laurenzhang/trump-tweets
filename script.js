@@ -66,6 +66,10 @@ function populateFeed(tweets) {
     }
 }
 
+function searchInsultees(insultee) {
+    
+}
+
 // For testing purposes
 store.clearAll()
 

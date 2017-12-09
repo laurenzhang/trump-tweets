@@ -210,9 +210,45 @@ function get_insultee_tweets(insultee) {
 }
 
 /*
-    STARRED TWEETS
-*/
+ * Gets an array of insultee names
+ */
+function get_insultees() {
+    return new Promise(function (resolve, reject) {
+        if (store.get('tweets') == undefined) {
+            // First init local storage
+            init_tweets().then(function() {
+                tweets = store.get('tweets')
+                starred_tweet_ids = store.get('starred_tweets')
 
+                starred_tweets = []
+
+                for (var i in starred_tweet_ids) {
+                    starred_tweets.push(tweets[starred_tweet_ids[i]])
+                }
+
+                resolve(starred_tweets)
+            })
+        }
+        else {
+            // Fetch tweets from local storage
+            tweets = store.get('tweets')
+            starred_tweet_ids = store.get('starred_tweets')
+
+            starred_tweets = []
+
+            for (var i in starred_tweet_ids) {
+                starred_tweets.push(tweets[starred_tweet_ids[i]])
+            }
+
+            resolve(starred_tweets)
+        }
+    })
+}
+
+/*
+ * STARRED TWEETS
+ */
+ 
 function starTweet(tweet_id) {
     // Initialize starred tweets if necessary
     if (store.get('starred_tweets') == undefined) {
