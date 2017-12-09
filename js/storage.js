@@ -229,7 +229,7 @@ function init_tweets() {
                     return key;
                 })
                 recent_ordered_keys.sort(function(first, second) {
-                    return tweets[second].date - tweets[first].date;
+                    return tweets[second].date - tweets[first].date
                 })
                 recent_ordered_keys.splice(MAX_SIZE)
                 add_arr_toSet(tweet_set, recent_ordered_keys)
@@ -239,7 +239,7 @@ function init_tweets() {
                     return key;
                 })
                 fav_ordered_keys.sort(function(first, second) {
-                    return tweets[second].favorites - tweets[first].favorites;
+                    return tweets[second].favorites - tweets[first].favorites
                 })
                 fav_ordered_keys.splice(MAX_SIZE)
                 add_arr_toSet(tweet_set, fav_ordered_keys)
@@ -249,7 +249,7 @@ function init_tweets() {
                     return key;
                 })
                 retweet_ordered_keys.sort(function(first, second) {
-                    return tweets[second].retweets - tweets[first].retweets;
+                    return tweets[second].retweets - tweets[first].retweets
                 })
                 retweet_ordered_keys.splice(MAX_SIZE)
                 add_arr_toSet(tweet_set, retweet_ordered_keys)
@@ -285,6 +285,7 @@ function init_tweets() {
 	})
 }
 
+/* Custom function to add arr elements to set */
 function add_arr_toSet(set, arr) {
     for (var i in arr) {
         set.add(arr[i])
