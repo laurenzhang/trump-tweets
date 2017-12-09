@@ -85,8 +85,6 @@ function getTweetBatch(insultee, statusID_list){
                       console.log("error response or timeout exceeded: " + reply.errors)
                       resolve([])
                   }
-
-
             });
     });
 }
