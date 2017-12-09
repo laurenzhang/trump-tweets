@@ -58,7 +58,7 @@ function getTweetBatch(insultee, statusID_list){
             // The callback function
             function (reply, rate, err) {
               if (err) {
-                console.log("error response or timeout exceeded" + err.error);
+                console.log("error response or timeout exceeded: " + err.error);
               }
               if (reply) {
                 //console.log(reply);
@@ -78,6 +78,7 @@ function getTweetBatch(insultee, statusID_list){
                 }
                 resolve(returnArray);
               }
+              console.log("rate info: " + rate);
             });
     });
 }
