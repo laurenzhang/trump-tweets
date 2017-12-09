@@ -149,7 +149,7 @@ function get_related_tweets(tweet) {
         // fetch from local storage and create related tweet array and return
         else {
             tweets = store.get('tweets')
-            related_tweetsIds = store.get('related_tweets')[tweet.insultee]
+            related_tweetsIds = store.get('related_tweets')[tweets.insultee]
 
             related_tweets = []
 
