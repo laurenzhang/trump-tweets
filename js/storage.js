@@ -212,6 +212,7 @@ function get_insultee_tweets(insultee) {
 /*
  * Gets an array of insultee names
  */
+ // TODO
 function get_insultees() {
     return new Promise(function (resolve, reject) {
         if (store.get('tweets') == undefined) {
@@ -339,7 +340,7 @@ function init_tweets() {
 
 			for (var insultee in tweet_file) {
 			    // promise get fetches all tweets for insultee
-                if (insultee != 'Hillary Clinton') continue
+                // if (insultee != 'Hillary Clinton') continue
                 promiseObject = getTweetBatch(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
                 related_tweets[insultee] = tweet_file[insultee]

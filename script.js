@@ -14,6 +14,22 @@ $(".dropdown-menu li").click(function() {
     closeMenu(this);
 });
 
+$(document).ready(function() {
+    directory_items = document.getElementsByClassName("directoryitem");
+    for (i in directory_items) {
+        directory_items[i].onclick = function() {
+            $(this).queue(function() {
+                location.href = "./index.html";
+            });
+            $(this).queue(function() {
+                console.log("hey");
+            });
+            $(this).dequeue();
+            $(this).dequeue();
+        };
+    }
+});
+
 function closeMenu(el) {
     $(el).closest('.dropdown').toggleClass("closed").find(".title").text($(el).text());
     $container.css("height", 0);
@@ -67,17 +83,17 @@ function populateFeed(tweets) {
 }
 
 function searchInsultees(insultee) {
-    
+    // TODO
 }
 
 // For testing purposes
-store.clearAll()
+// store.clearAll()
 
-// For testing populateFeed()
-get_insultee_tweets('The Associated Press').then(function(tweets) {
-    console.log(tweets);
-    populateFeed(tweets);
-})
+// // For testing populateFeed()
+// get_insultee_tweets('The Associated Press').then(function(tweets) {
+//     console.log(tweets);
+//     populateFeed(tweets);
+// })
 
 // HOW TO GET TWEETS
 // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
