@@ -57,6 +57,10 @@ function getTweetBatch(insultee, statusID_list){
             'id=' + statuses_string,
             // The callback function
             function (reply, rate, err) {
+              if (err) {
+                console.log("error response or timeout exceeded" + err.error);
+              }
+              if (reply) {
                 //console.log(reply);
                 //for each tweet JSON returned from Twitter API
                 for (var j = 0; j < reply.length; j++){
@@ -73,6 +77,7 @@ function getTweetBatch(insultee, statusID_list){
                     returnArray.push(tweet_dict);
                 }
                 resolve(returnArray);
+              }
             });
     });
 }
@@ -86,5 +91,3 @@ getTweetJSON('The Associated Press', '674382044097449985').then(function(tweet) 
 getTweetJSON("https://twitter.com/realDonaldTrump/status/756804886038192128", function(reply){
 alert(reply); // this is where you get the return value
 });*/
-
-
