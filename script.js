@@ -37,9 +37,45 @@ function openMenu(el) {
         });
 }
 
+function populateFeed(tweets) {
+    for (i in tweets) {
+        tweet = tweets[i];
+        var table = document.getElementById("table");
+        table.style.visibility = "visible";
+
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        
+        // Retrieve tweet ID, content, and date from tweet object
+        var div = document.createElement("div");
+        div.style = "margin-top:30px;clear: both ";
+        div.setAttribute("class", "tweet");
+        div.id = tweet["tweet_id"];
+        // TODO: styling for "p4"
+        var content = document.createElement("p4");
+        content.innerHTML = tweet["tweet_text"];
+        var date = document.createElement("p4");
+        date.innerHTML = tweet["date"];
+
+        // Add tweet corresponding to tweet_id to feed
+        div.appendChild(content);
+        div.appendChild(date);
+        td.appendChild(div);
+        tr.appendChild(td);
+        table.appendChild(tr);
+    }
+}
+
+// For testing purposes
+store.clearAll()
+
 // HOW TO GET TWEETS
 // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
 get_tweets('recent_ordered').then(function(tweets) {
+    // For testing populateFeed()
+    ///
+    populateFeed(tweets);
+    ///
 
     // tweets: returned list of tweets in recent order
     console.log('RECENT ORDERED: ')
@@ -51,5 +87,3 @@ get_tweets('recent_ordered').then(function(tweets) {
         console.log(related_tweets)
     })
 })
-
-
