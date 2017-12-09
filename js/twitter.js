@@ -63,7 +63,6 @@ function getTweetBatch(insultee, statusID_list){
                       resolve([])
                   }
 
-
                   if (reply.httpstatus == 200) {
                     //for each tweet JSON returned from Twitter API
                     for (var j = 0; j < reply.length; j++){
@@ -82,7 +81,8 @@ function getTweetBatch(insultee, statusID_list){
                     resolve(returnArray);
                   }
                   else {
-                      console.log("error response or timeout exceeded: " + reply.errors)
+                      console.log("error response or timeout exceeded: ")
+                      console.log(reply.errors)
                       resolve([])
                   }
             });
