@@ -1,7 +1,7 @@
 /* DATA SCHEMA (store.get, store.set)
 
 tweets <Dictionary of tweet objects, the tweetId as its key>
-	tweet <Dictionary with data as keys> 
+	tweet <Dictionary with data as keys>
 		tweet_id <string>
 		date	<date object>
 		tweet_text <string>
@@ -93,7 +93,7 @@ function get_tweets(order) {
 			for (i in ordered_keys) {
 				ordered_tweets.push(tweets[ordered_keys[i]])
 			}
-		
+
 			resolve(ordered_tweets)
 		}
 	})
@@ -255,7 +255,7 @@ function init_tweet_util(insultee, tweetIds) {
         }
 
         Promise.all(promise_list).then(function(tweet_list) {
-        	console.log(insu)
+        	console.log(insultee)
 			console.log(tweet_list)
             for (var i in tweet_list) {
                 tweet = tweet_list[i]
@@ -291,7 +291,7 @@ function readFile(file) {
 	                var allText = rawFile.responseText;
 	                var value = JSON.parse(allText);
 	                //console.log(value);
-	                resolve(value); 
+	                resolve(value);
 	                // now display on browser :)
 	            }
 	            else reject('error')
@@ -317,7 +317,7 @@ function temp_get_tweet(person, id) {
 /* STARRED TWEETS
     - These functions assume that a list of starred tweets was initialized at
         the beginning of the session like so:
-        
+
         store.set('starred_tweets', [])
 */
 
