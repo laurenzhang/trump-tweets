@@ -37,25 +37,27 @@ function openMenu(el) {
         });
 }
 
-function populateFeed(tweet_ids) {
-    for (i in tweet_ids) {
-        // Add tweet corresponding to tweet_id to feed
+function populateFeed(tweets) {
+    for (i in tweets) {
+        tweet = tweets[i];
         var table = document.getElementById("table");
         table.style.visibility = "visible";
 
         var tr = document.createElement("tr");
         var td = document.createElement("td");
+        
+        // Retrieve tweet ID, content, and date from tweet object
         var div = document.createElement("div");
         div.style = "margin-top:30px;clear: both ";
         div.setAttribute("class", "tweet");
-        div.id = tweet_ids[i];
+        div.id = tweet["tweet_id"];
         // TODO: styling for "p4"
-        // TODO: get Content, and Date
         var content = document.createElement("p4");
-        content.innerHTML = "Content"
+        content.innerHTML = tweet["tweet_text"];
         var date = document.createElement("p4");
-        date.innerHTML = "Date"
+        date.innerHTML = tweet["date"];
 
+        // Add tweet corresponding to tweet_id to feed
         div.appendChild(content);
         div.appendChild(date);
         td.appendChild(div);
@@ -70,8 +72,9 @@ store.clearAll()
 // HOW TO GET TWEETS
 // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
 get_tweets('recent_ordered').then(function(tweets) {
+    // For testing populateFeed()
     ///
-    populateFeed(["668827020718161920", "668255569996853248", "668827139232423936"])
+    populateFeed(tweets);
     ///
 
     // tweets: returned list of tweets in recent order
