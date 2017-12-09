@@ -26,7 +26,10 @@ past_searches <list of strings>
 /*
 
 FIRST ADD
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="store.legacy.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/jublonet/codebird-js/develop/codebird.js"></script>
+<script src="twitter.js"></script>
 <script src="storage.js"></script>
 
 1) retrieve array of tweets in certain order
@@ -136,10 +139,14 @@ function init_tweets() {
 		readFile(JSON_URL).then(function(tweet_file) {
 
 			var tweet_promises = []
+			var count = 0
 			for (var insultee in tweet_file) {
 			    // promise get fetches all tweets for insultee
                 promiseObject = init_tweet_util(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
+				// LIMIT TWEET CALLS FOR TESTING
+				count += 1
+				if (count == 3) break
 			}
 
 			// Get tweets from twitter and organize file into DATA SCHEMA
@@ -147,17 +154,12 @@ function init_tweets() {
 
                 var tweets = {}
 
-                var count = 0
-
                 for (i in listOf_tweet_list) {
                     insultee_tweets = listOf_tweet_list[i]
                     for (j in insultee_tweets) {
                         tweet = insultee_tweets[j]
                         tweets[tweet.tweet_id] = tweet
                     }
-                    // LIMIT TWEETS due to local storage limit for now
-                    count += 1
-                    if (count == 10) break
                 }
 
                 //console.log(roughSizeOfObject(tweets))
@@ -199,8 +201,7 @@ function init_tweet_util(insultee, tweetIds) {
 
         promise_list = []
         for (i in tweetIds) {
-        	//TODO: replace temp_get_tweet with real get_tweet function
-            promiseObject = temp_get_tweet(insultee, tweetIds[i])
+            promiseObject = getTweetJSON(insultee, tweetIds[i])
             promise_list.push(promiseObject)
         }
 

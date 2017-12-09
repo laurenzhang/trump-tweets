@@ -36,3 +36,12 @@ function openMenu(el) {
             $list.css("top", -top);
         });
 }
+
+// HOW TO GET TWEETS
+/*
+get_tweets().then(function(tweets) {
+
+    // tweets: returned list of tweets in recent order
+    console.log(tweets)
+})
+*/
