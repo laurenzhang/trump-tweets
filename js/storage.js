@@ -25,10 +25,17 @@ past_searches <list of strings>
 //store.clearAll()
 
 //EXAMPLE USAGE
+
+//store.clearAll()
 /*
-store.clearAll()
 get_tweets('recent_ordered').then(function(tweets) {
-    console.log(store.get('tweets'))
+    console.log(Object.keys(store.get('tweets')).length)
+})*/
+/*
+get_insultee_tweets('The Associated Press').then(function(tweets) {
+
+
+    console.log(tweets)
 })*/
 /*
 readFile('https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json').then(function(tweet_file) {
@@ -168,6 +175,52 @@ function get_related_tweets(tweet) {
     })
 }
 
+/*
+ * Gets an array of tweets associated with insultee
+ *
+ * @param[in] insultee : the insultee name
+ *
+ * @returns a Promise object which passes the insultee tweets array when done
+ *
+ * @see DATA SCHEMA at top to see what 'tweet' is
+ */
+function get_insultee_tweets(insultee) {
+
+    return new Promise(function (resolve, reject) {
+
+        // if tweets not initialized, init and store in local storage, then return related tweets
+        if (store.get('tweets') == undefined) {
+
+            init_tweets().then(function() {
+
+                tweets = store.get('tweets')
+                related_tweetsIds = store.get('related_tweets')[insultee]
+
+                related_tweets = []
+
+                for (var i in related_tweetsIds) {
+                    related_tweets.push(tweets[related_tweetsIds[i]])
+                }
+
+                resolve(related_tweets)
+            })
+        }
+        // fetch from local storage and create related tweet array and return
+        else {
+            tweets = store.get('tweets')
+            related_tweetsIds = store.get('related_tweets')[insultee]
+
+            related_tweets = []
+
+            for (var i in related_tweetsIds) {
+                related_tweets.push(tweets[related_tweetsIds[i]])
+            }
+
+            resolve(related_tweets)
+        }
+    })
+}
+
 /* FUNCTIONS UNDER HERE SHOULD NOT BE TOUCHED FROM THE FRONT-END
 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 * */
@@ -216,7 +269,7 @@ function init_tweets() {
                         tweets[tweet.tweet_id] = tweet
                     }
                 }
-
+                console.log(tweets)
                 //console.log(roughSizeOfObject(tweets))
 
                 // Sort the data into the order we want and cache in local storage
@@ -263,6 +316,7 @@ function init_tweets() {
                         delete tweets[key]
                     }
                 }
+
                 for (var key in related_tweets) {
                     var i = related_tweets.length
                     while (i--) {
