@@ -60,10 +60,11 @@ function getTweetBatch(insultee, statusID_list){
               if (err) {
                 console.log("error response or timeout exceeded: " + err.error);
               }
-              if (reply) {
+              if (reply && reply.) {
                 //console.log(reply);
                 //for each tweet JSON returned from Twitter API
                 for (var j = 0; j < reply.length; j++){
+                  if (reply[j].httpstatus == 200){
                     // fill in the tweet_dict object with details to return
                     //console.log(reply[j]);
                     var tweet_dict = {};
@@ -75,6 +76,10 @@ function getTweetBatch(insultee, statusID_list){
                     tweet_dict.retweets = reply[j].favorite_count;
 
                     returnArray.push(tweet_dict);
+                  }
+                  else {
+                    console.log("httpstatus not 200, is " + reply[j].httpstatus);
+                  }
                 }
                 resolve(returnArray);
               }
