@@ -38,7 +38,6 @@ function openMenu(el) {
 }
 
 // HOW TO GET TWEETS
-store.clearAll()
 // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
 get_tweets('recent_ordered').then(function(tweets) {
 

@@ -252,16 +252,12 @@ function init_tweet_util(insultee, tweetIds) {
  *
  * @returns a Promise object which passes the data in a dictionary when done
  *
- * TODO: FIX
- * storage.js:225 [Deprecation] Synchronous XMLHttpRequest on the main thread is deprecated because of its
- * detrimental effects to the end user's experience. For more help, check https://xhr.spec.whatwg.org/.
- *
  */
 
 function readFile(file) {
 	return new Promise(function (resolve, reject) {
 	    var rawFile = new XMLHttpRequest();
-	    rawFile.open("GET", file, false);
+	    rawFile.open("GET", file, true);
 	    rawFile.onreadystatechange = function ()
 	    {
 	        if(rawFile.readyState === 4) {
