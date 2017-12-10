@@ -210,7 +210,7 @@ function get_insultee_tweets(insultee) {
 }
 
 /*
- * Gets an array of insultee names
+ * Gets a set of insultee names
  */
  // TODO
 function get_insultees() {
@@ -218,30 +218,16 @@ function get_insultees() {
         if (store.get('tweets') == undefined) {
             // First init local storage
             init_tweets().then(function() {
-                tweets = store.get('tweets')
-                starred_tweet_ids = store.get('starred_tweets')
+                var insultees = new Set(Object.keys(store.get('related_tweets')))
 
-                starred_tweets = []
-
-                for (var i in starred_tweet_ids) {
-                    starred_tweets.push(tweets[starred_tweet_ids[i]])
-                }
-
-                resolve(starred_tweets)
+                resolve(insultees)
             })
         }
         else {
-            // Fetch tweets from local storage
-            tweets = store.get('tweets')
-            starred_tweet_ids = store.get('starred_tweets')
+            // Fetch insultee names names from local storage
+            var insultees = new Set(Object.keys(store.get('related_tweets')))
 
-            starred_tweets = []
-
-            for (var i in starred_tweet_ids) {
-                starred_tweets.push(tweets[starred_tweet_ids[i]])
-            }
-
-            resolve(starred_tweets)
+            resolve(insultees)
         }
     })
 }
