@@ -46,13 +46,16 @@ function populateFeed(tweets) {
             tweet = tweets[i];
             var feed = document.getElementById("feed");
             
+            var a = document.createElement("a");
+            a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
+
             // Retrieve tweet ID, content, and date from tweet object
             var div = document.createElement("div");
             div.setAttribute("class", "tweet");
             div.id = tweet["tweet_id"];
             
-            var star = document.createElement("div");
-            star.setAttribute("class", "star-five");
+            // var star = document.createElement("div");
+            // star.setAttribute("class", "star-five");
 
             // TODO: styling for "p4"
             var content = document.createElement("p4");
@@ -61,11 +64,13 @@ function populateFeed(tweets) {
             date.innerHTML = tweet["date"];
 
             // Add tweet corresponding to tweet_id to feed
-            div.appendChild(star);
+            // div.appendChild(star);
             div.appendChild(content);
             div.appendChild(document.createElement("br"));
+            div.appendChild(document.createElement("br"));
             div.appendChild(date);
-            feed.appendChild(div);
+            a.appendChild(div);
+            feed.appendChild(a);
         }
     });
 }
@@ -74,7 +79,7 @@ function searchInsultees(insultee) {
     // TODO
 }
 
-// For testing purposes
+// // For testing purposes
 // store.clearAll()
 
 // // For testing populateFeed()
@@ -83,16 +88,16 @@ function searchInsultees(insultee) {
 //     populateFeed(tweets);
 // })
 
-// HOW TO GET TWEETS
-// ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
-get_tweets('recent_ordered').then(function(tweets) {
-    // tweets: returned list of tweets in recent order
-    console.log('RECENT ORDERED: ')
-    console.log(tweets)
+// // HOW TO GET TWEETS
+// // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
+// get_tweets('recent_ordered').then(function(tweets) {
+//     // tweets: returned list of tweets in recent order
+//     console.log('RECENT ORDERED: ')
+//     console.log(tweets)
 
-    get_related_tweets(tweets[0]).then(function(related_tweets) {
+//     get_related_tweets(tweets[0]).then(function(related_tweets) {
 
-        console.log('RELATED TWEETS OF tweets[0]: ')
-        console.log(related_tweets)
-    })
-})
+//         console.log('RELATED TWEETS OF tweets[0]: ')
+//         console.log(related_tweets)
+//     })
+// })
