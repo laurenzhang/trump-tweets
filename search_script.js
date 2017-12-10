@@ -3,6 +3,9 @@ $(document).ready(function() {
     var substring = window.location.search.substring(1).split("=");
     var query = substring.splice(1, 2)[0];
 
+    // Normalize search query
+    query = query.split("%20").join(" ");
+
     get_insultee_tweets(query).then(function(tweets) {
         console.log(tweets);
         populateFeed(tweets);
