@@ -7,6 +7,9 @@ $(document).ready(function() {
         // The user is searching for her Starred Tweets
         // TODO
     } else {
+        // The user has been redirected via the Directory Page or
+        // has performed a search
+        
         // Normalize search query
         query = query.split("%20").join(" ");
 
