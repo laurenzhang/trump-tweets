@@ -40,22 +40,8 @@ function openMenu(el) {
 // // For testing purposes
 // store.clearAll()
 
-// // For testing populateFeed()
-// get_insultee_tweets('The Associated Press').then(function(tweets) {
-//     console.log(tweets);
-//     populateFeed(tweets);
-// })
-
-// // HOW TO GET TWEETS
-// // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
-// get_tweets('recent_ordered').then(function(tweets) {
-//     // tweets: returned list of tweets in recent order
-//     console.log('RECENT ORDERED: ')
-//     console.log(tweets)
-
-//     get_related_tweets(tweets[0]).then(function(related_tweets) {
-
-//         console.log('RELATED TWEETS OF tweets[0]: ')
-//         console.log(related_tweets)
-//     })
-// })
+// Search orders:
+//  ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
+get_tweets('recent_ordered').then(function(tweets) {
+    populateFeed(tweets);
+})
