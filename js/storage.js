@@ -212,7 +212,6 @@ function get_insultee_tweets(insultee) {
 /*
  * Gets a set of insultee names
  */
- // TODO
 function get_insultees() {
     return new Promise(function (resolve, reject) {
         if (store.get('tweets') == undefined) {
@@ -242,7 +241,15 @@ function starTweet(tweet_id) {
         store.set('starred_tweets', [])
     }
 
-    store.push('starred_tweets', tweet_id)
+    // Check if tweet_id is already starred
+    var starred_set = new Set(store.get('starred_tweets'))
+    if (starred_set.has(tweet_id)) {
+        return
+    }
+
+    var new_starred_tweets = store.get('starred_tweets')
+    new_starred_tweets.push(tweet_id)
+    store.set('starred_tweets', new_starred_tweets)
 }
 
 function unstarTweet(tweet_id) {
@@ -271,6 +278,11 @@ function getStarredTweets() {
         if (store.get('tweets') == undefined) {
             // First init local storage
             init_tweets().then(function() {
+                // Check if starred tweets initialized
+                if (store.get('starred_tweets') == undefined) {
+                    resolve([])
+                }
+
                 tweets = store.get('tweets')
                 starred_tweet_ids = store.get('starred_tweets')
 
@@ -284,6 +296,11 @@ function getStarredTweets() {
             })
         }
         else {
+            // Check if starred tweets initialized
+            if (store.get('starred_tweets') == undefined) {
+                resolve([])
+            }
+
             // Fetch tweets from local storage
             tweets = store.get('tweets')
             starred_tweet_ids = store.get('starred_tweets')

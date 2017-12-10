@@ -5,7 +5,13 @@ $(document).ready(function() {
 
     if (query == "starred") {
         // The user is searching for her Starred Tweets
-        // TODO
+
+        // For testing purposes, "star" a tweet
+        starTweet("668255569996853248");
+
+        getStarredTweets().then(function(starred_tweets) {
+            populateFeed(starred_tweets);
+        });
     } else {
         // The user has been redirected via the Directory Page or
         // has performed a search
