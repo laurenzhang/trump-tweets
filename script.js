@@ -48,7 +48,6 @@ function populateFeed(tweets) {
             
             // Retrieve tweet ID, content, and date from tweet object
             var div = document.createElement("div");
-            div.style = "margin-top:30px;clear: both ";
             div.setAttribute("class", "tweet");
             div.id = tweet["tweet_id"];
             // TODO: styling for "p4"
