@@ -50,6 +50,10 @@ function populateFeed(tweets) {
             var div = document.createElement("div");
             div.setAttribute("class", "tweet");
             div.id = tweet["tweet_id"];
+            
+            var star = document.createElement("div");
+            star.setAttribute("class", "star-five");
+
             // TODO: styling for "p4"
             var content = document.createElement("p4");
             content.innerHTML = tweet["tweet_text"];
@@ -57,6 +61,7 @@ function populateFeed(tweets) {
             date.innerHTML = tweet["date"];
 
             // Add tweet corresponding to tweet_id to feed
+            div.appendChild(star);
             div.appendChild(content);
             div.appendChild(document.createElement("br"));
             div.appendChild(date);
