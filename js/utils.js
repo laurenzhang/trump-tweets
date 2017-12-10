@@ -1,3 +1,13 @@
+/*
+
+    This function takes a list of tweet objects, and displays them in a feed.
+    Requires the following in your HTML file:
+        <script src="js/utils.js"></script>
+
+        <!-- Skeleton for tweet feed -->
+        <div class="center-div" id="feed"></div>
+
+*/
 function populateFeed(tweets) {
     $(document).ready(function() {
         for (i in tweets) {
