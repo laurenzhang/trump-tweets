@@ -35,7 +35,3 @@ function populateFeed(tweets) {
         }
     });
 }
-
-function searchInsultees(insultee) {
-    // TODO
-}
