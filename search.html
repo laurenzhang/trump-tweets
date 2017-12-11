@@ -8,7 +8,7 @@
 <script src="js/twitter.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/utils.js"></script>
-<script src="script.js"></script>
+<script src="search_script.js"></script>
 
 <head>
     <title>TRUMP TWEETS
@@ -19,8 +19,8 @@
 <body>
     <a href="./index.html"><img src="https://dl.dropboxusercontent.com/s/z5x5c8tyonj86p2/trumplogo.png?dl=0" height: "100" width="100" /></a>
 
-    <div class="center-div8">
-        <div id="first" style="padding-top: 40px; display: block">
+    <div class="center-div">
+        <div style="padding-top: 40px; display: block">
             <div style="clear: both; margin-left: 20px; display: inline-block">
                 <a href="./search.html?insultee=starred"><input type="button" class="button" value="★ Starred"></a>
             </div>
@@ -29,28 +29,19 @@
                 <div style="display: inline-block; padding-left:10px"><input id="search-button" type="submit" class="button" value="Search"></div>
             </form>
         </div>
-
-        <div style="padding-top: 45px; padding-bottom: 50px">
-            <div style="display: block" id="second" class="styled-select orange semi-square">
-                <select id="Filter" onchange="_change(this);">
-                        <option value=" 1 " id="MostRecent " selected="selected ">Most Recent</option>
-                        <option value="2 " id="MostFav"> Most Favorites</option>
-                        <option value="3 " id="MostRT">Most Retweets</option>
-                 </select>
-            </div>
-        </div>
     </div>
     </div>
 
     <div class="center-div-button-bar">
-        <div style="clear: both; margin-left: 10px; margin-top:20px; display: inline-block"><input type="button" class="button" value="NY Times"></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Democrats"></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="John Kasich"></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Bernie Sanders"></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="See All Insultees →"></div>
+        <div style="clear: both; margin-left: 10px; margin-top:20px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
+        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
+        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
+        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
+        <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Input Button"></div>
     </div>
 
     <!-- Skeleton for tweet feed -->
+    <div id="message"></div>
     <div class="center-div" id="feed"></div>
 
 </body>

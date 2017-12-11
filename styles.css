@@ -132,6 +132,13 @@ img {
     border-style: solid;
     border-width: 20px;
     border-color: white;
+    font-size: 150%;
+    font-weight: 100;
+    font-family: "Avenir Black", sans-serif;
+    text-align: center;
+    overflow: hidden;
+    margin-top:30px;
+    clear: both;
 }
 
 .tweet:hover {
@@ -286,6 +293,7 @@ p6 {
     padding-left: 30px;
 }
 
+/* No longer necessary v */
 table {
     width: 100%;
     font-size: 150%;
@@ -304,6 +312,8 @@ th {
     font-weight: 100;
     padding-bottom: 20px;
 }
+
+/* No longer necessary ^ */
 
 .star-five {
     margin: 50px 0;

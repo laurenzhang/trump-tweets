@@ -1,7 +1,6 @@
 <html>
 <link type="text/css" rel="stylesheet" href="styles.css" />
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://rawgit.com/jublonet/codebird-js/develop/codebird.js"></script>
@@ -9,7 +8,8 @@
 
 <script src="js/twitter.js"></script>
 <script src="js/storage.js"></script>
-<script src="script.js"></script>
+<script src="js/utils.js"></script>
+<script src="directory_script.js"></script>
 
 <head>
     <title>TRUMP TWEETS
@@ -18,14 +18,16 @@
 </head>
 
 <body>
-    <p><img src="https://dl.dropboxusercontent.com/s/z5x5c8tyonj86p2/trumplogo.png?dl=0" height: "100" width="100" /></p>
+    <a href="./index.html"><img src="https://dl.dropboxusercontent.com/s/z5x5c8tyonj86p2/trumplogo.png?dl=0" height: "100" width="100" /></a>
     <div class="center-div">
         <div style="padding-top: 40px; display: block">
-            <div style="clear: both; margin-left: 20px; display: inline-block"><input type="button" class="button" value="★ Starred"></div>
-            <form id="search-form" class="form-group" style="width: 50%">
-                <input type="text" class="form-control" id="SearchBar" placeholder="Search">
+            <div style="clear: both; margin-left: 20px; display: inline-block">
+                <a href="./search.html?insultee=starred"><input type="button" class="button" value="★ Starred"></a>
+            </div>
+            <form id="search-form" class="form-group" style="width:60%">
+                <div style="display: inline-block"><input type="text" class="form-control" id="SearchBar" placeholder="Search"></div>
+                <div style="display: inline-block; padding-left:10px"><input id="search-button" type="submit" class="button" value="Search"></div>
             </form>
-            <div style="clear: both; margin-left: 10px; display: inline-block"><input type="button" class="button" value="Search"></div>
         </div>
     </div>
 
@@ -36,7 +38,7 @@
             </div>
             <div class="foreground">
                 <div style="padding-top:20px">
-                    <a href="#" class="directoryitem">Associated Press </a>
+                    <a href="#" class="directoryitem">The Associated Press </a>
                 </div>
                 <div style="padding-top:20px ">
                     <a href="#" class="directoryitem">ABC News Politics </a>
@@ -60,7 +62,7 @@
                     <a href="#" class="directoryitem">John R. Allen</a>
                 </div>
                 <div style="padding-top:20px ">
-                    <a href="#" class="directoryitem">"New 747 Air Force One</a>
+                    <a href="#" class="directoryitem">New 747 Air Force One</a>
                 </div>
 
                 <div style="padding-top:20px">
