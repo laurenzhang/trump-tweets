@@ -176,7 +176,8 @@ img {
 
 .center-div-button-bar {
     margin: 0 auto;
-    width: 600px;
+    width: 700px;
+    padding-left: 30px;
 }
 
 .center-div-bar {
@@ -255,6 +256,24 @@ p2 {
     width: 100%;
 }
 
+p1 {
+    font-size: 14px;
+    font-family: "Avenir Black", sans-serif;
+    font-weight: 100;
+    width: 100%;
+    text-align: left;
+    text-indent: 0px;
+}
+
+p6 {
+    font-size: 18px;
+    font-family: "Avenir Black", sans-serif;
+    font-weight: 100;
+    width: 100%;
+    text-align: left;
+    text-indent: 0px;
+}
+
 .background {
     z-index: 0;
     position: absolute;
@@ -272,20 +291,18 @@ table {
     font-size: 150%;
     font-weight: 100;
     font-family: "Avenir Black", sans-serif;
+    table-layout: fixed;
 }
 
 td {
-    text-align: center;
     background: #ffdaad;
-    height: 300px;
-    width: 350px;
-    overflow: hidden;
+    height: 320px;
+    max-width: 350px;
 }
 
 th {
     font-weight: 100;
     padding-bottom: 20px;
-    overflow: hidden;
 }
 
 .star-five {
@@ -347,7 +364,5 @@ th {
 
 p4 {
     text-align: center;
-    display: inline=block;
+    display: inline-block;
 }
-
-display: inline=block;
