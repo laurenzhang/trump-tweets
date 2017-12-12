@@ -41,7 +41,7 @@ function generate_tweet_box(index) {
     starButton.setAttribute("class", "starred");
     star.setAttribute("class", "star-five");
     starButton.setAttribute("value", "ID")
-    starButton.href = "./directory";
+    starButton.href = "#";
 
 
     // create a div to place star into
