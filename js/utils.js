@@ -132,3 +132,20 @@ function parseURLParams(url) {
     }
     return parms;
 }
+
+function create_starred_message() {
+    // Display "Starred Tweets" message
+    var message = document.getElementById("message");
+    // TODO: styling for "p5"
+    var content = document.createElement("p5");
+    content.innerHTML = "Starred Tweets";
+    message.appendChild(content);
+}
+
+function create_searched_message(search_word) {
+    var message = document.getElementById("message");
+    // TODO: styling for "p5"
+    var content = document.createElement("p5");
+    content.innerHTML = "Search Results for " + search_word;
+    message.appendChild(content);
+}
