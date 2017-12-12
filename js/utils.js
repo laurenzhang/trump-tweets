@@ -91,7 +91,7 @@ function generate_tweet_box(index) {
     var prettyDate = ugDate.toLocaleTimeString("en-us", options);
     date.innerHTML = prettyDate;
 
-    var insultee = document.createElement("p4")
+    var insultee = document.createElement("p9")
     insultee.innerHTML = "Insult to: " + tweet.insultee.toString().bold()
 
     // create See More text

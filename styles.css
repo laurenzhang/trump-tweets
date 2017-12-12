@@ -333,6 +333,15 @@
         text-align: left;
         text-indent: 0px;
     }
+
+    p9 {
+        font-size: 16px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 100;
+        width: 100%;
+        text-align: left;
+        text-indent: 0px;
+    }
     
     .background {
         z-index: 0;
