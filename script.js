@@ -38,7 +38,7 @@ function openMenu(el) {
 }
 
 // // For testing purposes
-store.clearAll()
+//store.clearAll()
 
 // Search orders:
 //  ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
