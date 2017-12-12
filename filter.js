@@ -1,14 +1,17 @@
 $(document).ready(function() {
     var ddmenu = document.getElementById("indexFilter");
 
+    // set default order using url
     urlParams = parseURLParams(window.location.href)
-    order = urlParams['order']
+    if (urlParams != undefined) {
+        order = urlParams['order']
 
-    if (order == 'fav') {
-        ddmenu.selectedIndex = 1
-    }
-    else if (order == 'retweet') {
-        ddmenu.selectedIndex = 2
+        if (order == 'fav') {
+            ddmenu.selectedIndex = 1
+        }
+        else if (order == 'retweet') {
+            ddmenu.selectedIndex = 2
+        }
     }
 
     var value = ddmenu.options[ddmenu.selectedIndex].value;
