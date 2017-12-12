@@ -73,6 +73,8 @@ $(document).ready(function() {
         starTweet("668255569996853248");
         getStarredTweets().then(function(starred_tweets) {
             create_starred_message(starred_tweets.length)
+            var orderMenu = document.getElementById("indexFilter");
+            orderMenu.style.visibility='hidden';
             populateFeed(starred_tweets);
         });
     }
@@ -82,6 +84,8 @@ $(document).ready(function() {
             // init text for search
             document.getElementById("SearchBar").value = search
             create_searched_message(search, search_tweets.length)
+            var orderMenu = document.getElementById("indexFilter");
+            orderMenu.style.visibility='hidden';
             populateFeed(search_tweets)
         })
     }
