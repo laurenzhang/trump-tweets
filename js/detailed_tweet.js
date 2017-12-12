@@ -14,6 +14,7 @@ function populateDetailedTweet() {
     detailStar.value = theTweetId;
     //console.log(detailStar.value);
     // Search for extracted id in storage
+
     get_tweet(theTweetId).then(function(theTweet) {
         if (theTweet) {
 
@@ -114,7 +115,6 @@ function starDetailedTweet() {
         alert("tweet starred!");
     };
 }
->>>>>>> 1f3d0a263c7ea3bfdd10851956ce73b672bc28f7
 
 function unstarDetailedTweet() {
     var detailStar = document.getElementById("detailedStar");
