@@ -1,7 +1,6 @@
 $(document).ready(function() {
     populateDetailedTweet();
-    starDetailedTweet();
-    unstarDetailedTweet();
+    detailTweetStar();
 })
 
 function populateDetailedTweet() {
@@ -9,10 +8,10 @@ function populateDetailedTweet() {
     // Get url and retrieve the tweet id from it
     var splitURL = (window.location.href).split("tweet_id=");
     var theTweetId = (splitURL[1]);
-    //console.log(theTweetId);
+    console.log(theTweetId);
     var detailStar = document.getElementById("detailedStar");
     detailStar.value = theTweetId;
-    //console.log(detailStar.value);
+    console.log(detailStar.value);
     // Search for extracted id in storage
     get_tweet(theTweetId).then(function(theTweet) {
         if (theTweet) {
@@ -47,14 +46,14 @@ function populateDetailedTweet() {
             theTweetRetweets.innerHTML = retweetsNo + " retweets";
             theTweetLikes.innerHTML = favesNo + " likes";
             // Fill in Wiki Card information
-            //console.log("Original insultee: " + theTweet.insultee);
+            console.log("Original insultee: " + theTweet.insultee);
             getWikiSummary(theTweet.insultee).then(function(response) {
                 var theWikiPic = document.getElementById("wikiPic");
                 var theWikiText = document.getElementById("wikiText");
                 var theWikiTitle = document.getElementById("wikiTitle");
                 var wiki_content = {};
 
-                //console.log(response);
+                console.log(response);
 
                 try {
                     pages = response.query.pages;
@@ -67,7 +66,7 @@ function populateDetailedTweet() {
                         // Article summary (text before the "Contents" section)
                         wiki_content['summary'] = pages[page_id].extract;
                         wiki_content['title'] = pages[page_id].title;
-                        //console.log("title " + pages[page_id].title);
+                        console.log("title " + pages[page_id].title);
                     }
                 } catch (err) {
                     console.log('Error Fetching wiki!')
@@ -104,22 +103,26 @@ function populateRelatedTweets(tweet) {
     });
 }
 
-function starDetailedTweet() {
+function detailTweetStar() {
     var detailStar = document.getElementById("detailedStar");
     var splitURL = (window.location.href).split("tweet_id=");
     var ID = (splitURL[1]);
-    detailStar.onclick = function() {
-        starTweet(ID);
-        alert("tweet starred!");
-    };
-}
+    if (isStarred(ID)) {
+        detailStar.setAttribute("class", "star-four")
+        detailStar.onclick = function() {
+            unstarTweet(ID);
+            alert("tweet unstarred!");
+            detailStar.setAttribute("class", "star-five")
+            location.reload(true);
+        }
+    } else {
+        detailStar.setAttribute("class", "star-five");
 
-function unstarDetailedTweet() {
-    var detailStar = document.getElementById("detailedStar");
-    var splitURL = (window.location.href).split("tweet_id=");
-    var ID = (splitURL[1]);
-    detailStar.onclick = function() {
-        unstarTweet(ID);
-        alert("tweet unstarred!");
-    };
+        detailStar.onclick = function() {
+            starTweet(ID);
+            alert("tweet starred!");
+            detailStar.setAttribute("class", "star-four")
+            location.reload(true);
+        }
+    }
 }
