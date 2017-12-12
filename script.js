@@ -40,55 +40,71 @@ function openMenu(el) {
 // INIT FEED
 $(document).ready(function() {
 
-    // // For testing purposes
-    //store.clearAll()
+            // // For testing purposes
+            //store.clearAll()
 
-    // check if ordered view
-    var ddmenu = document.getElementById("indexFilter");
-    var order_val = ddmenu.options[ddmenu.selectedIndex].value;
-    var order;
-    var starred;
-    var search;
+            // check if ordered view
+            var ddmenu = document.getElementById("indexFilter");
+            var order_val = ddmenu.options[ddmenu.selectedIndex].value;
+            var order;
+            var starred;
+            var search;
 
-    // these get set in filter.js
-    if (order_val == 1) {
-        order = 'retweet_ordered'
-    } else if (order_val == 2) {
-        order = 'fav_ordered'
-    } else {
-        order = 'recent_ordered'
-    }
+            // these get set in filter.js
+            if (order_val == 1) {
+                order = 'retweet_ordered'
+            } else if (order_val == 2) {
+                order = 'fav_ordered'
+            } else {
+                if (order_val == 2) {
+                    order = 'fav_ordered'
+                } else if (order_val == 3) {
+                    order = 'retweet_ordered'
+                } else {
+                    order = 'recent_ordered'
+                }
 
-    urlParams = parseURLParams(window.location.href)
-    if (urlParams != undefined) {
-        starred = urlParams['starred']
-        search = urlParams['search']
-    }
+                urlParams = parseURLParams(window.location.href)
+                if (urlParams != undefined) {
+                    starred = urlParams['starred']
+                    search = urlParams['search']
+                }
 
-    // 1) populate by starred
-    if (starred != undefined) {
-        // add star tweet for testing
-        starTweet("668255569996853248");
-        getStarredTweets().then(function(starred_tweets) {
-            create_starred_message()
-            populateFeed(starred_tweets);
-        });
-    }
-    // 2) populate by search
-    else if (search != undefined) {
-        search_tweets(search).then(function(search_tweets) {
-            create_searched_message(search)
-            populateFeed(search_tweets);
-        })
-    }
-    // 3) populate by order
-    else {
-        // Search orders:
-        // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
-        get_tweets(order).then(function(tweets) {
-            populateFeed(tweets);
-        })
-    }
+                // 1) populate by starred
+                if (starred != undefined) {
+                    // add starred tweets for testing
+                    starTweet("668255569996853248");
+                    starTweet("759024055123009536");
+                    getStarredTweets().then(function(starred_tweets) {
+                        create_starred_message(starred_tweets.length)
+                        var orderMenu = document.getElementById("indexFilter");
+                        orderMenu.style.visibility = 'hidden';
+                        populateFeed(starred_tweets);
+                    });
+                }
+                // 2) populate by search
+                else if (search != undefined) {
+                    search_tweets(search).then(function(search_tweets) {
+                        create_searched_message(search)
+                        populateFeed(search_tweets);
+                        else if (search != undefined) {
+                            search_tweets(search).then(function(search_tweets) {
+                                // init text for search
+                                document.getElementById("SearchBar").value = search
+                                create_searched_message(search, search_tweets.length)
+                                var orderMenu = document.getElementById("indexFilter");
+                                orderMenu.style.visibility = 'hidden';
+                                populateFeed(search_tweets)
+                            })
+                        }
+                        // 3) populate by order
+                        else {
+                            // Search orders:
+                            // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
+                            get_tweets(order).then(function(tweets) {
+                                populateFeed(tweets);
+                            })
+                        }
 
 
-})
+                    })

@@ -29,8 +29,11 @@ function getWikiSummary(title) {
     getWikiSuggestion(title).then(function(suggestionResponse) {
       // get the first suggested title from the returned Wiki query
       var suggestedTitle = '';
-      if (suggestionResponse.query.search[0]) //match found
-        suggestedTitle = suggestionResponse.query.search[0].title;
+      var theIndex = 0;
+      if (title == 'Assault allegations')
+        theIndex = 1;
+      if (suggestionResponse.query.search[theIndex]) //match found
+        suggestedTitle = suggestionResponse.query.search[theIndex].title;
       else // no matches found
         resolve();
       console.log("Suggested title: " + suggestedTitle);
