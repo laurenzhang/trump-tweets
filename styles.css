@@ -98,13 +98,13 @@
     }
     
     #left {
-        width: 40%;
+        width: 30%;
         float: left;
         margin: 10px;
     }
     
     #middle {
-        width: 50%;
+        width: 30%;
         float: left;
         margin: 10px;
     }
@@ -194,8 +194,8 @@
     
     .center-div2 {
         margin: 0 auto;
-        width: 600px;
-        padding-left: 10px;
+        width: 1200px;
+        padding-left: 40px;
     }
     
     .center-div3 {
