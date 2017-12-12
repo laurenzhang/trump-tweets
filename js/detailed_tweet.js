@@ -119,9 +119,10 @@ function detailTweetStar() {
         }
     } else {
         detailStar.setAttribute("class", "star-five");
-
         detailStar.onclick = function() {
             starTweet(ID);
             alert("tweet starred!");
-        };
-    }
+            location.reload(true);
+        }
+    };
+}
