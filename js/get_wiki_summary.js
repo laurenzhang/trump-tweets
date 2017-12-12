@@ -14,10 +14,11 @@ function getWikiInfo(title){
       }
     }
     catch(err) {
+      console.log('Error Fetching wiki content!')
       console.log(err);
       wiki_content['error'] = 'Wiki summary unavailable';
     }
-    console.log(wiki_content);
+    //console.log(wiki_content);
     // TODO: instead of adding these items to wiki_content, add to tweet object
     //  - alternatively, display these results directly
   });
@@ -38,7 +39,7 @@ function getWikiSummary(title) {
       withCredentials: true
     },
     success: function(response){
-      console.log(response);
+      //console.log(response);
     }
   }));
 }

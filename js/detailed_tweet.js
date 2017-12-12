@@ -11,7 +11,7 @@ function populateDetailedTweet() {
           var theTweetDate = document.getElementById("tweetCardDate");
           var theTweetRetweets = document.getElementById("tweetCardRetweets");
           var theTweetLikes = document.getElementById("tweetCardLikes");
-          console.log(theTweet);
+          //console.log(theTweet);
           // Add commas into the retweet and favorites count, for easy to read format
           var retweetsNo = theTweet.retweets.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
           var favesNo = theTweet.favorites.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -38,10 +38,11 @@ function populateDetailedTweet() {
               }
             }
             catch(err) {
+              console.log('Error Fetching wiki!')
               console.log(err);
               wiki_content['error'] = 'Wiki summary unavailable';
             }
-            console.log(wiki_content);
+            //console.log(wiki_content);
             theWikiText.innerHTML = wiki_content['summary'];
             theWikiPic.src = wiki_content['img_url'];
           });

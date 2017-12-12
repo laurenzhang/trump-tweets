@@ -79,7 +79,7 @@ function getTweetBatch(insultee, statusID_list){
                         tweet_dict.date = new Date(reply[j].created_at)
                         tweet_dict.tweet_text = reply[j].text;
                         tweet_dict.retweets = reply[j].retweet_count;
-                        tweet_dict.retweets = reply[j].favorite_count;
+                        tweet_dict.favorites = reply[j].favorite_count;
 
                         returnArray.push(tweet_dict);
                     }

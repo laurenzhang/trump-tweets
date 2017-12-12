@@ -37,6 +37,7 @@ function openMenu(el) {
         });
 }
 
+// INIT FEED
 $(document).ready(function() {
 
     // // For testing purposes
