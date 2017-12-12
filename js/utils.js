@@ -35,9 +35,10 @@ function generate_tweet_box(index) {
 
 
     //create star button
+    var ID = tweet["tweet_id"];
     var star = document.createElement("div");
-    star.setAttribute("class", "star-five");
-    star.setAttribute("id", "starred");
+    star.setAttribute("class", "star-five starred");
+    star.setAttribute("value", "ID")
 
 
     // create a div to place star into
