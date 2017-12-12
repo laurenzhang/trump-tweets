@@ -47,6 +47,7 @@ function generate_tweet_box(index) {
 
     // create star
     var star = document.createElement("div");
+    star.setAttribute("class", "star-five");
 
     //create star button
     var ID = tweet["tweet_id"];
@@ -56,23 +57,16 @@ function generate_tweet_box(index) {
     starButton.setAttribute("value", "ID")
     starButton.href = "#";
 
-    if (isStarred(ID)) {
-        star.setAttribute("class", "star-four")
-
-        starButton.onclick = function() {
+    starButton.onclick = function() {
+        if (isStarred(ID)) {
+            starButton.setAttribute("class", "star-four")
             unstarTweet(ID);
             alert("tweet unstarred!");
-            star.setAttribute("class", "star-five")
-            location.reload(true);
-        }
-    } else {
-        star.setAttribute("class", "star-five");
-
-        starButton.onclick = function() {
+            starButton.setAttribute("class", "star-five")
+        } else {
             starTweet(ID);
+            starButton.setAttribute("class", "star-four")
             alert("tweet starred!");
-            star.setAttribute("class", "star-four")
-            location.reload(true);
         }
     }
 
