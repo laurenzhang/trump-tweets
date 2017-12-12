@@ -221,16 +221,12 @@
         width: 1200px;
         padding-left: 140px;
     }
-<<<<<<< HEAD
-    
-=======
 
     .center-div-loading {
         margin: 0 auto;
         width: 70px;
     }
 
->>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
     a {
         font-family: "Avenir Black", sans-serif;
         font-weight: 100;
@@ -287,8 +283,7 @@
         height: 10px;
         width: 100px;
     }
-<<<<<<< HEAD
-    
+
     p6,
     {
         font-size: 18px;
@@ -298,10 +293,7 @@
         text-align: left;
         text-indent: 0px;
     }
-    
-=======
 
->>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
     p4 {
         font-size: 18px;
         font-family: "Avenir Black", sans-serif;
@@ -332,9 +324,6 @@
         text-indent: 0px;
         padding-rit: 300px;
     }
-<<<<<<< HEAD
-    
-=======
 
     p7 {
         font-size: 18px;
@@ -364,7 +353,6 @@
         text-indent: 0px;
     }
 
->>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
     .background {
         z-index: 0;
         position: absolute;
@@ -461,7 +449,7 @@
         background: None;
         margin-top: 15px;
     }
-    
+
     .star-four {
         margin: 50px 0;
         position: absolute;
@@ -477,7 +465,7 @@
         -ms-transform: rotate(-35deg) scale(.15);
         -o-transform: rotate(-35deg) scale(.15);
     }
-    
+
     .star-four:before {
         border-bottom: 80px solid #f49f21;
         border-left: 30px solid transparent;
@@ -495,7 +483,7 @@
         -o-transform: rotate(-35deg);
         position: asbolute;
     }
-    
+
     .star-four:after {
         position: absolute;
         display: block;
@@ -513,14 +501,11 @@
         -o-transform: rotate(-70deg);
         content: '';
     }
-    
-<<<<<<< HEAD
+
     .star-four:hover {
         transform: rotate(-35deg) scale(.18);
         transition-duration: $transition-time;
     }
-=======
     .cardHeader {
       font-size: 18px;
     }
->>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
