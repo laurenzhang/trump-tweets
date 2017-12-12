@@ -32,8 +32,8 @@ function generate_tweet_box(index) {
         return undefined
     }
 
-    var a = document.createElement("a");
-    a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
+    // var a = document.createElement("a");
+    // a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
 
     // Retrieve tweet ID, content, and date from tweet object
     var div = document.createElement("div");
@@ -49,8 +49,11 @@ function generate_tweet_box(index) {
     //create star button
     var ID = tweet["tweet_id"];
     var star = document.createElement("div");
-    star.setAttribute("class", "star-five starred");
-    star.setAttribute("value", "ID")
+    var starButton = document.createElement("a");
+    starButton.setAttribute("class", "starred");
+    star.setAttribute("class", "star-five");
+    starButton.setAttribute("value", "ID")
+    starButton.href = "#";
 
 
     // create a div to place star into
@@ -59,9 +62,9 @@ function generate_tweet_box(index) {
 
     var content = document.createElement("p4");
     content.innerHTML = tweet["tweet_text"];
-    
     var date = document.createElement("p4");
     var ugDate = new Date(tweet["date"]);
+
     var options = {  
         weekday: "long", year: "numeric", month: "short",  
         day: "numeric", hour: "2-digit", minute: "2-digit"  
@@ -69,20 +72,25 @@ function generate_tweet_box(index) {
     var prettyDate = ugDate.toLocaleTimeString("en-us", options);
     date.innerHTML = prettyDate;
 
+    // create See More text
+    var seeMore = document.createElement("a");
+    seeMore.innerHTML = "&nbsp &nbspSee More→";
+    seeMore.setAttribute("class", "seeMore");
+    seeMore.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
 
     // Add tweet corresponding to tweet_id to feed
-    starDiv.appendChild(star);
+    starButton.appendChild(star);
+    starDiv.appendChild(starButton);
     innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(content);
     innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(date);
+    innerDiv.appendChild(seeMore);
     div.appendChild(innerDiv);
     div.appendChild(starDiv);
-    a.appendChild(div);
 
-
-    return a
+    return div
 }
 
 function populateFeed(tweets) {

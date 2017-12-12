@@ -141,11 +141,6 @@
         clear: both;
     }
     
-    .tweet:hover {
-        transform: scale(1.03);
-        transition-duration: $transition-time;
-    }
-    
     .relatedtweet {
         *display: inline;
         display: inline-block;
@@ -280,9 +275,9 @@
     }
     
     .starDiv {
-        padding-left: 75%;
+        padding-left: 70%;
         height: 10px;
-        width: 350px;
+        width: 100px;
     }
     
     p6,
@@ -323,6 +318,16 @@
         text-align: left;
         text-indent: 0px;
         line-height: 25px;
+    }
+    
+    p6 {
+        font-size: 18px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 100;
+        width: 100%;
+        text-align: right;
+        text-indent: 0px;
+        padding-rit: 300px;
     }
     
     .background {
@@ -413,4 +418,9 @@
     .star-five:hover {
         transform: rotate(-35deg) scale(.18);
         transition-duration: $transition-time;
+    }
+    
+    .seeMore {
+        color: black;
+        font-weight: 500;
     }

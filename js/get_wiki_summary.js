@@ -60,7 +60,7 @@ function getWikiSuggestion(title) {
   return Promise.resolve($.ajax({
     url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&origin=*&format=json',
     data: {
-      srlimit: '1',
+      srlimit: '2',
       srsearch: title,
     },
     error: function(xhr){
