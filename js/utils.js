@@ -57,7 +57,6 @@ function generate_tweet_box(index) {
     var starDiv = document.createElement("div");
     starDiv.setAttribute("class", "starDiv");
 
-    // TODO: styling for "p4"
     var content = document.createElement("p4");
     content.innerHTML = tweet["tweet_text"];
     
@@ -124,7 +123,7 @@ $(function() {
             // add 5 tweets at a time
             add_tweets_to_page(5)
         }
-        //TODO:: Unbind scroll event if there are no more contents
+        //TODO: Unbind scroll event if there are no more contents
     });
 });
 
@@ -153,7 +152,6 @@ function parseURLParams(url) {
 function create_starred_message() {
     // Display "Starred Tweets" message
     var message = document.getElementById("message");
-    // TODO: styling for "p5"
     var content = document.createElement("p5");
     content.innerHTML = "Starred Tweets";
     message.appendChild(content);
@@ -161,7 +159,6 @@ function create_starred_message() {
 
 function create_searched_message(search_word) {
     var message = document.getElementById("message");
-    // TODO: styling for "p5"
     var content = document.createElement("p5");
     content.innerHTML = "Search Results for " + search_word;
     message.appendChild(content);
