@@ -41,7 +41,7 @@ function openMenu(el) {
 $(document).ready(function() {
 
     // // For testing purposes
-    //store.clearAll()
+    store.clearAll()
     var ddmenu = document.getElementById("indexFilter");
     var order_val = ddmenu.options[ddmenu.selectedIndex].value;
     var order
