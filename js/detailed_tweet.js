@@ -109,26 +109,22 @@ function detailTweetStar() {
     var detailStar = document.getElementById("detailedStar");
     var splitURL = (window.location.href).split("tweet_id=");
     var ID = (splitURL[1]);
-    detailStar.onclick = function() {
-        starTweet(ID);
-        alert("tweet starred!");
-    };
 
-    if (isStarred(ID)) {
-        detailStar.setAttribute("class", "star-four")
-        detailStar.onclick = function() {
+    if (!(isStarred(ID))) {
+        detailStar.setAttribute("class", "star-four");
+    } else {
+        detailStar.setAttribute("class", "star-five")
+    }
+    detailStar.onclick = function() {
+        if (!(isStarred(ID))) {
+            starTweet(ID);
+            detailStar.setAttribute("class", "star-four");
+            alert("tweet starred!");
+        } else {
+            detailStar.setAttribute("class", "star-four")
             unstarTweet(ID);
             alert("tweet unstarred!");
             detailStar.setAttribute("class", "star-five")
-            location.reload(true);
         }
-    } else {
-        detailStar.setAttribute("class", "star-five");
-
-        detailStar.onclick = function() {
-            starTweet(ID);
-            alert("tweet starred!");
-            location.reload(true);
-        }
-    };
-}
+    }
+};
