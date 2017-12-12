@@ -60,9 +60,14 @@ function generate_tweet_box(index) {
     // TODO: styling for "p4"
     var content = document.createElement("p4");
     content.innerHTML = tweet["tweet_text"];
+    
     var date = document.createElement("p4");
     var ugDate = new Date(tweet["date"]);
-    var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + ", " + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
+    var options = {  
+        weekday: "long", year: "numeric", month: "short",  
+        day: "numeric", hour: "2-digit", minute: "2-digit"  
+    };
+    var prettyDate = ugDate.toLocaleTimeString("en-us", options);
     date.innerHTML = prettyDate;
 
 
