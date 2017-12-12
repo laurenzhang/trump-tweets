@@ -381,8 +381,8 @@ function init_tweets() {
                 related_tweets[insultee] = tweet_file[insultee]
 
 				// LIMIT TWEET CALLS FOR TESTING
-				//count += 1
-				//if (count == 3) break
+				count += 1
+				if (count == 10) break
 			}
 
 			// Get tweets from twitter and organize file into DATA SCHEMA
