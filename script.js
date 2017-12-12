@@ -55,7 +55,7 @@ $(document).ready(function() {
         order = 'fav_ordered'
     }
     else if (order_val == 3) {
-        order = 'reweet_ordered'
+        order = 'retweet_ordered'
     }
     else {
         order = 'recent_ordered'

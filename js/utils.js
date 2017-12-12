@@ -160,7 +160,7 @@ function parseURLParams(url) {
 function create_starred_message(tweets_length) {
     // Display "Starred Tweets" message
 
-    if (tweets_length < 0) {
+    if (tweets_length > 0) {
         var message = document.getElementById("message");
         var content = document.createElement("p5");
         content.innerHTML = "Showing " + tweets_length + " Starred Tweets.";
