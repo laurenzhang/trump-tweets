@@ -8,45 +8,82 @@
         <div class="center-div" id="feed"></div>
 
 */
+
+var curFeedTweets
+var curIndex = 0
+
+function generate_tweet_box(index) {
+    tweet = curFeedTweets[index];
+
+    var a = document.createElement("a");
+    a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
+
+    // Retrieve tweet ID, content, and date from tweet object
+    var div = document.createElement("div");
+    div.setAttribute("class", "tweet");
+    div.id = tweet["tweet_id"];
+
+    // var star = document.createElement("div");
+    // star.setAttribute("class", "star-five");
+
+    // TODO: styling for "p4"
+    var content = document.createElement("p4");
+    content.innerHTML = tweet["tweet_text"];
+    var date = document.createElement("p4");
+    var ugDate = new Date(tweet["date"]);
+    var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + ", " + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
+    date.innerHTML = prettyDate;
+
+    // Add tweet corresponding to tweet_id to feed
+    // div.appendChild(star);
+    div.appendChild(content);
+    div.appendChild(document.createElement("br"));
+    div.appendChild(document.createElement("br"));
+    div.appendChild(date);
+    a.appendChild(div);
+
+    return a
+}
+
 function populateFeed(tweets) {
     $(document).ready(function() {
-        for (i in tweets) {
-            if (tweets[i] == undefined) {
-                continue;
-            }
-            tweet = tweets[i];
-            var feed = document.getElementById("feed");
+        curFeedTweets = tweets
 
-            var a = document.createElement("a");
-            a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
-
-            // Retrieve tweet ID, content, and date from tweet object
-            var div = document.createElement("div");
-            div.setAttribute("class", "tweet");
-            div.id = tweet["tweet_id"];
-
-            // var star = document.createElement("div");
-            // star.setAttribute("class", "star-five");
-
-            // TODO: styling for "p4"
-            var content = document.createElement("p4");
-            content.innerHTML = tweet["tweet_text"];
-            var date = document.createElement("p4");
-            var ugDate = new Date(tweet["date"]);
-            var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + ", " + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
-            date.innerHTML = prettyDate;
-
-            // Add tweet corresponding to tweet_id to feed
-            // div.appendChild(star);
-            div.appendChild(content);
-            div.appendChild(document.createElement("br"));
-            div.appendChild(document.createElement("br"));
-            div.appendChild(date);
-            a.appendChild(div);
-            feed.appendChild(a);
-        }
+        add_tweets_to_page(5)
     });
 }
+
+function add_tweets_to_page(itemsToAdd) {
+
+    var $feed = $(document.getElementById("feed"));
+    start = curIndex
+    while (curIndex < curFeedTweets.length && curIndex < start+itemsToAdd) {
+        $feed.append(generate_tweet_box(curIndex))
+        curIndex++
+    }
+}
+
+$(function(){
+    $(window).scroll(function () {
+
+        if (curFeedTweets == undefined || curFeedTweets.length <= curIndex) {
+            return
+        }
+
+        var $feed = $(document.getElementById("feed"));
+
+        var divPlacement = parseInt($feed.offset().top + parseInt($feed.height()));
+
+        var screenBottom = $(this).scrollTop()
+        divPlacement -= 600; //load contents before reaching to the end of the div
+
+        if(divPlacement <= screenBottom) {
+            // add 5 tweets at a time
+            add_tweets_to_page(5)
+        }
+        //TODO:: Unbind scroll event if there are no more contents
+    });
+});
 
 // Search function
 $(document).ready(function() {
