@@ -8,10 +8,10 @@ function populateDetailedTweet() {
     // Get url and retrieve the tweet id from it
     var splitURL = (window.location.href).split("tweet_id=");
     var theTweetId = (splitURL[1]);
-    console.log(theTweetId);
+    //console.log(theTweetId);
     var detailStar = document.getElementById("detailedStar");
     detailStar.value = theTweetId;
-    console.log(detailStar.value);
+    //console.log(detailStar.value);
     // Search for extracted id in storage
 
     get_tweet(theTweetId).then(function(theTweet) {
@@ -47,7 +47,7 @@ function populateDetailedTweet() {
             theTweetRetweets.innerHTML = retweetsNo + " retweets";
             theTweetLikes.innerHTML = favesNo + " likes";
             // Fill in Wiki Card information
-            console.log("Original insultee: " + theTweet.insultee);
+            //console.log("Original insultee: " + theTweet.insultee);
             getWikiSummary(theTweet.insultee).then(function(response) {
                 hide_loader()
                 var theWikiPic = document.getElementById("wikiPic");
@@ -68,10 +68,10 @@ function populateDetailedTweet() {
                         // Article summary (text before the "Contents" section)
                         wiki_content['summary'] = pages[page_id].extract;
                         wiki_content['title'] = pages[page_id].title;
-                        console.log("title " + pages[page_id].title);
+                        //console.log("title " + pages[page_id].title);
                     }
                 } catch (err) {
-                    console.log('Error Fetching wiki!')
+                    //console.log('Error Fetching wiki!')
                         // console.log(err);
                     wiki_content['title'] = 'Wikipedia Card';
                     wiki_content['summary'] = 'Wiki summary unavailable';
@@ -87,7 +87,7 @@ function populateDetailedTweet() {
             var relatedDiv = document.getElementById("related-tweets");
             relatedDiv.innerHTML = "";
             cardDiv.innerHTML = "Error fetching selected tweet from storage! Enjoy this sample data instead.";
-            console.log("Error fetching ");
+            //console.log("Error fetching ");
         }
     })
 }

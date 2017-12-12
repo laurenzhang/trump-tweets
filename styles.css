@@ -444,9 +444,10 @@
 
     .seeMore {
         color: black;
+        font-size: 15px;
         font-weight: 500;
         background: None;
-        margin-top: 15px;
+        line-height: 3px
     }
 
     .star-four {
