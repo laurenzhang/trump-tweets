@@ -112,19 +112,16 @@ function detailTweetStar() {
     var ID = (splitURL[1]);
 
     if (!(isStarred(ID))) {
-        detailStar.setAttribute("class", "star-four");
-    } else {
         detailStar.setAttribute("class", "star-five")
+    } else {
+        detailStar.setAttribute("class", "star-four");
     }
     detailStar.onclick = function() {
         if (!(isStarred(ID))) {
             starTweet(ID);
             detailStar.setAttribute("class", "star-four");
-            alert("tweet starred!");
         } else {
-            detailStar.setAttribute("class", "star-four")
             unstarTweet(ID);
-            alert("tweet unstarred!");
             detailStar.setAttribute("class", "star-five")
         }
     }

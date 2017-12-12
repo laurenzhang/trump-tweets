@@ -47,26 +47,27 @@ function generate_tweet_box(index) {
 
     // create star
     var star = document.createElement("div");
-    star.setAttribute("class", "star-five");
 
     //create star button
     var ID = tweet["tweet_id"];
-    var starButton = document.createElement("a");
+    var starButton = document.createElement("div");
 
     starButton.setAttribute("class", "starred");
     starButton.setAttribute("value", "ID")
-    starButton.href = "#";
+
+    if (!(isStarred(ID))) {
+        starButton.setAttribute("class", "star-five")
+    } else {
+        starButton.setAttribute("class", "star-four");
+    }
 
     starButton.onclick = function() {
-        if (isStarred(ID)) {
-            starButton.setAttribute("class", "star-four")
-            unstarTweet(ID);
-            alert("tweet unstarred!");
-            starButton.setAttribute("class", "star-five")
-        } else {
+        if (!(isStarred(ID))) {
             starTweet(ID);
-            starButton.setAttribute("class", "star-four")
-            alert("tweet starred!");
+            starButton.setAttribute("class", "star-four");
+        } else {
+            unstarTweet(ID);
+            starButton.setAttribute("class", "star-five")
         }
     }
 
