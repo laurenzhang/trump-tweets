@@ -104,8 +104,8 @@ function generate_tweet_box(index) {
     insultee.innerHTML = "Insult to: " + tweet.insultee.toString().bold()
 
     // create See More text
-    var seeMore = document.createElement("p");
-    seeMore.innerHTML = "    See More";
+    var seeMore = document.createElement("a");
+    seeMore.innerHTML = "SEE MORE";
     seeMore.setAttribute("class", "seeMore");
     seeMore.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
 
