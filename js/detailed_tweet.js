@@ -23,10 +23,13 @@ function populateDetailedTweet() {
         var retweetsNo = theTweet.retweets.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         var favesNo = theTweet.favorites.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         var ugDate = new Date(theTweet.date);
-        var minutesNo = ugDate.getMinutes().toString();
-        if (minutesNo.length == 1)
-          minutesNo = '0' + minutesNo;
-        var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + "/" + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + minutesNo;
+
+        var options = {  
+            weekday: "long", year: "numeric", month: "short",  
+            day: "numeric", hour: "2-digit", minute: "2-digit"  
+        };
+        var prettyDate = ugDate.toLocaleTimeString("en-us", options);
+        
         theTweetText.innerHTML = theTweet.tweet_text;
         theTweetDate.innerHTML = prettyDate;
         theTweetRetweets.innerHTML = retweetsNo + " retweets";
@@ -80,5 +83,7 @@ function populateDetailedTweet() {
 }
 
 function populateRelatedTweets(tweet) {
-
+  get_related_tweets(tweet).then(function(related_tweets) {
+    populateFeed(related_tweets);
+  });
 }

@@ -1,7 +1,7 @@
 // TODO: integrate w/ the rest of the back-end
 
 function getWikiInfo(title){
-  getWikiSummary('Hillary Clinton').then(function(response) {
+  getWikiSummary(title).then(function(response) {
     var wiki_content = {};
     try {
       pages = response.query.pages;
