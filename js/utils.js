@@ -66,14 +66,15 @@ function populateFeed(tweets) {
             var innerDiv = document.createElement("div");
             innerDiv.setAttribute("class", "styledDiv");
 
+
             //create star button
             var star = document.createElement("div");
             star.setAttribute("class", "star-five");
-            star.setAttribute("id", "starred");
+            star.setAttribute("class", "starred");
 
             // create a div to place star into 
-            // var starDiv = document.createElement("div");
-            // starDiv.setAttribute("class", "starDiv");
+            var starDiv = document.createElement("div");
+            starDiv.setAttribute("class", "starDiv");
 
             // TODO: styling for "p4"
             var content = document.createElement("p4");
@@ -84,14 +85,14 @@ function populateFeed(tweets) {
             date.innerHTML = prettyDate;
 
             // Add tweet corresponding to tweet_id to feed
-            //starDiv.appendChild(star);
+            starDiv.appendChild(star);
             innerDiv.appendChild(document.createElement("br"));
             innerDiv.appendChild(content);
             innerDiv.appendChild(document.createElement("br"));
             innerDiv.appendChild(document.createElement("br"));
             innerDiv.appendChild(date);
-            innerDiv.appendChild(star);
             div.appendChild(innerDiv);
+            div.appendChild(starDiv);
             a.appendChild(div);
             feed.appendChild(a);
         }
