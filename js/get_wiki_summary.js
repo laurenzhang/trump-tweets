@@ -1,7 +1,7 @@
 // TODO: integrate w/ the rest of the back-end
 
 function getWikiInfo(title){
-  getWikiSummary(title).then(function(response) {
+  getWikiSummary('Hillary Clinton').then(function(response) {
     var wiki_content = {};
     try {
       pages = response.query.pages;
@@ -60,7 +60,7 @@ function getWikiSuggestion(title) {
   return Promise.resolve($.ajax({
     url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&origin=*&format=json',
     data: {
-      srlimit: '1',
+      srlimit: '2',
       srsearch: title,
     },
     error: function(xhr){
