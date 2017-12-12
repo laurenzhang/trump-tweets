@@ -6,7 +6,15 @@ $(document).ready(function() {
         e.preventDefault();
 
         //console.log($("#SearchBar").val());
-        location.href = "index.html?search=" + $("#SearchBar").val();
+        
+        curUrl = window.location.href
+        // diff routes depending on where it was referenced
+        if (curUrl.indexOf(('html/')) == -1) {
+            location.href = "index.html?search=" + $("#SearchBar").val();
+        }
+        else {
+            location.href = "../index.html?search=" + $("#SearchBar").val();
+        }
     }, false);
 });
 
