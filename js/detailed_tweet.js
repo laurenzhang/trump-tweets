@@ -87,6 +87,13 @@ function populateDetailedTweet() {
 
 function populateRelatedTweets(tweet) {
   get_related_tweets(tweet).then(function(related_tweets) {
-    populateFeed(related_tweets);
+    if (related_tweets.length > 0) {
+        populateFeed(related_tweets)
+    }
+    // add error message when no related tweet
+    else {
+        create_no_related_tweet_message(tweet)
+    }
+
   });
 }

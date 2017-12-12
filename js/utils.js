@@ -197,7 +197,13 @@ function create_searched_message(search_word, tweets_length) {
                             "</ul>"
         error_prompt.appendChild(content)
     }
+}
 
+function create_no_related_tweet_message(tweet) {
 
+    var error_prompt = document.getElementById("error-prompt")
+    var content = document.createElement("p7")
+    content.innerHTML = "No related tweets found for " + tweet.insultee + "."
+    error_prompt.appendChild(content)
 
 }
