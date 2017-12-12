@@ -16,7 +16,7 @@ function populateFeed(tweets) {
             }
             tweet = tweets[i];
             var feed = document.getElementById("feed");
-            
+
             var a = document.createElement("a");
             a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
 
@@ -24,7 +24,7 @@ function populateFeed(tweets) {
             var div = document.createElement("div");
             div.setAttribute("class", "tweet");
             div.id = tweet["tweet_id"];
-            
+
             // var star = document.createElement("div");
             // star.setAttribute("class", "star-five");
 
@@ -32,7 +32,9 @@ function populateFeed(tweets) {
             var content = document.createElement("p4");
             content.innerHTML = tweet["tweet_text"];
             var date = document.createElement("p4");
-            date.innerHTML = tweet["date"];
+            var ugDate = new Date(tweet["date"]);
+            var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + ", " + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
+            date.innerHTML = prettyDate;
 
             // Add tweet corresponding to tweet_id to feed
             // div.appendChild(star);
