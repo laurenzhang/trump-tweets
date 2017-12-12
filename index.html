@@ -4,12 +4,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://rawgit.com/jublonet/codebird-js/develop/codebird.js"></script>
 <script src="js/store.legacy.min.js"></script>
-
 <script src="js/twitter.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/utils.js"></script>
+<script src="js/filter.js"></script>
+<script src="js/star.js"></script>
 <script src="script.js"></script>
-<script src="filter.js"></script>
+
+
 
 <head>
     <title>TRUMP TWEETS
@@ -21,7 +23,7 @@
     <a href="./index.html"><img src="img/trumplogo.png" height: "100" width="100" /></a>
 
     <div class="center-div8">
-        <div id="first" style="padding-top: 40px; display: block">
+        <div id="first" style="padding-top: 40px; padding-left: 100px;display: block">
             <div style="clear: both; margin-left: 20px; display: inline-block">
                 <a href="./search.html?insultee=starred"><input type="button" class="button" value="★ Starred"></a>
             </div>
@@ -43,12 +45,12 @@
     </div>
     </div>
 
-    <div class="center-div-button-bar ">
-        <div style="clear: both; margin-left: 10px; margin-top:20px; display: inline-block "><input type="button " class="button " value="NY Times "></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block "><input type="button " class="button " value="Democrats "></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block "><input type="button " class="button " value="John Kasich "></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block "><input type="button " class="button " value="Bernie Sanders "></div>
-        <div style="clear: both; margin-left: 10px; display: inline-block "><input type="button " class="button " value="See All Insultees → "></div>
+    <div class="center-div-button-bar" style="padding-left: 100px">
+        <a href="./search.html?insultee=New%20York%20Times"><input type="button" class="button" value="NY Times"></a>
+        <a href="./search.html?insultee=Democrats"><input type="button" class="button" value="Democrats"></a>
+        <a href="./search.html?insultee=John%20Kasich"><input type="button" class="button" value="John Kasich"></a>
+        <a href="./search.html?insultee=Bernie%20Sanders"><input type="button" class="button" value="Bernie Sanders"></a>
+        <a href="./directory.html"><input type="button" class="button" value="See All Insultees →"></a>
     </div>
 
     <!-- Skeleton for tweet feed -->
