@@ -41,7 +41,7 @@ function openMenu(el) {
 $(document).ready(function() {
 
     // // For testing purposes
-    // store.clearAll()
+    //store.clearAll()
 
     // check if ordered view
     var ddmenu = document.getElementById("indexFilter");
@@ -53,11 +53,9 @@ $(document).ready(function() {
     // these get set in filter.js
     if (order_val == 1) {
         order = 'retweet_ordered'
-    }
-    else if (order_val == 2) {
+    } else if (order_val == 2) {
         order = 'fav_ordered'
-    }
-    else {
+    } else {
         order = 'recent_ordered'
     }
 
@@ -77,8 +75,8 @@ $(document).ready(function() {
         });
     }
     // 2) populate by search
-    else if(search != undefined) {
-        search_tweets(search).then(function (search_tweets) {
+    else if (search != undefined) {
+        search_tweets(search).then(function(search_tweets) {
             create_searched_message(search)
             populateFeed(search_tweets);
         })
@@ -87,7 +85,7 @@ $(document).ready(function() {
     else {
         // Search orders:
         // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
-        get_tweets(order).then(function (tweets) {
+        get_tweets(order).then(function(tweets) {
             populateFeed(tweets);
         })
     }
