@@ -41,7 +41,7 @@ function openMenu(el) {
 $(document).ready(function() {
 
     // // For testing purposes
-    //store.clearAll()
+    // store.clearAll()
 
     // check if ordered view
     var ddmenu = document.getElementById("indexFilter");

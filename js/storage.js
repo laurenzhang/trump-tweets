@@ -442,14 +442,9 @@ function init_tweets() {
 
             for (var insultee in tweet_file) {
                 // promise get fetches all tweets for insultee
-                // if (insultee != 'Hillary Clinton') continue
                 promiseObject = getTweetBatch(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
                 related_tweets[insultee] = tweet_file[insultee]
-
-                // LIMIT TWEET CALLS FOR TESTING
-                count += 1
-                if (count == 10) break
             }
 
             // Get tweets from twitter and organize file into DATA SCHEMA
