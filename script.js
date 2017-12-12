@@ -51,11 +51,11 @@ $(document).ready(function() {
     var search;
 
     // these get set in filter.js
-    if (order_val == 1) {
-        order = 'retweet_ordered'
-    }
-    else if (order_val == 2) {
+    if (order_val == 2) {
         order = 'fav_ordered'
+    }
+    else if (order_val == 3) {
+        order = 'reweet_ordered'
     }
     else {
         order = 'recent_ordered'
@@ -72,15 +72,17 @@ $(document).ready(function() {
         // add star tweet for testing
         starTweet("668255569996853248");
         getStarredTweets().then(function(starred_tweets) {
-            create_starred_message()
+            create_starred_message(starred_tweets.length)
             populateFeed(starred_tweets);
         });
     }
     // 2) populate by search
     else if(search != undefined) {
         search_tweets(search).then(function (search_tweets) {
-            create_searched_message(search)
-            populateFeed(search_tweets);
+            // init text for search
+            document.getElementById("SearchBar").value = search
+            create_searched_message(search, search_tweets.length)
+            populateFeed(search_tweets)
         })
     }
     // 3) populate by order

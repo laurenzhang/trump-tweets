@@ -149,17 +149,36 @@ function parseURLParams(url) {
     return parms;
 }
 
-function create_starred_message() {
+function create_starred_message(tweets_length) {
     // Display "Starred Tweets" message
     var message = document.getElementById("message");
     var content = document.createElement("p5");
-    content.innerHTML = "Starred Tweets";
+    content.innerHTML = "Showing " + tweets_length + " Starred Tweets.";
     message.appendChild(content);
 }
 
-function create_searched_message(search_word) {
-    var message = document.getElementById("message");
-    var content = document.createElement("p5");
-    content.innerHTML = "Search Results for " + search_word;
-    message.appendChild(content);
+function create_searched_message(search_word, tweets_length) {
+
+    if (tweets_length > 0) {
+        var message = document.getElementById("message")
+        var content = document.createElement("p5")
+        content.innerHTML = "Showing " + tweets_length + " Search Results for " + search_word.toString().bold() + ".";
+        message.appendChild(content)
+    }
+    // if no search results, show error+suggestion
+    else {
+        var error_prompt = document.getElementById("error-prompt")
+        var content = document.createElement("p6")
+        content.innerHTML = "Your search - " + search_word.toString().bold() + " - did not match any tweets.<br/><br/>" +
+                            "Suggestions:" +
+                            "<ul>" +
+                            "<li>Make sure all words are spelled correctly.</li>" +
+                            "<li>Search for specific person.</li>" +
+                            "<li>Try more general keywords.</li>" +
+                            "</ul>"
+        error_prompt.appendChild(content)
+    }
+
+
+
 }

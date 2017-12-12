@@ -314,6 +314,16 @@
         padding-left: 150px;
         padding-top: 200px;
     }
+
+    p6 {
+        font-size: 18px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 300;
+        width: 100%;
+        text-align: left;
+        text-indent: 0px;
+        line-height: 25px;
+    }
     
     .background {
         z-index: 0;
