@@ -4,10 +4,13 @@ $(document).ready(function() {
 
 function populateDetailedTweet() {
 
-    // Get url and retrieve the tweet id from it
-    var splitURL = (window.location.href).split("tweet_id=");
-    var theTweetId = (splitURL[1]);
-    // Search for extracted id in storage
+  // Get url and retrieve the tweet id from it
+  var splitURL = (window.location.href).split("tweet_id=");
+  var theTweetId = (splitURL[1]);
+  var detailStar = document.getElementById("detailedStar");
+  detailStar.value = theTweetId;
+  console.log(detailStar.value);
+  // Search for extracted id in storage
     get_tweet(theTweetId).then(function(theTweet) {
       if (theTweet){
 
@@ -24,12 +27,12 @@ function populateDetailedTweet() {
         var favesNo = theTweet.favorites.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         var ugDate = new Date(theTweet.date);
 
-        var options = {  
-            weekday: "long", year: "numeric", month: "short",  
-            day: "numeric", hour: "2-digit", minute: "2-digit"  
+        var options = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
         };
         var prettyDate = ugDate.toLocaleTimeString("en-us", options);
-        
+
         theTweetText.innerHTML = theTweet.tweet_text;
         theTweetDate.innerHTML = prettyDate;
         theTweetRetweets.innerHTML = retweetsNo + " retweets";
