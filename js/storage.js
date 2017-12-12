@@ -266,6 +266,18 @@ function get_insultees() {
  * STARRED TWEETS
  */
 
+function isStarred(tweet_id) {
+    // Check if starred tweets initialized
+    if (store.get('starred_tweets') == undefined) {
+        return false
+    } else {
+        var starred_set = new Set(store.get('starred_tweets'))
+        if (starred_set.has(tweet_id)) {
+            return true
+        }
+    }
+}
+
 function starTweet(tweet_id) {
     // Initialize starred tweets if necessary
     if (store.get('starred_tweets') == undefined) {
