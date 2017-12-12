@@ -36,7 +36,7 @@ function getWikiSummary(title) {
         suggestedTitle = suggestionResponse.query.search[theIndex].title;
       else // no matches found
         resolve();
-      console.log("Suggested title: " + suggestedTitle);
+      //console.log("Suggested title: " + suggestedTitle);
       $.ajax({
         url: 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=pageimages|extracts&exintro=&redirects&explaintext=',
         data: {

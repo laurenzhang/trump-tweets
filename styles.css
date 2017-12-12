@@ -156,7 +156,7 @@
     }
 
     .button {
-        background-color: #f49e35;
+        background-color: f49e35;
         border: none;
         padding: 5px 15px;
         text-align: center;
@@ -282,6 +282,16 @@
         padding-left: 70%;
         height: 10px;
         width: 100px;
+    }
+
+    p6,
+    {
+        font-size: 18px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 100;
+        width: 100%;
+        text-align: left;
+        text-indent: 0px;
     }
 
     p4 {
@@ -439,20 +449,62 @@
         margin-top: 15px;
     }
 
-    .loader {
-        border: 8px solid #f3f3f3; /* Light grey */
-        border-top: 8px solid #f49e35; /* Orange */
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 2s linear infinite;
+    .star-four {
+        margin: 50px 0;
+        position: absolute;
+        display: block;
+        color: #f49f21;
+        width: 0px;
+        height: 0px;
+        border-right: 100px solid transparent;
+        border-bottom: 70px solid #f49f21;
+        border-left: 100px solid transparent;
+        -moz-transform: rotate(-35deg) scale(.15);
+        -webkit-transform: rotate(-35deg) scale(.15);
+        -ms-transform: rotate(-35deg) scale(.15);
+        -o-transform: rotate(-35deg) scale(.15);
     }
 
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    .star-four:before {
+        border-bottom: 80px solid #f49f21;
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+        position: absolute;
+        height: 0;
+        width: 0;
+        top: -45px;
+        left: -65px;
+        display: block;
+        content: '';
+        -webkit-transform: rotate(-35deg);
+        -moz-transform: rotate(-35deg);
+        -ms-transform: rotate(-35deg);
+        -o-transform: rotate(-35deg);
+        position: asbolute;
     }
-    
+
+    .star-four:after {
+        position: absolute;
+        display: block;
+        color: #f49f21;
+        top: 3px;
+        left: -105px;
+        width: 0px;
+        height: 0px;
+        border-right: 100px solid transparent;
+        border-bottom: 70px solid #f49f21;
+        border-left: 100px solid transparent;
+        -webkit-transform: rotate(-70deg);
+        -moz-transform: rotate(-70deg);
+        -ms-transform: rotate(-70deg);
+        -o-transform: rotate(-70deg);
+        content: '';
+    }
+
+    .star-four:hover {
+        transform: rotate(-35deg) scale(.18);
+        transition-duration: $transition-time;
+    }
     .cardHeader {
       font-size: 18px;
     }

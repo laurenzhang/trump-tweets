@@ -45,27 +45,36 @@ function generate_tweet_box(index) {
     var innerDiv = document.createElement("div");
     innerDiv.setAttribute("class", "styledDiv");
 
-
+    // create star
+    var star = document.createElement("div");
+    
     //create star button
     var ID = tweet["tweet_id"];
     var starButton = document.createElement("a");
+
     starButton.setAttribute("class", "starred");
     starButton.setAttribute("value", "ID")
     starButton.href = "#";
-    starButton.onclick = function() {
-        starTweet(ID);
-        alert("tweet starred!");
-    };
 
-    starButton.onclick = function() {
-        unstarTweet(ID);
-        alert("tweet starred!");
-    };
+    if (isStarred(ID)) {
+        star.setAttribute("class", "star-four")
+        
+        starButton.onclick = function() {
+            unstarTweet(ID);
+            alert("tweet unstarred!");
+            star.setAttribute("class", "star-five")
+            starButton.setAttribute("class", "clicked");
+        }
+    } else {
+        star.setAttribute("class", "star-five");
 
-    // create star
-    var star = document.createElement("div");
-    star.setAttribute("class", "star-five");
-
+        starButton.onclick = function() {
+            starTweet(ID);
+            alert("tweet starred!");
+            star.setAttribute("class", "star-four")
+            starButton.setAttribute("class", "clicked");
+        }
+    }
 
     // create a div to place star into
     var starDiv = document.createElement("div");
@@ -121,7 +130,7 @@ function generate_tweet_box(index) {
 function populateFeed(tweets) {
     $(document).ready(function() {
         curFeedTweets = tweets
-        
+
         // Hide loading icon
         var loader_div = document.getElementById("loader-div")
         console.log(loader_div)
@@ -202,7 +211,7 @@ function create_starred_message(tweets_length) {
         var error_prompt = document.getElementById("error-prompt")
         var content = document.createElement("p7")
         content.innerHTML = "You haven't starred any tweets yet.<br/><br/>" +
-                            "Click on the star button on tweets to star them!"
+            "Click on the star button on tweets to star them!"
         error_prompt.appendChild(content)
     }
 }
@@ -220,12 +229,12 @@ function create_searched_message(search_word, tweets_length) {
         var error_prompt = document.getElementById("error-prompt")
         var content = document.createElement("p7")
         content.innerHTML = "Your search - " + search_word.toString().bold() + " - did not match any tweets.<br/><br/>" +
-                            "Suggestions:" +
-                            "<ul>" +
-                            "<li>Make sure all words are spelled correctly.</li>" +
-                            "<li>Search for specific person.</li>" +
-                            "<li>Try more general keywords.</li>" +
-                            "</ul>"
+            "Suggestions:" +
+            "<ul>" +
+            "<li>Make sure all words are spelled correctly.</li>" +
+            "<li>Search for specific person.</li>" +
+            "<li>Try more general keywords.</li>" +
+            "</ul>"
         error_prompt.appendChild(content)
     }
 }
