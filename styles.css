@@ -157,7 +157,7 @@
     }
     
     .button {
-        background-color: f49e35;
+        background-color: #f49e35;
         border: none;
         padding: 5px 15px;
         text-align: center;
@@ -221,6 +221,11 @@
         margin: 0 auto;
         width: 1200px;
         padding-left: 140px;
+    }
+
+    .center-div-loading {
+        margin: 0 auto;
+        width: 70px;
     }
     
     a {
@@ -423,4 +428,18 @@
     .seeMore {
         color: black;
         font-weight: 500;
+    }
+
+    .loader {
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #f49e35; /* Orange */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
