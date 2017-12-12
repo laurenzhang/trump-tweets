@@ -1,14 +1,3 @@
-// Search function
-$(document).ready(function() {
-    document.getElementById("search-form").addEventListener("submit", function(e) {
-        // Prevent a submit button from submitting a form
-        e.preventDefault();
-
-        //console.log($("#SearchBar").val());
-        location.href = "index.html?search=" + $("#SearchBar").val();
-    }, false);
-});
-
 $(document).ready(function() {
     populateDetailedTweet()
 })
@@ -34,33 +23,46 @@ function populateDetailedTweet() {
         var retweetsNo = theTweet.retweets.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         var favesNo = theTweet.favorites.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         var ugDate = new Date(theTweet.date);
-        var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + "/" + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
+        var minutesNo = ugDate.getMinutes().toString();
+        if (minutesNo.length == 1)
+          minutesNo = '0' + minutesNo;
+        var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + "/" + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + minutesNo;
         theTweetText.innerHTML = theTweet.tweet_text;
         theTweetDate.innerHTML = prettyDate;
         theTweetRetweets.innerHTML = retweetsNo + " retweets";
         theTweetLikes.innerHTML = favesNo + " likes";
-
         // Fill in Wiki Card information
+        console.log("Original insultee: " + theTweet.insultee);
         getWikiSummary(theTweet.insultee).then(function(response) {
           var theWikiPic = document.getElementById("wikiPic");
           var theWikiText = document.getElementById("wikiText");
+          var theWikiTitle = document.getElementById("wikiTitle");
           var wiki_content = {};
+
+          console.log(response);
 
           try {
             pages = response.query.pages;
             for (var page_id in pages) {
-              // Link to article image
-              wiki_content['img_url'] = pages[page_id].thumbnail.source;
+              // Link to article image, if exists
+              if (pages[page_id].thumbnail)
+                wiki_content['img_url'] = pages[page_id].thumbnail.source;
+              else
+                wiki_content['img_url'] = 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Donald_Trump_Pentagon_2017.jpg';
               // Article summary (text before the "Contents" section)
               wiki_content['summary'] = pages[page_id].extract;
+              wiki_content['title'] = pages[page_id].title;
             }
           }
           catch(err) {
             console.log('Error Fetching wiki!')
-            console.log(err);
-            wiki_content['error'] = 'Wiki summary unavailable';
+            // console.log(err);
+            wiki_content['title'] = 'Wikipedia Card';
+            wiki_content['summary'] = 'Wiki summary unavailable';
+            wiki_content['img_url'] = 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Donald_Trump_Pentagon_2017.jpg';
           }
           //console.log(wiki_content);
+          theWikiTitle.innerHTML = wiki_content['title'];
           theWikiText.innerHTML = wiki_content['summary'];
           theWikiPic.src = wiki_content['img_url'];
         });
@@ -79,5 +81,3 @@ function populateDetailedTweet() {
 function populateRelatedTweets(tweet) {
 
 }
-
-

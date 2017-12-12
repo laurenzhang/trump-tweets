@@ -25,21 +25,83 @@ function getWikiInfo(title){
 }
 
 function getWikiSummary(title) {
+  return new Promise(function (resolve, reject){
+    getWikiSuggestion(title).then(function(suggestionResponse) {
+      // get the first suggested title from the returned Wiki query
+      var suggestedTitle = '';
+      if (suggestionResponse.query.search[0]) //match found
+        suggestedTitle = suggestionResponse.query.search[0].title;
+      else // no matches found
+        resolve();
+      console.log("Suggested title: " + suggestedTitle);
+      $.ajax({
+        url: 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=pageimages|extracts&exintro=&redirects&explaintext=',
+        data: {
+          titles: suggestedTitle,
+          exlimit: 2,
+          pithumbsize: 500,
+          pilimit: 2
+        },
+        jsonp: 'callback',
+        dataType: 'jsonp',
+        xhrFields: {
+          withCredentials: true
+        },
+        success: function(response){
+          //console.log(response);
+          resolve(response);
+        }
+      })
+    });
+  });
+}
+
+function getWikiSuggestion(title) {
   return Promise.resolve($.ajax({
-    url: 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=pageimages|extracts&exintro=&explaintext=',
+    url: 'https://en.wikipedia.org/w/api.php?action=query&list=search&origin=*&format=json',
     data: {
-      titles: title,
-      exlimit: 2,
-      pithumbsize: 500,
-      pilimit: 2
+      srlimit: '1',
+      srsearch: title,
     },
-    jsonp: 'callback',
-    dataType: 'jsonp',
-    xhrFields: {
-      withCredentials: true
+    error: function(xhr){
+         console.log("Error querying for suggestions from Wikipedia query API!");
     },
     success: function(response){
-      //console.log(response);
+      // If response returned
+      if (response){
+        //console.log(response);
+      }
+      else {
+        console.log("No response returned from Wikipedia API query.");
+      }
     }
   }));
 }
+
+/* OLD FUNCTION, USES OPENSEARCH
+function getWikiSuggestion(title) {
+  return Promise.resolve($.ajax({
+    url: 'https://en.wikipedia.org/w/api.php?action=opensearch',
+    data: {
+      limit: '10',
+      search: title,
+    },
+    dataType: "jsonp",
+    complete: function(){
+      console.log("url: " + this.url);
+    },
+    error: function(xhr){
+         alert("ERROR");
+    },
+    success: function(response){
+      // If response returned
+      if (response){
+        console.log(response);
+      }
+      else {
+        console.log("AAAAAH");
+      }
+    }
+  }));
+}
+*/
