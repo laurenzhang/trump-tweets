@@ -79,5 +79,7 @@ function populateDetailedTweet() {
 }
 
 function populateRelatedTweets(tweet) {
-
+  get_related_tweets(tweet).then(function(related_tweets) {
+    populateFeed(related_tweets);
+  });
 }
