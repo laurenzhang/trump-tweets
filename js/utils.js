@@ -1,3 +1,15 @@
+// Search function
+//  - needs to be available to every page
+$(document).ready(function() {
+    document.getElementById("search-form").addEventListener("submit", function(e) {
+        // Prevent a submit button from submitting a form
+        e.preventDefault();
+
+        //console.log($("#SearchBar").val());
+        location.href = "index.html?search=" + $("#SearchBar").val();
+    }, false);
+});
+
 /*
 
     This function takes a list of tweet objects, and displays them in a feed.
@@ -48,14 +60,17 @@ function generate_tweet_box(index) {
     var starDiv = document.createElement("div");
     starDiv.setAttribute("class", "starDiv");
 
-    // TODO: styling for "p4"
     var content = document.createElement("p4");
     content.innerHTML = tweet["tweet_text"];
     var date = document.createElement("p4");
     var ugDate = new Date(tweet["date"]);
-    var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + ", " + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
-    date.innerHTML = prettyDate;
 
+    var options = {  
+        weekday: "long", year: "numeric", month: "short",  
+        day: "numeric", hour: "2-digit", minute: "2-digit"  
+    };
+    var prettyDate = ugDate.toLocaleTimeString("en-us", options);
+    date.innerHTML = prettyDate;
 
     // create See More text
     var seeMore = document.createElement("a");
@@ -116,7 +131,7 @@ $(function() {
             // add 5 tweets at a time
             add_tweets_to_page(5)
         }
-        //TODO:: Unbind scroll event if there are no more contents
+        //TODO: Unbind scroll event if there are no more contents
     });
 });
 
@@ -145,7 +160,6 @@ function parseURLParams(url) {
 function create_starred_message() {
     // Display "Starred Tweets" message
     var message = document.getElementById("message");
-    // TODO: styling for "p5"
     var content = document.createElement("p5");
     content.innerHTML = "Starred Tweets";
     message.appendChild(content);
@@ -153,7 +167,6 @@ function create_starred_message() {
 
 function create_searched_message(search_word) {
     var message = document.getElementById("message");
-    // TODO: styling for "p5"
     var content = document.createElement("p5");
     content.innerHTML = "Search Results for " + search_word;
     message.appendChild(content);
