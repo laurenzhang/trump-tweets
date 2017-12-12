@@ -133,6 +133,7 @@ function populateFeed(tweets) {
 
         // Hide loading icon
         var loader_div = document.getElementById("loader-div")
+        console.log(loader_div)
         loader_div.parentNode.removeChild(loader_div);
 
         add_tweets_to_page(5)

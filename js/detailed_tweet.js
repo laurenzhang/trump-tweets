@@ -91,6 +91,7 @@ function populateDetailedTweet() {
 }
 
 function populateRelatedTweets(tweet) {
+
     get_related_tweets(tweet).then(function(related_tweets) {
         if (related_tweets.length > 0) {
             populateFeed(related_tweets)
@@ -107,6 +108,7 @@ function detailTweetStar() {
     var detailStar = document.getElementById("detailedStar");
     var splitURL = (window.location.href).split("tweet_id=");
     var ID = (splitURL[1]);
+
     if (isStarred(ID)) {
         detailStar.setAttribute("class", "star-four")
         detailStar.onclick = function() {
@@ -121,8 +123,5 @@ function detailTweetStar() {
         detailStar.onclick = function() {
             starTweet(ID);
             alert("tweet starred!");
-            detailStar.setAttribute("class", "star-four")
-            location.reload(true);
-        }
+        };
     }
-}
