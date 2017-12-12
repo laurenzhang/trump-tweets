@@ -1,3 +1,15 @@
+// Search function
+//  - needs to be available to every page
+$(document).ready(function() {
+    document.getElementById("search-form").addEventListener("submit", function(e) {
+        // Prevent a submit button from submitting a form
+        e.preventDefault();
+
+        //console.log($("#SearchBar").val());
+        location.href = "index.html?search=" + $("#SearchBar").val();
+    }, false);
+});
+
 /*
 
     This function takes a list of tweet objects, and displays them in a feed.
