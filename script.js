@@ -37,25 +37,73 @@ function openMenu(el) {
         });
 }
 
+// Search function
+$(document).ready(function() {
+    document.getElementById("search-form").addEventListener("submit", function(e) {
+        // Prevent a submit button from submitting a form
+        e.preventDefault();
+
+        //console.log($("#SearchBar").val());
+        location.href = "index.html?search=" + $("#SearchBar").val();
+    }, false);
+});
+
 // INIT FEED
 $(document).ready(function() {
 
     // // For testing purposes
-    store.clearAll()
+    //store.clearAll()
+
+    // check if ordered view
     var ddmenu = document.getElementById("indexFilter");
     var order_val = ddmenu.options[ddmenu.selectedIndex].value;
-    var order
+    var order;
+    var starred;
+    var search;
 
+    // these get set in filter.js
     if (order_val == 1) {
         order = 'retweet_ordered'
     }
     else if (order_val == 2) {
         order = 'fav_ordered'
     }
+    else {
+        order = 'recent_ordered'
+    }
 
-    // Search orders:
-    // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
-    get_tweets(order).then(function (tweets) {
-        populateFeed(tweets);
-    })
+    urlParams = parseURLParams(window.location.href)
+    if (urlParams != undefined) {
+        starred = urlParams['starred']
+        search = urlParams['search']
+    }
+
+    // 1) populate by starred
+    if (starred != undefined) {
+        // add star tweet for testing
+        starTweet("668255569996853248");
+        getStarredTweets().then(function(starred_tweets) {
+
+            populateFeed(starred_tweets);
+        });
+    }
+    // 2) populate by search
+    else if(search != undefined) {
+        console.log(search)
+        /*
+        search_tweets().then(function (search_tweets) {
+
+            populateFeed(search_tweets);
+        })*/
+    }
+    // 3) populate by order
+    else {
+        // Search orders:
+        // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
+        get_tweets(order).then(function (tweets) {
+            populateFeed(tweets);
+        })
+    }
+
+
 })

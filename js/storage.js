@@ -348,6 +348,28 @@ function getStarredTweets() {
     })
 }
 
+/*
+ * Searches through the DB using Fuse.js and return results
+ */
+function search_tweets(search_word) {
+    return new Promise(function (resolve, reject) {
+        if (store.get('tweets') == undefined) {
+            // First init local storage
+            init_tweets().then(function() {
+
+
+            })
+        }
+        else {
+
+
+
+        }
+    })
+
+
+}
+
 /* FUNCTIONS UNDER HERE SHOULD NOT BE TOUCHED FROM THE FRONT-END
 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 * */

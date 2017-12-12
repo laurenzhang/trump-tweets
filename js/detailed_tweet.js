@@ -1,3 +1,14 @@
+// Search function
+$(document).ready(function() {
+    document.getElementById("search-form").addEventListener("submit", function(e) {
+        // Prevent a submit button from submitting a form
+        e.preventDefault();
+
+        //console.log($("#SearchBar").val());
+        location.href = "index.html?search=" + $("#SearchBar").val();
+    }, false);
+});
+
 $(document).ready(function() {
     populateDetailedTweet()
 })
