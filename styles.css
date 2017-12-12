@@ -38,7 +38,7 @@
 
     .button:hover {
         font-weight: 200;
-        transform: scale(1.5);
+        transform: scale(1.04);
         transition-duration: $transition-time;
     }
 
@@ -229,7 +229,7 @@
 
     a {
         font-family: "Avenir Black", sans-serif;
-        font-weight: 100;
+        font-weight: 300;
         background: #ffdaad;
         padding-bottom: 30px;
         padding-top: 10px;
@@ -238,13 +238,14 @@
         z-index: 4;
         font-family: "Avenir Black", sans-serif;
         font-weight: 100;
-        font-size: 12px;
+        font-size: 13px;
         text-decoration: none;
         color: black;
+        line-height: 30px;
     }
 
     a:hover {
-        font-size: 17px;
+        font-size: 15px;
     }
 
     p2 {
@@ -311,7 +312,7 @@
         width: 100%;
         text-align: left;
         text-indent: 0px;
-        /*padding-left: 150px;*/
+        padding-left: 35px;
     }
 
     p6 {
