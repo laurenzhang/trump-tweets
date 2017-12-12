@@ -88,7 +88,7 @@
     }
     
     #first {
-        width: 60%;
+        width: 40%;
         float: left;
     }
     
@@ -98,13 +98,13 @@
     }
     
     #left {
-        width: 30%;
+        width: 40%;
         float: left;
         margin: 10px;
     }
     
     #middle {
-        width: 30%;
+        width: 50%;
         float: left;
         margin: 10px;
     }
@@ -183,7 +183,7 @@
     
     .center-div-button-bar {
         margin: 0 auto;
-        width: 1000px;
+        width: 700px;
         padding-left: 30px;
     }
     
@@ -194,7 +194,7 @@
     
     .center-div2 {
         margin: 0 auto;
-        width: 1200px;
+        width: 600px;
         padding-left: 10px;
     }
     
@@ -225,7 +225,7 @@
     .center-div8 {
         margin: 0 auto;
         width: 1200px;
-        padding-left: 80px;
+        padding-left: 140px;
     }
     
     a {
