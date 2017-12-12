@@ -21,20 +21,12 @@ $(document).ready(function() {
     ddmenu.onchange = function() {
         var newvalue = ddmenu.options[ddmenu.selectedIndex].value;
 
-        var tweets = new Array();
-
         if (newvalue == 1) {
-            tweets = get_tweets("recent_ordered").then(function(tweets) {
-                window.location.href = "index.html?order=recent";
-            });
+            window.location.href = "index.html?order=recent";
         } else if (newvalue == 2) {
-            tweets = get_tweets("fav_ordered").then(function(tweets) {
-                window.location.href = "index.html?order=fav";
-            });
+            window.location.href = "index.html?order=fav";
         } else if (newvalue == 3) {
-            tweets = get_tweets("retweet_ordered").then(function(tweets) {
-                window.location.href = "index.html?order=retweet";
-            });
+            window.location.href = "index.html?order=retweet";
         }
 
     }

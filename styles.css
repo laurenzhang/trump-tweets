@@ -88,7 +88,7 @@
     }
     
     #first {
-        width: 60%;
+        width: 40%;
         float: left;
     }
     
@@ -183,7 +183,7 @@
     
     .center-div-button-bar {
         margin: 0 auto;
-        width: 1000px;
+        width: 700px;
         padding-left: 30px;
     }
     
@@ -195,7 +195,7 @@
     .center-div2 {
         margin: 0 auto;
         width: 1200px;
-        padding-left: 10px;
+        padding-left: 40px;
     }
     
     .center-div3 {
@@ -225,7 +225,7 @@
     .center-div8 {
         margin: 0 auto;
         width: 1200px;
-        padding-left: 80px;
+        padding-left: 140px;
     }
     
     a {
@@ -276,11 +276,12 @@
         padding-left: 30px;
         padding-right: 30px;
         padding-bottom: 0px;
+        height: 80px;
     }
     
     .starDiv {
         padding-left: 75%;
-        height: 80px;
+        height: 10px;
         width: 350px;
     }
     
@@ -310,8 +311,8 @@
         width: 100%;
         text-align: left;
         text-indent: 0px;
-        padding-left: 100px;
-        padding-top: 100px;
+        padding-left: 150px;
+        padding-top: 200px;
     }
     
     .background {

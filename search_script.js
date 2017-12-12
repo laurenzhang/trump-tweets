@@ -1,5 +1,7 @@
 $(document).ready(function() {
     // Get search query from URL
+
+    /*
     var substring = window.location.search.substring(1).split("=");
     var query = substring.splice(1, 2)[0];
 
@@ -43,5 +45,5 @@ $(document).ready(function() {
                 // TODO: show error statement
             }
         });
-    }
+    }*/
 });

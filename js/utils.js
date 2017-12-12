@@ -111,16 +111,6 @@ $(function() {
     });
 });
 
-// Search function
-$(document).ready(function() {
-    document.getElementById("search-form").addEventListener("submit", function(e) {
-        // Prevent a submit button from submitting a form
-        e.preventDefault();
-
-        console.log($("#SearchBar").val());
-        location.href = "./search.html?insultee=" + $("#SearchBar").val();
-    }, false);
-});
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
@@ -141,4 +131,21 @@ function parseURLParams(url) {
         parms[n].push(nv.length === 2 ? v : null);
     }
     return parms;
+}
+
+function create_starred_message() {
+    // Display "Starred Tweets" message
+    var message = document.getElementById("message");
+    // TODO: styling for "p5"
+    var content = document.createElement("p5");
+    content.innerHTML = "Starred Tweets";
+    message.appendChild(content);
+}
+
+function create_searched_message(search_word) {
+    var message = document.getElementById("message");
+    // TODO: styling for "p5"
+    var content = document.createElement("p5");
+    content.innerHTML = "Search Results for " + search_word;
+    message.appendChild(content);
 }

@@ -348,6 +348,65 @@ function getStarredTweets() {
     })
 }
 
+/*
+ * Searches through the DB using Fuse.js and return results
+ */
+
+function search_tweets(search_word) {
+
+    var fuse_options = {
+        shouldSort: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 2,
+        keys: [{
+            name: "insultee",
+            weight: 0.65
+        }, {
+            name: "tweet_text",
+            weight: 0.35
+        }
+        ]
+    }
+
+    search_word = search_word.toString()
+    //TODO add highlighting to show what words matched result using
+    // includeMatches: true, option
+    return new Promise(function (resolve, reject) {
+        if (store.get('tweets') == undefined) {
+            // First init local storage
+            init_tweets().then(function() {
+
+                var tweets = store.get('tweets')
+                var tweetArr = Object.keys(tweets).map(function(key){
+                    return tweets[key]
+                });
+
+                var fuse = new Fuse(tweetArr, fuse_options)
+                var result = fuse.search(search_word)
+
+                resolve(result)
+            })
+        }
+        else {
+
+            var tweets = store.get('tweets')
+            var tweetArr = Object.keys(tweets).map(function(key){
+                return tweets[key]
+            });
+
+            var fuse = new Fuse(tweetArr, fuse_options)
+            var result = fuse.search(search_word)
+
+            resolve(result)
+        }
+    })
+
+
+}
+
 /* FUNCTIONS UNDER HERE SHOULD NOT BE TOUCHED FROM THE FRONT-END
 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 * */
