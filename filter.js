@@ -3,6 +3,7 @@ $(document).ready(function() {
 
     // set default order using url
     urlParams = parseURLParams(window.location.href)
+
     if (urlParams != undefined) {
         order = urlParams['order']
 

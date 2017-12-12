@@ -16,6 +16,10 @@ function generate_tweet_box(index) {
 
     tweet = curFeedTweets[index]
 
+    if (tweet == undefined) {
+        return undefined
+    }
+
     var a = document.createElement("a");
     a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
 
