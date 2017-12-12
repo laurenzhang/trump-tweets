@@ -276,11 +276,12 @@
         padding-left: 30px;
         padding-right: 30px;
         padding-bottom: 0px;
+        height: 80px;
     }
     
     .starDiv {
         padding-left: 75%;
-        height: 80px;
+        height: 10px;
         width: 350px;
     }
     
