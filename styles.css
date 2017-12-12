@@ -135,7 +135,6 @@
         font-size: 150%;
         font-weight: 100;
         font-family: "Avenir Black", sans-serif;
-        text-align: center;
         overflow: hidden;
         margin-top: 30px;
         clear: both;
@@ -292,6 +291,7 @@
         width: 100%;
         text-align: center;
         text-indent: 0px;
+        line-height: 25px;
     }
     
     p5 {
@@ -323,6 +323,15 @@
         text-align: left;
         text-indent: 0px;
         line-height: 25px;
+    }
+
+    p8 {
+        font-size: 14px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 100;
+        width: 100%;
+        text-align: left;
+        text-indent: 0px;
     }
     
     .background {
@@ -418,6 +427,8 @@
     .seeMore {
         color: black;
         font-weight: 500;
+        background: None;
+        margin-top: 15px;
     }
 
     .loader {
