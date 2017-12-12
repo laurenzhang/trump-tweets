@@ -49,12 +49,13 @@ function populateDetailedTweet() {
             // Fill in Wiki Card information
             console.log("Original insultee: " + theTweet.insultee);
             getWikiSummary(theTweet.insultee).then(function(response) {
+                hide_loader()
                 var theWikiPic = document.getElementById("wikiPic");
                 var theWikiText = document.getElementById("wikiText");
                 var theWikiTitle = document.getElementById("wikiTitle");
                 var wiki_content = {};
 
-                console.log(response);
+                //console.log(response);
 
                 try {
                     pages = response.query.pages;
