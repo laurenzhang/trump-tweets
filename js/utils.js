@@ -24,18 +24,21 @@ function generate_tweet_box(index) {
     div.setAttribute("class", "tweet");
     div.id = tweet["tweet_id"];
 
+
     // create a styling div within the main div
     var innerDiv = document.createElement("div");
     innerDiv.setAttribute("class", "styledDiv");
+
 
     //create star button
     var star = document.createElement("div");
     star.setAttribute("class", "star-five");
     star.setAttribute("id", "starred");
 
+
     // create a div to place star into
-    // var starDiv = document.createElement("div");
-    // starDiv.setAttribute("class", "starDiv");
+    var starDiv = document.createElement("div");
+    starDiv.setAttribute("class", "starDiv");
 
     // TODO: styling for "p4"
     var content = document.createElement("p4");
@@ -45,76 +48,26 @@ function generate_tweet_box(index) {
     var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + ", " + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
     date.innerHTML = prettyDate;
 
+
     // Add tweet corresponding to tweet_id to feed
-    //starDiv.appendChild(star);
+    starDiv.appendChild(star);
     innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(content);
     innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(date);
-    innerDiv.appendChild(star);
     div.appendChild(innerDiv);
+    div.appendChild(starDiv);
     a.appendChild(div);
+
 
     return a
 }
 
 function populateFeed(tweets) {
     $(document).ready(function() {
-<<<<<<< HEAD
-        for (i in tweets) {
-            if (tweets[i] == undefined) {
-                continue;
-            }
-            tweet = tweets[i];
-            var feed = document.getElementById("feed");
-
-            var a = document.createElement("a");
-            a.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
-
-            // Retrieve tweet ID, content, and date from tweet object
-            var div = document.createElement("div");
-            div.setAttribute("class", "tweet");
-            div.id = tweet["tweet_id"];
-
-            // create a styling div within the main div 
-            var innerDiv = document.createElement("div");
-            innerDiv.setAttribute("class", "styledDiv");
-
-
-            //create star button
-            var star = document.createElement("div");
-            star.setAttribute("class", "star-five");
-            star.setAttribute("class", "starred");
-
-            // create a div to place star into 
-            var starDiv = document.createElement("div");
-            starDiv.setAttribute("class", "starDiv");
-
-            // TODO: styling for "p4"
-            var content = document.createElement("p4");
-            content.innerHTML = tweet["tweet_text"];
-            var date = document.createElement("p4");
-            var ugDate = new Date(tweet["date"]);
-            var prettyDate = "Posted " + ugDate.getMonth() + "/" + ugDate.getDate() + ", " + ugDate.getFullYear() + " at " + ugDate.getHours() + ":" + ugDate.getMinutes();
-            date.innerHTML = prettyDate;
-
-            // Add tweet corresponding to tweet_id to feed
-            starDiv.appendChild(star);
-            innerDiv.appendChild(document.createElement("br"));
-            innerDiv.appendChild(content);
-            innerDiv.appendChild(document.createElement("br"));
-            innerDiv.appendChild(document.createElement("br"));
-            innerDiv.appendChild(date);
-            div.appendChild(innerDiv);
-            div.appendChild(starDiv);
-            a.appendChild(div);
-            feed.appendChild(a);
-        }
-=======
         curFeedTweets = tweets
         add_tweets_to_page(5)
->>>>>>> 64c5dd13402812d04bc64ff906ce917f92fb071b
     });
 }
 
@@ -166,10 +119,11 @@ $(document).ready(function() {
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
-        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        queryEnd = url.indexOf("#") + 1 || url.length + 1,
         query = url.slice(queryStart, queryEnd - 1),
         pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
+        parms = {},
+        i, n, v, nv;
 
     if (query === url || query === "") return;
 
