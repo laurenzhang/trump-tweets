@@ -102,7 +102,16 @@ function generate_tweet_box(index) {
     var seeMore = document.createElement("a");
     seeMore.innerHTML = "SEE MORE";
     seeMore.setAttribute("class", "seeMore");
-    seeMore.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
+
+    curUrl = window.location.href
+    // diff routes depending on where it was referenced
+    if (curUrl.indexOf(('html/')) == -1) {
+        seeMore.href = "./html/detailedTweet.html?tweet_id=" + tweet["tweet_id"];
+    }
+    else {
+        seeMore.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
+    }
+
 
     // Add tweet corresponding to tweet_id to feed
     starButton.appendChild(star);
