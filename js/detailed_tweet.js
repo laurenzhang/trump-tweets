@@ -13,6 +13,7 @@ function populateDetailedTweet() {
     detailStar.value = theTweetId;
     console.log(detailStar.value);
     // Search for extracted id in storage
+
     get_tweet(theTweetId).then(function(theTweet) {
         if (theTweet) {
 
@@ -108,6 +109,10 @@ function detailTweetStar() {
     var detailStar = document.getElementById("detailedStar");
     var splitURL = (window.location.href).split("tweet_id=");
     var ID = (splitURL[1]);
+    detailStar.onclick = function() {
+        starTweet(ID);
+        alert("tweet starred!");
+    };
 
     if (isStarred(ID)) {
         detailStar.setAttribute("class", "star-four")
@@ -119,6 +124,7 @@ function detailTweetStar() {
         }
     } else {
         detailStar.setAttribute("class", "star-five");
+
         detailStar.onclick = function() {
             starTweet(ID);
             alert("tweet starred!");
