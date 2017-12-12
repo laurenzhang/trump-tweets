@@ -8,8 +8,8 @@ function populateDetailedTweet() {
     var splitURL = (window.location.href).split("tweet_id=");
     var theTweetId = (splitURL[1]);
     var detailStar = document.getElementById("detailedStar");
-    //detailStar.value = theTweetId;
-    //console.log(detailStar.value);
+    detailStar.value = theTweetId;
+    console.log(detailStar.value);
     // Search for extracted id in storage
     get_tweet(theTweetId).then(function(theTweet) {
         if (theTweet) {

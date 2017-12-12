@@ -70,22 +70,23 @@ $(document).ready(function() {
 
     // 1) populate by starred
     if (starred != undefined) {
+        orderMenu.style.visibility = 'hidden';
         // add starred tweets for testing
         starTweet("668255569996853248");
         starTweet("759024055123009536");
         getStarredTweets().then(function(starred_tweets) {
             create_starred_message(starred_tweets.length)
-            orderMenu.style.visibility = 'hidden';
+
             populateFeed(starred_tweets);
         });
     }
     // 2) populate by search
     else if (search != undefined) {
+        orderMenu.style.visibility = 'hidden';
         search_tweets(search).then(function (search_tweets) {
             // init text for search
             document.getElementById("SearchBar").value = search
             create_searched_message(search, search_tweets.length)
-            orderMenu.style.visibility = 'hidden';
             populateFeed(search_tweets)
         })
     }
