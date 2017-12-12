@@ -35,7 +35,7 @@ function generate_tweet_box(index) {
     date.innerHTML = prettyDate;
 
     // Add tweet corresponding to tweet_id to feed
-    // div.appendChild(star);
+    //div.appendChild(star);
     div.appendChild(content);
     div.appendChild(document.createElement("br"));
     div.appendChild(document.createElement("br"));
@@ -47,7 +47,6 @@ function generate_tweet_box(index) {
 
 function populateFeed(tweets) {
     $(document).ready(function() {
-<<<<<<< HEAD
         for (i in tweets) {
             if (tweets[i] == undefined) {
                 continue;
@@ -67,13 +66,14 @@ function populateFeed(tweets) {
             var innerDiv = document.createElement("div");
             innerDiv.setAttribute("class", "styledDiv");
 
-            // create a div to place star into 
-            var starDiv = document.createElement("div");
-            starDiv.setAttribute("class", "starDiv");
-
             //create star button
             var star = document.createElement("div");
             star.setAttribute("class", "star-five");
+            star.setAttribute("id", "starred");
+
+            // create a div to place star into 
+            // var starDiv = document.createElement("div");
+            // starDiv.setAttribute("class", "starDiv");
 
             // TODO: styling for "p4"
             var content = document.createElement("p4");
@@ -84,22 +84,17 @@ function populateFeed(tweets) {
             date.innerHTML = prettyDate;
 
             // Add tweet corresponding to tweet_id to feed
-            starDiv.appendChild(star);
+            //starDiv.appendChild(star);
             innerDiv.appendChild(document.createElement("br"));
             innerDiv.appendChild(content);
             innerDiv.appendChild(document.createElement("br"));
             innerDiv.appendChild(document.createElement("br"));
             innerDiv.appendChild(date);
-            innerDiv.appendChild(starDiv);
+            innerDiv.appendChild(star);
             div.appendChild(innerDiv);
             a.appendChild(div);
             feed.appendChild(a);
         }
-=======
-        curFeedTweets = tweets
-
-        add_tweets_to_page(5)
->>>>>>> 6a3913ea6ff85a387648fb0371ccfa803ac16349
     });
 }
 
@@ -107,14 +102,14 @@ function add_tweets_to_page(itemsToAdd) {
 
     var $feed = $(document.getElementById("feed"));
     start = curIndex
-    while (curIndex < curFeedTweets.length && curIndex < start+itemsToAdd) {
+    while (curIndex < curFeedTweets.length && curIndex < start + itemsToAdd) {
         $feed.append(generate_tweet_box(curIndex))
         curIndex++
     }
 }
 
-$(function(){
-    $(window).scroll(function () {
+$(function() {
+    $(window).scroll(function() {
 
         if (curFeedTweets == undefined || curFeedTweets.length <= curIndex) {
             return
@@ -127,7 +122,7 @@ $(function(){
         var screenBottom = $(this).scrollTop()
         divPlacement -= 600; //load contents before reaching to the end of the div
 
-        if(divPlacement <= screenBottom) {
+        if (divPlacement <= screenBottom) {
             // add 5 tweets at a time
             add_tweets_to_page(5)
         }
