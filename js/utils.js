@@ -159,10 +159,21 @@ function parseURLParams(url) {
 
 function create_starred_message(tweets_length) {
     // Display "Starred Tweets" message
-    var message = document.getElementById("message");
-    var content = document.createElement("p5");
-    content.innerHTML = "Showing " + tweets_length + " Starred Tweets.";
-    message.appendChild(content);
+
+    if (tweets_length < 0) {
+        var message = document.getElementById("message");
+        var content = document.createElement("p5");
+        content.innerHTML = "Showing " + tweets_length + " Starred Tweets.";
+        message.appendChild(content);
+    }
+    // if no starred results, show error+suggestion
+    else {
+        var error_prompt = document.getElementById("error-prompt")
+        var content = document.createElement("p7")
+        content.innerHTML = "You haven't starred any tweets yet.<br/><br/>" +
+                            "Click on the star button on tweets to star them!"
+        error_prompt.appendChild(content)
+    }
 }
 
 function create_searched_message(search_word, tweets_length) {
