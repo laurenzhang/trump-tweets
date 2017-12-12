@@ -176,7 +176,7 @@ function create_searched_message(search_word, tweets_length) {
     // if no search results, show error+suggestion
     else {
         var error_prompt = document.getElementById("error-prompt")
-        var content = document.createElement("p6")
+        var content = document.createElement("p7")
         content.innerHTML = "Your search - " + search_word.toString().bold() + " - did not match any tweets.<br/><br/>" +
                             "Suggestions:" +
                             "<ul>" +
