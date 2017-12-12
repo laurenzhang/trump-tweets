@@ -25,8 +25,17 @@ function populateFeed(tweets) {
             div.setAttribute("class", "tweet");
             div.id = tweet["tweet_id"];
 
-            // var star = document.createElement("div");
-            // star.setAttribute("class", "star-five");
+            // create a styling div within the main div 
+            var innerDiv = document.createElement("div");
+            innerDiv.setAttribute("class", "styledDiv");
+
+            // create a div to place star into 
+            var starDiv = document.createElement("div");
+            starDiv.setAttribute("class", "starDiv");
+
+            //create star button
+            var star = document.createElement("div");
+            star.setAttribute("class", "star-five");
 
             // TODO: styling for "p4"
             var content = document.createElement("p4");
@@ -37,11 +46,14 @@ function populateFeed(tweets) {
             date.innerHTML = prettyDate;
 
             // Add tweet corresponding to tweet_id to feed
-            // div.appendChild(star);
-            div.appendChild(content);
-            div.appendChild(document.createElement("br"));
-            div.appendChild(document.createElement("br"));
-            div.appendChild(date);
+            starDiv.appendChild(star);
+            innerDiv.appendChild(document.createElement("br"));
+            innerDiv.appendChild(content);
+            innerDiv.appendChild(document.createElement("br"));
+            innerDiv.appendChild(document.createElement("br"));
+            innerDiv.appendChild(date);
+            innerDiv.appendChild(starDiv);
+            div.appendChild(innerDiv);
             a.appendChild(div);
             feed.appendChild(a);
         }
@@ -51,10 +63,10 @@ function populateFeed(tweets) {
 // Search function
 $(document).ready(function() {
     document.getElementById("search-form").addEventListener("submit", function(e) {
-    // Prevent a submit button from submitting a form
-    e.preventDefault();
+        // Prevent a submit button from submitting a form
+        e.preventDefault();
 
-    console.log($("#SearchBar").val());
-    location.href = "./search.html?insultee=" + $("#SearchBar").val();
+        console.log($("#SearchBar").val());
+        location.href = "./search.html?insultee=" + $("#SearchBar").val();
     }, false);
 });
