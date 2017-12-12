@@ -83,18 +83,16 @@ $(document).ready(function() {
         // add star tweet for testing
         starTweet("668255569996853248");
         getStarredTweets().then(function(starred_tweets) {
-
+            create_starred_message()
             populateFeed(starred_tweets);
         });
     }
     // 2) populate by search
     else if(search != undefined) {
-        console.log(search)
-        /*
-        search_tweets().then(function (search_tweets) {
-
+        search_tweets(search).then(function (search_tweets) {
+            create_searched_message(search)
             populateFeed(search_tweets);
-        })*/
+        })
     }
     // 3) populate by order
     else {
