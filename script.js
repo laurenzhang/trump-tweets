@@ -37,11 +37,24 @@ function openMenu(el) {
         });
 }
 
-// // For testing purposes
-//store.clearAll()
+$(document).ready(function() {
 
-// Search orders:
-//  ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
-get_tweets('recent_ordered').then(function(tweets) {
-    populateFeed(tweets);
+    // // For testing purposes
+    //store.clearAll()
+    var ddmenu = document.getElementById("indexFilter");
+    var order_val = ddmenu.options[ddmenu.selectedIndex].value;
+    var order
+
+    if (order_val == 1) {
+        order = 'retweet_ordered'
+    }
+    else if (order_val == 2) {
+        order = 'fav_ordered'
+    }
+
+    // Search orders:
+    // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
+    get_tweets(order).then(function (tweets) {
+        populateFeed(tweets);
+    })
 })

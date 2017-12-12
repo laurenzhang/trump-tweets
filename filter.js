@@ -1,5 +1,16 @@
 $(document).ready(function() {
     var ddmenu = document.getElementById("indexFilter");
+
+    urlParams = parseURLParams(window.location.href)
+    order = urlParams['order']
+
+    if (order == 'fav') {
+        ddmenu.selectedIndex = 1
+    }
+    else if (order == 'retweet') {
+        ddmenu.selectedIndex = 2
+    }
+
     var value = ddmenu.options[ddmenu.selectedIndex].value;
     var text = ddmenu.options[ddmenu.selectedIndex].text;
 
