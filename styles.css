@@ -38,7 +38,7 @@
 
     .button:hover {
         font-weight: 200;
-        transform: scale(1.03);
+        transform: scale(1.5);
         transition-duration: $transition-time;
     }
 
@@ -244,7 +244,7 @@
     }
 
     a:hover {
-        font-size: 13px;
+        font-size: 17px;
     }
 
     p2 {
@@ -444,9 +444,10 @@
 
     .seeMore {
         color: black;
+        font-size: 15px;
         font-weight: 500;
         background: None;
-        margin-top: 15px;
+        line-height: 30px
     }
 
     .star-four {

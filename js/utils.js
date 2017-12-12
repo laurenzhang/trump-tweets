@@ -99,7 +99,7 @@ function generate_tweet_box(index) {
 
     // create See More text
     var seeMore = document.createElement("a");
-    seeMore.innerHTML = "    See More";
+    seeMore.innerHTML = "SEE MORE";
     seeMore.setAttribute("class", "seeMore");
     seeMore.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
 
@@ -125,12 +125,13 @@ function populateFeed(tweets) {
     $(document).ready(function() {
         curFeedTweets = tweets
 
-        // Hide loading icon
-        var loader_div = document.getElementById("loader-div")
-        loader_div.parentNode.removeChild(loader_div);
-
         add_tweets_to_page(5)
     });
+}
+
+function hide_loader() {
+    var loader_div = document.getElementById("loader-div")
+    loader_div.parentNode.removeChild(loader_div);
 }
 
 function add_tweets_to_page(itemsToAdd) {

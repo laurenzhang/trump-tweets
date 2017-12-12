@@ -72,8 +72,8 @@ $(document).ready(function() {
     if (starred != undefined) {
         orderMenu.style.visibility = 'hidden';
         getStarredTweets().then(function(starred_tweets) {
+            hide_loader()
             create_starred_message(starred_tweets.length)
-
             populateFeed(starred_tweets);
         });
     }
@@ -84,6 +84,7 @@ $(document).ready(function() {
             // init text for search
             document.getElementById("SearchBar").value = search
             create_searched_message(search, search_tweets.length)
+            hide_loader()
             populateFeed(search_tweets)
         })
     }
@@ -92,6 +93,7 @@ $(document).ready(function() {
         // Search orders:
         // ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
         get_tweets(order).then(function(tweets) {
+            hide_loader()
             populateFeed(tweets);
         })
     }
