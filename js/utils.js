@@ -48,12 +48,23 @@ function generate_tweet_box(index) {
 
     //create star button
     var ID = tweet["tweet_id"];
-    var star = document.createElement("div");
     var starButton = document.createElement("a");
     starButton.setAttribute("class", "starred");
-    star.setAttribute("class", "star-five");
     starButton.setAttribute("value", "ID")
     starButton.href = "#";
+    starButton.onclick = function() {
+        starTweet(ID);
+        alert("tweet starred!");
+    };
+
+    starButton.onclick = function() {
+        unstarTweet(ID);
+        alert("tweet starred!");
+    };
+
+    // create star
+    var star = document.createElement("div");
+    star.setAttribute("class", "star-five");
 
 
     // create a div to place star into
@@ -65,9 +76,13 @@ function generate_tweet_box(index) {
     var date = document.createElement("p4");
     var ugDate = new Date(tweet["date"]);
 
-    var options = {  
-        weekday: "long", year: "numeric", month: "short",  
-        day: "numeric", hour: "2-digit", minute: "2-digit"  
+    var options = {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
     };
     var prettyDate = ugDate.toLocaleTimeString("en-us", options);
     date.innerHTML = prettyDate;
@@ -96,6 +111,11 @@ function generate_tweet_box(index) {
 function populateFeed(tweets) {
     $(document).ready(function() {
         curFeedTweets = tweets
+        
+        // Hide loading icon
+        var loader_div = document.getElementById("loader-div")
+        loader_div.parentNode.removeChild(loader_div);
+
         add_tweets_to_page(5)
     });
 }

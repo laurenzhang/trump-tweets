@@ -15,6 +15,7 @@
 <head>
     <title>TRUMP TWEETS
     </title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 
 </head>
 
@@ -59,7 +60,7 @@
                     </div>
 
                     <div style="width: 100%; height: 100%; padding-left: 65%; padding-bottom:110px">
-                        <div style="vertical-align: bottom" id="detailedStar" class="star-five starred"></div>
+                        <div style="vertical-align: bottom" id="StarButton" class="star-five starred"></div>
                     </div>
                 </td>
                 <td max-heightid="wikiDetail">
@@ -82,6 +83,11 @@
 
     <div id="related-tweets" class="center-div4" style="margin-top: 80px">
         <h2 style="text-align: center"> Related Tweets </h2>
+
+        <!-- Loading icon -->
+        <div class="center-div-loading" id="loader-div">
+            <div class="loader"></div>
+        </div>
 
         <!-- Skeleton for tweet feed -->
         <div class="center-div " id="feed"></div>

@@ -76,43 +76,43 @@ get_insultee_tweets('The Associated Press').then(function(tweets) {
 
 function get_tweets(order) {
 
-	return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
 
-		// set default value for order
-		if (!order){
-			order = 'recent_ordered'
-		}
+        // set default value for order
+        if (!order) {
+            order = 'recent_ordered'
+        }
 
-		// if tweets not initialized, init and store in local storage
-		if (store.get('tweets') == undefined) {
+        // if tweets not initialized, init and store in local storage
+        if (store.get('tweets') == undefined) {
 
-			init_tweets().then(function() {
-				// Generate ordered tweets and return
-				tweets = store.get('tweets')
-				ordered_keys = store.get(order + '_keys')
+            init_tweets().then(function() {
+                // Generate ordered tweets and return
+                tweets = store.get('tweets')
+                ordered_keys = store.get(order + '_keys')
 
-				ordered_tweets = []
-				for (i in ordered_keys) {
-					ordered_tweets.push(tweets[ordered_keys[i]])
-				}
+                ordered_tweets = []
+                for (i in ordered_keys) {
+                    ordered_tweets.push(tweets[ordered_keys[i]])
+                }
 
-				resolve(ordered_tweets)
-			});
-		}
-		// fetch from local storage and create array in order and return
-		else {
+                resolve(ordered_tweets)
+            });
+        }
+        // fetch from local storage and create array in order and return
+        else {
 
-			tweets = store.get('tweets')
-			ordered_keys = store.get(order + '_keys')
+            tweets = store.get('tweets')
+            ordered_keys = store.get(order + '_keys')
 
-			ordered_tweets = []
-			for (i in ordered_keys) {
-				ordered_tweets.push(tweets[ordered_keys[i]])
-			}
+            ordered_tweets = []
+            for (i in ordered_keys) {
+                ordered_tweets.push(tweets[ordered_keys[i]])
+            }
 
-			resolve(ordered_tweets)
-		}
-	})
+            resolve(ordered_tweets)
+        }
+    })
 }
 
 /*
@@ -126,7 +126,7 @@ function get_tweets(order) {
  */
 function get_tweet(tweet_id) {
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
 
         // if tweets not initialized, init and store in local storage
         if (store.get('tweets') == undefined) {
@@ -158,7 +158,7 @@ function get_tweet(tweet_id) {
  */
 function get_related_tweets(tweet) {
 
-	return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
 
         // if tweets not initialized, init and store in local storage, then return related tweets
         if (store.get('tweets') == undefined) {
@@ -206,7 +206,7 @@ function get_related_tweets(tweet) {
  */
 function get_insultee_tweets(insultee) {
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
 
         // if tweets not initialized, init and store in local storage, then return related tweets
         if (store.get('tweets') == undefined) {
@@ -245,7 +245,7 @@ function get_insultee_tweets(insultee) {
  * Gets a set of insultee names
  */
 function get_insultees() {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         if (store.get('tweets') == undefined) {
             // First init local storage
             init_tweets().then(function() {
@@ -253,8 +253,7 @@ function get_insultees() {
 
                 resolve(insultees)
             })
-        }
-        else {
+        } else {
             // Fetch insultee names names from local storage
             var insultees = new Set(Object.keys(store.get('related_tweets')))
 
@@ -266,7 +265,7 @@ function get_insultees() {
 /*
  * STARRED TWEETS
  */
- 
+
 function starTweet(tweet_id) {
     // Initialize starred tweets if necessary
     if (store.get('starred_tweets') == undefined) {
@@ -280,7 +279,7 @@ function starTweet(tweet_id) {
     }
 
     var new_starred_tweets = store.get('starred_tweets')
-    new_starred_tweets.push(tweet_id)
+    new_starred_tweets.unshift(tweet_id)
     store.set('starred_tweets', new_starred_tweets)
 }
 
@@ -306,7 +305,7 @@ function unstarTweet(tweet_id) {
  * Gets an array of starred tweet objects
  */
 function getStarredTweets() {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         if (store.get('tweets') == undefined) {
             // First init local storage
             init_tweets().then(function() {
@@ -326,8 +325,7 @@ function getStarredTweets() {
 
                 resolve(starred_tweets)
             })
-        }
-        else {
+        } else {
             // Check if starred tweets initialized
             if (store.get('starred_tweets') == undefined) {
                 resolve([])
@@ -367,20 +365,19 @@ function search_tweets(search_word) {
         }, {
             name: "tweet_text",
             weight: 0.35
-        }
-        ]
+        }]
     }
 
     search_word = search_word.toString()
-    //TODO add highlighting to show what words matched result using
-    // includeMatches: true, option
-    return new Promise(function (resolve, reject) {
+        //TODO add highlighting to show what words matched result using
+        // includeMatches: true, option
+    return new Promise(function(resolve, reject) {
         if (store.get('tweets') == undefined) {
             // First init local storage
             init_tweets().then(function() {
 
                 var tweets = store.get('tweets')
-                var tweetArr = Object.keys(tweets).map(function(key){
+                var tweetArr = Object.keys(tweets).map(function(key) {
                     return tweets[key]
                 });
 
@@ -389,11 +386,10 @@ function search_tweets(search_word) {
 
                 resolve(result)
             })
-        }
-        else {
+        } else {
 
             var tweets = store.get('tweets')
-            var tweetArr = Object.keys(tweets).map(function(key){
+            var tweetArr = Object.keys(tweets).map(function(key) {
                 return tweets[key]
             });
 
@@ -408,8 +404,8 @@ function search_tweets(search_word) {
 }
 
 /* FUNCTIONS UNDER HERE SHOULD NOT BE TOUCHED FROM THE FRONT-END
-* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-* */
+ * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ * */
 
 /*
  * Initializes tweets from json_url and stores in local storages
@@ -417,34 +413,34 @@ function search_tweets(search_word) {
  * This function should not be touched from the front-end.
  */
 function init_tweets() {
-	console.log('no local storage found, initializing tweets!')
-	return new Promise(function (resolve, reject) {
+    console.log('no local storage found, initializing tweets!')
+    return new Promise(function(resolve, reject) {
 
-		// fetch new from twitter and initialize tweets
+        // fetch new from twitter and initialize tweets
 
-		// Read insult tweets as JSON from the file's GitHub URL
-		var JSON_URL = 'https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json'
+        // Read insult tweets as JSON from the file's GitHub URL
+        var JSON_URL = 'https://raw.githubusercontent.com/laurenzhang/trump-tweets/master/json/insult_tweets.json'
 
-		// read from file
-		readFile(JSON_URL).then(function(tweet_file) {
+        // read from file
+        readFile(JSON_URL).then(function(tweet_file) {
 
-			var tweet_promises = []
+            var tweet_promises = []
             var related_tweets = {}
-			var count = 0
+            var count = 0
 
-			for (var insultee in tweet_file) {
-			    // promise get fetches all tweets for insultee
+            for (var insultee in tweet_file) {
+                // promise get fetches all tweets for insultee
                 // if (insultee != 'Hillary Clinton') continue
                 promiseObject = getTweetBatch(insultee, tweet_file[insultee])
                 tweet_promises.push(promiseObject)
                 related_tweets[insultee] = tweet_file[insultee]
 
-				// LIMIT TWEET CALLS FOR TESTING
-				count += 1
-				if (count == 10) break
-			}
+                // LIMIT TWEET CALLS FOR TESTING
+                count += 1
+                if (count == 10) break
+            }
 
-			// Get tweets from twitter and organize file into DATA SCHEMA
+            // Get tweets from twitter and organize file into DATA SCHEMA
             Promise.all(tweet_promises).then(function(listOf_tweet_list) {
 
                 var tweets = {}
@@ -460,10 +456,10 @@ function init_tweets() {
 
                 // Sort the data into the order we want and cache in local storage
                 tweet_set = new Set()
-                // store up to max_size per sort order
+                    // store up to max_size per sort order
                 var MAX_SIZE = 100
 
-				// 1) Most recent sort
+                // 1) Most recent sort
                 var recent_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
                 })
@@ -473,7 +469,7 @@ function init_tweets() {
                 recent_ordered_keys.splice(MAX_SIZE)
                 add_arr_toSet(tweet_set, recent_ordered_keys)
 
-				// 2) Most Favorites sort
+                // 2) Most Favorites sort
                 var fav_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
                 })
@@ -483,7 +479,7 @@ function init_tweets() {
                 fav_ordered_keys.splice(MAX_SIZE)
                 add_arr_toSet(tweet_set, fav_ordered_keys)
 
-				// 3) Most Retweets sort
+                // 3) Most Retweets sort
                 var retweet_ordered_keys = Object.keys(tweets).map(function(key) {
                     return key;
                 })
@@ -508,7 +504,7 @@ function init_tweets() {
                     while (i--) {
                         var cur_tweet_id = related_tweets[key][i]
                         if (!tweet_set.has(cur_tweet_id)) {
-                            related_tweets[key].splice(i,1)
+                            related_tweets[key].splice(i, 1)
                         }
                     }
                 }
@@ -521,8 +517,8 @@ function init_tweets() {
                 resolve()
             })
 
-		})
-	})
+        })
+    })
 }
 
 /* Custom function to add arr elements to set */
@@ -580,23 +576,21 @@ function init_tweet_util(insultee, tweetIds) {
  */
 
 function readFile(file) {
-	return new Promise(function (resolve, reject) {
-	    var rawFile = new XMLHttpRequest();
-	    rawFile.open("GET", file, true);
-	    rawFile.onreadystatechange = function ()
-	    {
-	        if(rawFile.readyState === 4) {
-	            if(rawFile.status === 200 || rawFile.status == 0) {
-	                var allText = rawFile.responseText;
-	                var value = JSON.parse(allText);
-	                //console.log(value);
-	                resolve(value);
-	                // now display on browser :)
-	            }
-	            else reject('error')
-	        }
-	    }
-	    rawFile.send(null)
-	});
+    return new Promise(function(resolve, reject) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status == 0) {
+                    var allText = rawFile.responseText;
+                    var value = JSON.parse(allText);
+                    //console.log(value);
+                    resolve(value);
+                    // now display on browser :)
+                } else reject('error')
+            }
+        }
+        rawFile.send(null)
+    });
 
 }
