@@ -3,23 +3,23 @@
         padding-right: 30px;
         padding-bottom: 500px;
     }
-    
+
     h1,
     h2 {
         font-family: "Avenir Black", sans-serif;
         font-weight: 100;
     }
-    
+
     .form-group {
         width: 75%;
         padding-left: 30px;
     }
-    
+
     form {
         display: inline-block;
         width: 20%;
     }
-    
+
     .form-control {
         display: block;
         color: #999999;
@@ -35,30 +35,30 @@
         font-family: "Avenir Black", sans-serif;
         width: 100%;
     }
-    
+
     .button:hover {
         font-weight: 200;
         transform: scale(1.03);
         transition-duration: $transition-time;
     }
-    
+
     img {
         display: block;
         margin: 0 auto;
     }
-    
+
     .semi-square {
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
     }
-    
+
     .styled-select {
         height: 29px;
         width: 10px;
         margin-bottom: 20px;
     }
-    
+
     .styled-select select {
         background: transparent;
         border-style: solid;
@@ -71,7 +71,7 @@
         width: 150px;
         padding-bottom: 5px;
     }
-    
+
     .orange select {
         font-weight: 100;
         font-size: 13px;
@@ -86,29 +86,29 @@
         border-width: 1px;
         border-radius: 2px;
     }
-    
+
     #first {
         width: 40%;
         float: left;
     }
-    
+
     #second {
         width: 40%;
         float: left;
     }
-    
+
     #left {
         width: 30%;
         float: left;
         margin: 10px;
     }
-    
+
     #middle {
         width: 30%;
         float: left;
         margin: 10px;
     }
-    
+
     .square {
         background-color: #ffdaad;
         display: inline;
@@ -123,7 +123,7 @@
         width: 50%;
         overflow: hidden;
     }
-    
+
     .tweet {
         width: 500px;
         height: 200px;
@@ -135,12 +135,11 @@
         font-size: 150%;
         font-weight: 100;
         font-family: "Avenir Black", sans-serif;
-        text-align: center;
         overflow: hidden;
         margin-top: 30px;
         clear: both;
     }
-    
+
     .relatedtweet {
         *display: inline;
         display: inline-block;
@@ -155,7 +154,7 @@
         margin-right: 0px;
         margin-top: 20px;
     }
-    
+
     .button {
         background-color: f49e35;
         border: none;
@@ -170,59 +169,68 @@
         font-family: "Avenir Black", sans-serif;
         font-weight: 100;
     }
-    
+
     .center-div {
         margin: 0 auto;
         width: 500px;
     }
-    
+
     .center-div-button-bar {
         margin: 0 auto;
         width: 700px;
         padding-left: 30px;
     }
-    
+
     .center-div-bar {
         margin: 0 auto;
         width: 800px;
     }
-    
+
     .center-div2 {
         margin: 0 auto;
         width: 1200px;
         padding-left: 40px;
     }
-    
+
     .center-div3 {
         margin: 0 auto;
         width: 600px;
         padding-left: 80px;
     }
-    
+
     .center-div4 {
         margin: 0 auto;
         width: 800;
         padding-left: 30px;
     }
-    
+
     .center-div5 {
         margin: 0 auto;
         width: 550px;
         padding-left: 120px;
     }
-    
+
     .center-div6 {
         margin: 0 auto;
         width: 1000px;
         padding-left: 120px;
     }
-    
+
     .center-div8 {
         margin: 0 auto;
         width: 1200px;
         padding-left: 140px;
     }
+<<<<<<< HEAD
     
+=======
+
+    .center-div-loading {
+        margin: 0 auto;
+        width: 70px;
+    }
+
+>>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
     a {
         font-family: "Avenir Black", sans-serif;
         font-weight: 100;
@@ -238,11 +246,11 @@
         text-decoration: none;
         color: black;
     }
-    
+
     a:hover {
         font-size: 13px;
     }
-    
+
     p2 {
         font-size: 150%;
         font-family: "Avenir Black", sans-serif;
@@ -257,7 +265,7 @@
         padding-top: 20px;
         width: 100%;
     }
-    
+
     p1 {
         font-size: 14px;
         font-family: "Avenir Black", sans-serif;
@@ -266,19 +274,20 @@
         text-align: left;
         text-indent: 0px;
     }
-    
+
     .styledDiv {
         padding-left: 30px;
         padding-right: 30px;
         padding-bottom: 0px;
         height: 80px;
     }
-    
+
     .starDiv {
         padding-left: 70%;
         height: 10px;
         width: 100px;
     }
+<<<<<<< HEAD
     
     p6,
     {
@@ -290,6 +299,9 @@
         text-indent: 0px;
     }
     
+=======
+
+>>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
     p4 {
         font-size: 18px;
         font-family: "Avenir Black", sans-serif;
@@ -297,8 +309,9 @@
         width: 100%;
         text-align: center;
         text-indent: 0px;
+        line-height: 25px;
     }
-    
+
     p5 {
         font-size: 16px;
         font-family: "Avenir Black", sans-serif;
@@ -309,7 +322,7 @@
         padding-left: 150px;
         padding-top: 200px;
     }
-    
+
     p6 {
         font-size: 18px;
         font-family: "Avenir Black", sans-serif;
@@ -319,12 +332,44 @@
         text-indent: 0px;
         padding-rit: 300px;
     }
+<<<<<<< HEAD
     
+=======
+
+    p7 {
+        font-size: 18px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 300;
+        width: 100%;
+        text-align: left;
+        text-indent: 0px;
+        line-height: 25px;
+    }
+
+    p8 {
+        font-size: 14px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 100;
+        width: 100%;
+        text-align: left;
+        text-indent: 0px;
+    }
+
+    p9 {
+        font-size: 16px;
+        font-family: "Avenir Black", sans-serif;
+        font-weight: 100;
+        width: 100%;
+        text-align: left;
+        text-indent: 0px;
+    }
+
+>>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
     .background {
         z-index: 0;
         position: absolute;
     }
-    
+
     .foreground {
         z-index: 2;
         position: relative;
@@ -332,7 +377,7 @@
         padding-left: 30px;
     }
     /* No longer necessary v */
-    
+
     table {
         width: 100%;
         font-size: 150%;
@@ -340,19 +385,19 @@
         font-family: "Avenir Black", sans-serif;
         table-layout: fixed;
     }
-    
+
     td {
         background: #ffdaad;
         height: 320px;
         max-width: 350px;
     }
-    
+
     th {
         font-weight: 100;
         padding-bottom: 20px;
     }
     /* No longer necessary ^ */
-    
+
     .star-five {
         margin: 50px 0;
         position: absolute;
@@ -368,7 +413,7 @@
         -ms-transform: rotate(-35deg) scale(.15);
         -o-transform: rotate(-35deg) scale(.15);
     }
-    
+
     .star-five:before {
         border-bottom: 80px solid white;
         border-left: 30px solid transparent;
@@ -386,7 +431,7 @@
         -o-transform: rotate(-35deg);
         position: asbolute;
     }
-    
+
     .star-five:after {
         position: absolute;
         display: block;
@@ -404,15 +449,17 @@
         -o-transform: rotate(-70deg);
         content: '';
     }
-    
+
     .star-five:hover {
         transform: rotate(-35deg) scale(.18);
         transition-duration: $transition-time;
     }
-    
+
     .seeMore {
         color: black;
         font-weight: 500;
+        background: None;
+        margin-top: 15px;
     }
     
     .star-four {
@@ -467,7 +514,13 @@
         content: '';
     }
     
+<<<<<<< HEAD
     .star-four:hover {
         transform: rotate(-35deg) scale(.18);
         transition-duration: $transition-time;
     }
+=======
+    .cardHeader {
+      font-size: 18px;
+    }
+>>>>>>> e0755c2382821d67793cfee5a2df192868b894e1

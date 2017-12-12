@@ -73,25 +73,32 @@ function generate_tweet_box(index) {
     var starDiv = document.createElement("div");
     starDiv.setAttribute("class", "starDiv");
 
+    // add tweet text
     var content = document.createElement("p4");
     content.innerHTML = tweet["tweet_text"];
-    var date = document.createElement("p4");
+
+    // add tweet insultee + date
+    var date = document.createElement("p8");
     var ugDate = new Date(tweet["date"]);
 
+    // add tweet date
     var options = {
-        weekday: "long",
+        //weekday: "long",
         year: "numeric",
         month: "short",
         day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
+        //hour: "2-digit",
+        //minute: "2-digit"
     };
     var prettyDate = ugDate.toLocaleTimeString("en-us", options);
     date.innerHTML = prettyDate;
 
+    var insultee = document.createElement("p9")
+    insultee.innerHTML = "Insult to: " + tweet.insultee.toString().bold()
+
     // create See More text
     var seeMore = document.createElement("a");
-    seeMore.innerHTML = "&nbsp &nbspSee More→";
+    seeMore.innerHTML = "    See More";
     seeMore.setAttribute("class", "seeMore");
     seeMore.href = "./detailedTweet.html?tweet_id=" + tweet["tweet_id"];
 
@@ -102,7 +109,10 @@ function generate_tweet_box(index) {
     innerDiv.appendChild(content);
     innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(document.createElement("br"));
+    innerDiv.appendChild(insultee);
+    innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(date);
+    innerDiv.appendChild(document.createElement("br"));
     innerDiv.appendChild(seeMore);
     div.appendChild(innerDiv);
     div.appendChild(starDiv);

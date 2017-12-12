@@ -24,6 +24,7 @@ function populateDetailedTweet() {
             var theTweetDate = document.getElementById("tweetCardDate");
             var theTweetRetweets = document.getElementById("tweetCardRetweets");
             var theTweetLikes = document.getElementById("tweetCardLikes");
+            var theTweetTitle = document.getElementById("tweetTitle");
             //console.log(theTweet);
             // Add commas into the retweet and favorites count, for easy to read format
             var retweetsNo = theTweet.retweets.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -40,6 +41,7 @@ function populateDetailedTweet() {
             };
             var prettyDate = ugDate.toLocaleTimeString("en-us", options);
 
+            theTweetTitle.innerHTML = theTweet.insultee;
             theTweetText.innerHTML = theTweet.tweet_text;
             theTweetDate.innerHTML = prettyDate;
             theTweetRetweets.innerHTML = retweetsNo + " retweets";
@@ -111,6 +113,7 @@ function starDetailedTweet() {
         alert("tweet starred!");
     };
 }
+<<<<<<< HEAD
 
 function unstarDetailedTweet() {
     var detailStar = document.getElementById("detailedStar");
@@ -121,3 +124,5 @@ function unstarDetailedTweet() {
         alert("tweet unstarred!");
     };
 }
+=======
+>>>>>>> e0755c2382821d67793cfee5a2df192868b894e1
