@@ -41,7 +41,7 @@ function openMenu(el) {
 $(document).ready(function() {
 
     // // For testing purposes
-    //store.clearAll()
+    // store.clearAll()
 
     // check if ordered view
     var ddmenu = document.getElementById("indexFilter");
@@ -69,8 +69,9 @@ $(document).ready(function() {
 
     // 1) populate by starred
     if (starred != undefined) {
-        // add star tweet for testing
+        // add starred tweets for testing
         starTweet("668255569996853248");
+        starTweet("759024055123009536");
         getStarredTweets().then(function(starred_tweets) {
             create_starred_message(starred_tweets.length)
             var orderMenu = document.getElementById("indexFilter");

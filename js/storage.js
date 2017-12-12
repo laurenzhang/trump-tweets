@@ -280,7 +280,7 @@ function starTweet(tweet_id) {
     }
 
     var new_starred_tweets = store.get('starred_tweets')
-    new_starred_tweets.push(tweet_id)
+    new_starred_tweets.unshift(tweet_id)
     store.set('starred_tweets', new_starred_tweets)
 }
 
