@@ -116,6 +116,38 @@ function get_tweets(order) {
 }
 
 /*
+ * Gets one tweet object
+ *
+ * @param[in] tweet_id : the tweet_id string
+ *
+ * @returns a Promise object which passes the tweet dictionary when done
+ *
+ * @see DATA SCHEMA at top to see what 'tweet' is
+ */
+function get_tweet(tweet_id) {
+
+    return new Promise(function (resolve, reject) {
+
+        // if tweets not initialized, init and store in local storage
+        if (store.get('tweets') == undefined) {
+
+            init_tweets().then(function() {
+                // Generate ordered tweets and return
+                tweets = store.get('tweets')
+
+                resolve(tweets[tweet_id])
+            });
+        }
+        // fetch from local storage and create array in order and return
+        else {
+            tweets = store.get('tweets')
+
+            resolve(tweets[tweet_id])
+        }
+    })
+}
+
+/*
  * Gets an array of related tweets
  *
  * @param[in] tweet : the tweet object to get related tweets
