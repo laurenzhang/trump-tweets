@@ -1,5 +1,7 @@
 $(document).ready(function() {
     populateDetailedTweet();
+    starDetailedTweet();
+    unstarDetailedTweet();
 })
 
 function populateDetailedTweet() {
@@ -7,6 +9,7 @@ function populateDetailedTweet() {
     // Get url and retrieve the tweet id from it
     var splitURL = (window.location.href).split("tweet_id=");
     var theTweetId = (splitURL[1]);
+    console.log(theTweetId);
     var detailStar = document.getElementById("detailedStar");
     detailStar.value = theTweetId;
     console.log(detailStar.value);
@@ -43,7 +46,7 @@ function populateDetailedTweet() {
             theTweetLikes.innerHTML = favesNo + " likes";
             // Fill in Wiki Card information
             console.log("Original insultee: " + theTweet.insultee);
-            getWikiSummary(theTweet.insultee).then(function (response) {
+            getWikiSummary(theTweet.insultee).then(function(response) {
                 var theWikiPic = document.getElementById("wikiPic");
                 var theWikiText = document.getElementById("wikiText");
                 var theWikiTitle = document.getElementById("wikiTitle");
@@ -66,7 +69,7 @@ function populateDetailedTweet() {
                     }
                 } catch (err) {
                     console.log('Error Fetching wiki!')
-                    // console.log(err);
+                        // console.log(err);
                     wiki_content['title'] = 'Wikipedia Card';
                     wiki_content['summary'] = 'Wiki summary unavailable';
                     wiki_content['img_url'] = 'http://torchthewindmill.com/wp-content/uploads/2017/02/0Cheeto.jpg';
@@ -87,15 +90,34 @@ function populateDetailedTweet() {
 }
 
 function populateRelatedTweets(tweet) {
-  get_related_tweets(tweet).then(function(related_tweets) {
-    if (related_tweets.length > 0) {
-        populateFeed(related_tweets)
-    }
-    // add error message when no related tweet
-    else {
-        create_no_related_tweet_message(tweet)
-    }
+    get_related_tweets(tweet).then(function(related_tweets) {
+        if (related_tweets.length > 0) {
+            populateFeed(related_tweets)
+        }
+        // add error message when no related tweet
+        else {
+            create_no_related_tweet_message(tweet)
+        }
 
-  });
+    });
 }
 
+function starDetailedTweet() {
+    var detailStar = document.getElementById("detailedStar");
+    var splitURL = (window.location.href).split("tweet_id=");
+    var ID = (splitURL[1]);
+    detailStar.onclick = function() {
+        starTweet(ID);
+        alert("tweet starred!");
+    };
+}
+
+function unstarDetailedTweet() {
+    var detailStar = document.getElementById("detailedStar");
+    var splitURL = (window.location.href).split("tweet_id=");
+    var ID = (splitURL[1]);
+    detailStar.onclick = function() {
+        unstarTweet(ID);
+        alert("tweet unstarred!");
+    };
+}
