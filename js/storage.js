@@ -267,7 +267,7 @@ function unstarTweet(tweet_id) {
         }
     }
 
-    store.set('starred_tweets') = new_starred
+    store.set('starred_tweets', new_starred)
 }
 
 /*

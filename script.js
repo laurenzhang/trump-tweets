@@ -43,5 +43,6 @@ function openMenu(el) {
 // Search orders:
 //  ["recent_ordered" | "retweet_ordered" | "fav_ordered"]
 get_tweets('recent_ordered').then(function(tweets) {
+    console.log(tweets)
     populateFeed(tweets);
 })

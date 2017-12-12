@@ -45,8 +45,8 @@ function getTweetBatch(insultee, statusID_list){
      */
     var returnArray = [];
     var arrsize;
-    if (statusID_list > 100)
-      arrsize = 99;
+    if (statusID_list.length > 100)
+      arrsize = 100;
     else
       arrsize = statusID_list.length;
     //var statusID_list = ["674382044097449985", "668827139232423936", "668827020718161920"];
@@ -88,6 +88,7 @@ function getTweetBatch(insultee, statusID_list){
                   else {
                       console.log("error response or timeout exceeded: ")
                       console.log(reply.errors)
+                      console.log(insultee)
                       resolve([])
                   }
             });
