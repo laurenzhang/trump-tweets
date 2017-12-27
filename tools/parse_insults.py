@@ -36,5 +36,5 @@ for entity in entities:
 
 # print(json.dumps(insult_tweets))
 
-with open('json/insult_tweets.json', 'w') as file:
+with open('../json/insult_tweets.json', 'w') as file:
     file.write(json.dumps(insult_tweets))
